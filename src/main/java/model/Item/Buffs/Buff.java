@@ -1,12 +1,14 @@
-package model;
+package model.Item.Buffs;
+
+import model.Item.Consumable;
 
 public abstract class Buff implements Consumable{
     /*
      * Represents a Buff Item that a player can consume to apply a stat buff
      */
 
-    private int buffAmount;
-    private String buffType;
+    protected int buffAmount;
+    protected String buffType;
 
     public int getStat(){
         return buffAmount;

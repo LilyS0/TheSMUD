@@ -1,4 +1,4 @@
-package model;
+package model.Item;
 
 public interface Consumable extends Item{
     /*
