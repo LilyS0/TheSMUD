@@ -16,6 +16,8 @@ public class Room {
     // Exit is not currently a type of Tile in our ConsensusDomainModel, but i think it 
     // would be optimal to do so (will further discuss in meeting)
 
+    // definitely use 2D array for Room 
+
     public String description;
 
     public String getDescription() {

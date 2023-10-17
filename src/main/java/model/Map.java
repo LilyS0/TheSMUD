@@ -13,6 +13,7 @@ public class Map {
     // *again with the 2D array, there's gotta be a better solution but for now that's
     // gonna be the placeholder*
 
+    // revisit gcis124 haunted house assignment for inspo on how to handle room/map -> used a weighted graph*/graph in general
     public boolean isNight;
 
     public void timeChange() {
