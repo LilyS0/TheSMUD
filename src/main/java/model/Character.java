@@ -1,11 +1,12 @@
+package model;
 /**
  * Interface that contains information shared by both NPC and PlayerCharacter.
  * 
  * @author Sydney Wilson
  */
-public interface Character {
+public abstract class Character {
     public String name;
-    public String decription;
+    public String description;
     public int health;
     public int attack;
     public int defense;
