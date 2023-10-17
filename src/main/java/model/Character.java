@@ -4,6 +4,7 @@ package model;
  * 
  * @author Sydney Wilson
  */
+// MAKE THIS AN INTEFACE
 public abstract class Character {
     public String name;
     public String description;
