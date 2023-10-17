@@ -5,7 +5,7 @@ package model;
  * 
  * @author Sydney Wilson
  */
-public class NPC extends Character{
+public class NPC extends MUDCharacter{
     public boolean isNocturnal;
 
     public boolean getNocturnal() {

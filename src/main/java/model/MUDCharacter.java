@@ -5,7 +5,7 @@ package model;
  * @author Sydney Wilson
  */
 // MAKE THIS AN INTEFACE
-public abstract class Character {
+public abstract class MUDCharacter {
     public String name;
     public String description;
     public int health;

@@ -5,7 +5,7 @@ package model;
  * 
  * @author Sydney Wilson
  */
-public class PlayerCharacter extends Character {
+public class PlayerCharacter extends MUDCharacter {
 
     @Override
     public String getName() {
