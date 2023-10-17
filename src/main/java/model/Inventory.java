@@ -1,6 +1,7 @@
+package model;
 import java.util.ArrayList;
 import java.util.List;
-package model;
+
 /**
  * Inventory uses the Composite Design Pattern to create a part-whole hierarchy of Items to be stored for use 
  * by the PlayerCharacter or NPC.
