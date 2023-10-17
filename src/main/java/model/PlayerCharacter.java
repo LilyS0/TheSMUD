@@ -51,4 +51,7 @@ public class PlayerCharacter extends Character {
     // public Inventory getInventory() {
     //     return this.inventory;
     // }
+
+    // eliminate defense?
+    // move() 
 }
