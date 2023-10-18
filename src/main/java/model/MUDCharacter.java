@@ -32,6 +32,10 @@ public abstract class MUDCharacter {
         return this.defense;
     }
 
+    public boolean isAlive(){
+        return this.health > 0;
+    }
+
     // OTHER METHODS WILL INCLUDE:
     // attack(enemy), defend() 
 }

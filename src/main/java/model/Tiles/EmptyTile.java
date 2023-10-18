@@ -26,4 +26,9 @@ public class EmptyTile implements Tile{
             return false;
         }
     }
+
+    @Override
+    public void storeItem(MUDItem item) {
+        this.items.add(item);
+    }
 }
