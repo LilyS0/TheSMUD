@@ -5,7 +5,7 @@ package model;
  * @author Sydney Wilson
  */
 // MAKE THIS AN INTEFACE
-public abstract class Character {
+public abstract class MUDCharacter {
     public String name;
     public String description;
     public int health;
@@ -30,6 +30,10 @@ public abstract class Character {
 
     public int getDefense() {
         return this.defense;
+    }
+
+    public boolean isAlive(){
+        return this.health > 0;
     }
 
     // OTHER METHODS WILL INCLUDE:

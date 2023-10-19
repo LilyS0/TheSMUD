@@ -2,7 +2,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Item.Item;
+import model.Item.MUDItem;
 
 /**
  * Inventory uses the Composite Design Pattern to create a part-whole hierarchy of Items to be stored for use 
@@ -10,13 +10,13 @@ import model.Item.Item;
  * 
  * @author Sydney Wilson
  */
-public class Inventory implements Item {
-    public List<Item> inventory = new ArrayList<>();
-    public void add(Item item) {
+public class Inventory implements MUDItem {
+    public List<MUDItem> inventory = new ArrayList<>();
+    public void add(MUDItem item) {
         inventory.add(item);
     }
 
-    public void remove(Item item) {
+    public void remove(MUDItem item) {
         inventory.remove(item);
     }
     // Item types vary (seen in Item branch), but all implement Item interface, Inventory also implements
