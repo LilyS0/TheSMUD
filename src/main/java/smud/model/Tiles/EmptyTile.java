@@ -1,9 +1,9 @@
-package model.Tiles;
+package smud.model.Tiles;
 
 import java.util.ArrayList;
 
-import model.MUDCharacter;
-import model.Item.MUDItem;
+import smud.model.MUDCharacter;
+import smud.model.Item.MUDItem;
 
 public class EmptyTile implements Tile{
     private boolean canEnter;

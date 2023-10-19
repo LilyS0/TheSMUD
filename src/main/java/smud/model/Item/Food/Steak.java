@@ -1,4 +1,4 @@
-package model.Item.Food;
+package smud.model.Item.Food;
 
 public class Steak extends Food{
     /*

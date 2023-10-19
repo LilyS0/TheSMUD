@@ -1,6 +1,6 @@
-package model.Item.Buffs;
+package smud.model.Item.Buffs;
 
-import model.Item.Consumable;
+import smud.model.Item.Consumable;
 
 public abstract class Buff implements Consumable{
     /*

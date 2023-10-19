@@ -1,4 +1,4 @@
-package model.Item.Armor;
+package smud.model.Item.Armor;
 
 public class ChainMailArmor extends Armor{
     /*

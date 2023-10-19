@@ -1,6 +1,6 @@
-package model.Tiles;
+package smud.model.Tiles;
 
-import model.MUDCharacter;
+import smud.model.MUDCharacter;
 
 public class ObstacleTile extends TileFeature{
     private String description;

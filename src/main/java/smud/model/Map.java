@@ -1,4 +1,4 @@
-package model;
+package smud.model;
 /**
  * A Map is made up of 2+ Rooms, which are made of Tiles.
  * 

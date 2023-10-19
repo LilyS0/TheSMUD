@@ -1,4 +1,4 @@
-package model;
+package smud.model;
 /**
  * Interface that contains information shared by both NPC and PlayerCharacter.
  * 

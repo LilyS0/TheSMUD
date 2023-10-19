@@ -1,6 +1,6 @@
-package model.Item.Food;
+package smud.model.Item.Food;
 
-import model.Item.Consumable;
+import smud.model.Item.Consumable;
 
 public abstract class Food implements Consumable{
     /*

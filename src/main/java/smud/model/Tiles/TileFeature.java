@@ -1,7 +1,7 @@
-package model.Tiles;
+package smud.model.Tiles;
 
-import model.MUDCharacter;
-import model.Item.MUDItem;
+import smud.model.MUDCharacter;
+import smud.model.Item.MUDItem;
 
 public abstract class TileFeature {
     protected Tile tile;

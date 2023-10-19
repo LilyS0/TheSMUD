@@ -1,6 +1,6 @@
-package model.Tiles;
+package smud.model.Tiles;
 
-import model.MUDCharacter;
+import smud.model.MUDCharacter;
 
 public class CharacterTile extends TileFeature{
     private MUDCharacter startingOccupant;

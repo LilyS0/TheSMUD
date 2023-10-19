@@ -1,7 +1,7 @@
-package model.Tiles;
+package smud.model.Tiles;
 
-import model.MUDCharacter;
-import model.Room;
+import smud.model.MUDCharacter;
+import smud.model.Room;
 
 public class ExitTile extends TileFeature{
     private Room target;

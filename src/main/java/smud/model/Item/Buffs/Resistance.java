@@ -1,4 +1,4 @@
-package model.Item.Buffs;
+package smud.model.Item.Buffs;
 
 public class Resistance extends Buff{
     /*

@@ -1,4 +1,4 @@
-package model.Item.Armor;
+package smud.model.Item.Armor;
 
 public class LeatherArmor extends Armor{
     /*

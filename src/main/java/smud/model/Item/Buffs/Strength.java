@@ -1,4 +1,4 @@
-package model.Item.Buffs;
+package smud.model.Item.Buffs;
 
 public class Strength extends Buff{
     /*
@@ -10,5 +10,4 @@ public class Strength extends Buff{
         this.buffAmount = 5;
         this.buffType = "Strenght";
     }
-    
 }

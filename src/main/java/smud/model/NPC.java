@@ -1,4 +1,4 @@
-package model;
+package smud.model;
 /**
  * NPC implements the Character class amnd inherits the functionality associated with it, and adds
  * additional information associated with the NPC such as nocturnal/diurnal.

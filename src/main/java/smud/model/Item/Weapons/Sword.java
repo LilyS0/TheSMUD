@@ -1,4 +1,4 @@
-package model.Item.Weapons;
+package smud.model.Item.Weapons;
 
 public class Sword extends Weapon{
     /*

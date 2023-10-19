@@ -1,4 +1,4 @@
-package model;
+package smud.model;
 /**
  * PlayerCharacter implements the Character interface, and adds additionaly functionality
  * such as Weapon and Armor associated with character.

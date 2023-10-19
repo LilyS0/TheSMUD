@@ -1,8 +1,8 @@
-package model;
+package smud.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Item.MUDItem;
+import smud.model.Item.MUDItem;
 
 /**
  * Inventory uses the Composite Design Pattern to create a part-whole hierarchy of Items to be stored for use 

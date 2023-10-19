@@ -1,8 +1,8 @@
-package model.Tiles;
+package smud.model.Tiles;
 
 import java.util.Random;
 
-import model.MUDCharacter;
+import smud.model.MUDCharacter;
 
 public class TrapTile extends TileFeature{
     private int attack;

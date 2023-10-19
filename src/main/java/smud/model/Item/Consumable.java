@@ -1,4 +1,4 @@
-package model.Item;
+package smud.model.Item;
 
 public interface Consumable extends MUDItem{
     /*

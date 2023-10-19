@@ -1,4 +1,4 @@
-package model;
+package smud.model;
 /**
  * A Map consists of many Rooms, each with varying attributes. A Room is then made of Tiles.
  * 

@@ -1,6 +1,6 @@
-package model.Item.Weapons;
+package smud.model.Item.Weapons;
 
-import model.Item.Equipable;
+import smud.model.Item.Equipable;
 
 public abstract class Weapon implements Equipable {
 

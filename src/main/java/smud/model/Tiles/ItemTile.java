@@ -1,8 +1,8 @@
-package model.Tiles;
+package smud.model.Tiles;
 
 import java.util.Collection;
 
-import model.Item.MUDItem;
+import smud.model.Item.MUDItem;
 
 public class ItemTile extends TileFeature{
     public ItemTile(Collection<MUDItem> items){
