@@ -6,9 +6,9 @@ import model.MUDCharacter;
 import model.Item.MUDItem;
 
 public class EmptyTile implements Tile{
-    public boolean canEnter;
-    public MUDCharacter occupant;
-    public ArrayList<MUDItem> items;
+    private boolean canEnter;
+    private MUDCharacter occupant;
+    private ArrayList<MUDItem> items;
 
     public EmptyTile(){
         this.canEnter = true;
