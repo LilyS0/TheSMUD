@@ -1,13 +1,14 @@
-package smud.model.Tiles;
+package smud.model.Environment.Tiles;
 
 import smud.model.MUDCharacter;
-import smud.model.Room;
+import smud.model.Environment.Room;
 
 public class ExitTile extends TileFeature{
     private Room target;
     
     public ExitTile(Room target){
         this.target = target;
+        this.description = "Exit Tile";
     }
     
     @Override
@@ -18,5 +19,9 @@ public class ExitTile extends TileFeature{
         }else{
             return false;
         }
+    }
+
+    public Room getTarget(){
+        return target;
     }
 }

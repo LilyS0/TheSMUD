@@ -1,4 +1,4 @@
-package smud.model.Tiles;
+package smud.model.Environment.Tiles;
 
 import java.util.ArrayList;
 

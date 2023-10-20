@@ -1,4 +1,4 @@
-package smud.model.Tiles;
+package smud.model.Environment.Tiles;
 
 import java.util.Random;
 
@@ -12,6 +12,7 @@ public class TrapTile extends TileFeature{
     public TrapTile(int attack){
         this.attack = attack;
         this.armed = true;
+        this.description = "Trap Tile";
     }
     
     public boolean disarm(){
