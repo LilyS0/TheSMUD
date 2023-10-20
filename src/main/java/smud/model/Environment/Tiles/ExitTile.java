@@ -9,6 +9,7 @@ public class ExitTile extends TileFeature{
     public ExitTile(Room target){
         this.target = target;
         this.description = "Exit Tile";
+        this.symbol = 'X';
     }
     
     @Override

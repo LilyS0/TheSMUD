@@ -5,9 +5,9 @@ package smud.model.Environment;
  * @author Sydney Wilson
  */
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
@@ -27,7 +27,7 @@ public class Room {
     private TileFeature[][] tiles;
     private int height;
     private int width;
-    private ArrayList<Room> exits;
+    private Set<Room> exits;
     
     private String description;
     private String display;
@@ -37,22 +37,42 @@ public class Room {
         this.tiles = tiles;
         this.width = tiles[0].length;
         this.height = tiles.length;
+        this.exits = new HashSet<>();
         this.description = "A room with: \n";
+        this.display = "";
 
         for(TileFeature[] row: tiles){
             for(TileFeature tile: row){
-                if(tile.getDescription().equals("Exit Tile")){
-                    ExitTile exit = (ExitTile)tile;
-                    exits.add(exit.getTarget());
-                }
                 this.description += "  " + tile.getDescription() + "\n";
+                this.display += "[" + tile.getSymbol() + "] ";
             }
+            this.display += "\n";
         }
 
     }
-    
+
+    public void addExit(Room room){
+        exits.add(room);
+    }
+
+    public boolean isConnected(Room room){
+        return exits.contains(room);
+    }
+
+    public Set<Room> getExits(){
+        return exits;
+    }
+
     public String getDescription(){
         return description;
+    }
+
+    public int getHeight(){
+        return height;
+    }
+
+    public int getWidth(){
+        return width;
     }
 
     @Override
@@ -64,6 +84,5 @@ public class Room {
     public int hashCode(){
         return tiles.hashCode() + description.hashCode();
     }
-    
    
 }

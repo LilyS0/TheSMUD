@@ -1,8 +1,7 @@
 package smud.model.Environment;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Map is made up of 2+ Rooms, which are made of Tiles.
@@ -13,16 +12,25 @@ public class SMUDMap {
 
     private Room startRoom;
     private Room endRoom;
-    private Map<Room, List<Room>> hallways;
+    private Set<Room> rooms;
     private boolean isDay;
 
     public SMUDMap(String filepath){
-        this.hallways = new HashMap<>();
+        this.rooms = new HashSet<>();
         this.isDay = true;
     }
 
+    public void addRoom(Room room){
+        rooms.add(room);
+    }
+
+    public void connectRooms(Room r1, Room r2){
+        r1.addExit(r2);
+        r2.addExit(r1);
+    }
+
     public void changeTime(){
-        this.isDay = !isDay();
+        isDay = !isDay();
     }
 
     public Room getStartRoom(){
@@ -37,11 +45,7 @@ public class SMUDMap {
         return isDay;
     }
 
-    public Map<Room, List<Room>> getAllHallways(){
-        return hallways;
-    }
-
-    public List<Room> getConnectedRooms(Room room){
-        return hallways.get(room);
+    public Set<Room> getRooms(){
+        return rooms;
     }
 }

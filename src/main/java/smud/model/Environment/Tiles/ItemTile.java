@@ -12,5 +12,6 @@ public class ItemTile extends TileFeature{
             tile.storeItem(item);
         }
         this.description = "Item Tile";
+        this.symbol = 'I';
     }
 }

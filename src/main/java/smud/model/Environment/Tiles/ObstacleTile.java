@@ -6,6 +6,7 @@ public class ObstacleTile extends TileFeature{
     
     public ObstacleTile(String description){
         this.description = description;
+        this.symbol = 'O';
     }
 
     @Override

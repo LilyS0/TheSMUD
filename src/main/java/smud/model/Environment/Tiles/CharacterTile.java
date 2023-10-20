@@ -7,6 +7,8 @@ public class CharacterTile extends TileFeature{
     
     public CharacterTile(MUDCharacter character){
         this.startingOccupant = character;
+        this.symbol = 'C';
+        this.description = "Character Tile";
         tile.occupy(character);
     }
 
