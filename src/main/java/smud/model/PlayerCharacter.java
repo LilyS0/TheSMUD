@@ -1,6 +1,5 @@
 package smud.model;
 
-import java.util.Random;
 
 /**
  * PlayerCharacter implements the Character interface, and adds additionaly functionality
@@ -18,21 +17,18 @@ public class PlayerCharacter extends MUDCharacter {
 // A weapon slot into which one weapon can be equipped. If a weapon is already equipped, it is dropped.
 // An armor slot into which one piece of armor can be equipped. If a piece of armor is already equipped, it is dropped.
 
-// method graveyard: setHealth
-
+// method graveyard: setHealth, setAttack/setDefense (KEEP METHOD, delete instances => might need for use in conjunction with )
+// eventually gonna have to part w inventory functions bc the prompt says so
     public PlayerCharacter(String name, String description, Inventory inventory) {
         this.setName(name);
         this.setDescription(description);
-        Random rand = new Random();
-        int minHealth = 50;
-        int maxHealth = 150;
-        this.health = rand.nextInt(maxHealth - minHealth + 1) + minHealth;
+        this.health = 100;
         this.setInventory(inventory);
     }
-    // public static void main(String[] args) {
-    //     Inventory inv = new Inventory();
-    //     PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex", inv);
-    //     System.out.println(notAlex.getName());
-    //     System.out.println(notAlex.getHealth());
-    // }
+    public static void main(String[] args) {
+        Inventory inv = new Inventory();
+        PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex", inv);
+        System.out.println(notAlex.getName());
+        System.out.println(notAlex.getHealth());
+    }
 }
