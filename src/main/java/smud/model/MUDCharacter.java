@@ -5,10 +5,10 @@ package smud.model;
  * @author Sydney Wilson
  */
 public abstract class MUDCharacter {
-    private String name;
-    private String description;
-    private int health;
-    private Inventory inventory;
+    protected String name;
+    protected String description;
+    protected int health;
+    protected Inventory inventory;
 
     public String getName() {
         return name;
@@ -28,10 +28,6 @@ public abstract class MUDCharacter {
 
     public int getHealth() {
         return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public int getAttack() {

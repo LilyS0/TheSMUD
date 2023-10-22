@@ -1,5 +1,7 @@
 package smud.model;
 
+import java.util.Random;
+
 import smud.model.Item.*;
 
 /**
@@ -10,6 +12,18 @@ import smud.model.Item.*;
  */
 public class NPC extends MUDCharacter{
     // INCORPORATE DEFAULT VALUES
+
+// An NPC is one that is controlled by the game. In this version of the game, all NPCs are enemies, but in future versions, some NPCs may not be hostile.
+// An NPC is either nocturnal or diurnal
+// Health: 50-150
+// Attack: 5-15
+// Defense: 0-10
+// A description including the stats of the NPC (health, attack, armor).
+// NPCs do not move, but will attack a player that is adjacent to them in any direction (including diagonal).
+// If an NPC is defeated it may drop an item and/or gold.
+
+// method graveyard: setHealth
+
     private boolean isNocturnal;
      
     public boolean getNocturnal() {
@@ -20,10 +34,13 @@ public class NPC extends MUDCharacter{
         this.isNocturnal = isNocturnal;
     }
 
-    public NPC(String name, String description, int health, Inventory inventory, boolean isNocturnal) {
+    public NPC(String name, String description, Inventory inventory, boolean isNocturnal) {
         this.setName(name);
         this.setDescription(description);
-        this.setHealth(health);
+        Random rand = new Random();
+        int minHealth = 50;
+        int maxHealth = 150;
+        this.health = rand.nextInt(maxHealth - minHealth + 1) + minHealth;
         this.setNocturnal(isNocturnal);
         this.setInventory(inventory);
     }
@@ -34,10 +51,11 @@ public class NPC extends MUDCharacter{
         return null;
     }
 
-    // public static void main(String[] args) {
-    //     Inventory inv = new Inventory();
-    //     NPC alex = new NPC("Alex", "This is NPC Alex", 20, inv, false);
-    //     System.out.println(alex.getName());
-    //     System.out.println(alex.getNocturnal());
-    // }
+    public static void main(String[] args) {
+        Inventory inv = new Inventory();
+        NPC alex = new NPC("Alex", "This is NPC Alex", inv, false);
+        System.out.println(alex.getName());
+        System.out.println(alex.getNocturnal());
+        System.out.println(alex.getHealth());
+    }
 }
