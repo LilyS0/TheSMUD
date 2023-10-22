@@ -5,9 +5,11 @@ package smud.model.Environment;
  * @author Sydney Wilson
  */
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
@@ -27,13 +29,14 @@ public class Room {
     private TileFeature[][] tiles;
     private int height;
     private int width;
+    private int id;
     private Set<Room> exits;
-    
     private String description;
     private String display;
 
-    public Room(TileFeature[][] tiles){
+    public Room(TileFeature[][] tiles, int id){
 
+        this.id = id;
         this.tiles = tiles;
         this.width = tiles[0].length;
         this.height = tiles.length;
