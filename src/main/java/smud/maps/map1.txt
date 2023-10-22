@@ -6,9 +6,7 @@ E,C,E,O,O,I
 T,I,E,C,E,E
 I,C,O,E,O,C
 r2
-X1O,O,O
+X1,O,O,O
 E,I,E,O
 T,E,C,O
 O,E,O,O
-
-

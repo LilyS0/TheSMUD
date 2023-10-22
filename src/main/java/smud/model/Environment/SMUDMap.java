@@ -37,7 +37,7 @@ public class SMUDMap {
 
                 int id = Character.getNumericValue(line.charAt(1));   
                 ArrayList<ArrayList<String>> roomList = new ArrayList<>();
-                ArrayList<String> lineList = new ArrayList<>();
+                
                 line = reader.readLine();
 
                 if(line.equals(null)){
@@ -45,6 +45,7 @@ public class SMUDMap {
                 }
 
                 while(line != null && !line.startsWith("r")){
+                    ArrayList<String> lineList = new ArrayList<>();
                     for(String symbol: line.split(",")){
                         lineList.add(symbol);
                     }
@@ -55,7 +56,6 @@ public class SMUDMap {
                 Room room = createRoom(roomList, id);
                 rooms.add(room);
             }
-            line = reader.readLine();
         }
 
         reader.close();
