@@ -8,9 +8,9 @@ public class ItemTile extends TileFeature{
 
 
     public ItemTile(Collection<MUDItem> items){
-        for(MUDItem item : items){
-            tile.storeItem(item);
-        }
+        // for(MUDItem item : items){
+        //     tile.storeItem(item);
+        // }
         this.description = "Item Tile";
         this.symbol = 'I';
     }

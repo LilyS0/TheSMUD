@@ -5,11 +5,9 @@ package smud.model.Environment;
  * @author Sydney Wilson
  */
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
@@ -46,7 +44,7 @@ public class Room {
 
         for(TileFeature[] row: tiles){
             for(TileFeature tile: row){
-                this.description += "  " + tile.getDescription() + "\n";
+                //this.description += "  " + tile.getDescription() + "\n";
                 this.display += "[" + tile.getSymbol() + "] ";
             }
             this.display += "\n";
@@ -76,6 +74,10 @@ public class Room {
 
     public int getWidth(){
         return width;
+    }
+
+    public int getId(){
+        return id;
     }
 
     @Override

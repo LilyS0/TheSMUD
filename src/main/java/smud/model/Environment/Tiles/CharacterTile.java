@@ -9,7 +9,7 @@ public class CharacterTile extends TileFeature{
         this.startingOccupant = character;
         this.symbol = 'C';
         this.description = "Character Tile";
-        tile.occupy(character);
+        //tile.occupy(character);
     }
 
     @Override

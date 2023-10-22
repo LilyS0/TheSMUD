@@ -40,7 +40,11 @@ public class SMUDMap {
                 ArrayList<String> lineList = new ArrayList<>();
                 line = reader.readLine();
 
-                while(!line.startsWith("r")){
+                if(line.equals(null)){
+                    break;
+                }
+
+                while(line != null && !line.startsWith("r")){
                     for(String symbol: line.split(",")){
                         lineList.add(symbol);
                     }
@@ -51,6 +55,7 @@ public class SMUDMap {
                 Room room = createRoom(roomList, id);
                 rooms.add(room);
             }
+            line = reader.readLine();
         }
 
         reader.close();
@@ -63,15 +68,17 @@ public class SMUDMap {
         int height = roomList.size();
 
         TileFeature[][] tiles = new TileFeature[height][width];
-        TileFeature[] row;
+        
 
         for(int i=0; i<height; i++){
+            TileFeature[] row = new TileFeature[width];
             for(int k=0; k<width; k++){
-                String symbol = roomList.get(i).get(k);
+                row[k] = TileFeature.createTile(roomList.get(i).get(k));
             }
+            tiles[i] = row;
         }
 
-        return null;
+        return new Room(tiles, id);
     }
 
     public void addRoom(Room room){
@@ -105,6 +112,20 @@ public class SMUDMap {
 
     public static void main(String[] args) {
         
+        try {
+            SMUDMap map = new SMUDMap("src/main/java/smud/maps/map1.txt");
+            Set<Room> rooms = map.getRooms();
+
+            for(Room r: rooms){
+                System.out.println("============================================");
+                System.out.println(r);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
