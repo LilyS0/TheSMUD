@@ -4,38 +4,20 @@ package smud.model;
  * 
  * @author Sydney Wilson
  */
-// MAKE THIS AN INTEFACE
-public abstract class MUDCharacter {
-    public String name;
-    public String description;
-    public int health;
-    public int attack;
-    public int defense;
+public interface MUDCharacter {
+    public String getName();
 
-    public String getName() {
-        return this.name;
-    }
+    public String getDescription();
 
-    public String getDescription() {
-        return this.description;
-    }
+    public int getHealth();
 
-    public int getHealth() {
-        return this.health;
-    }
+    public int getAttack();
 
-    public int getAttack() {
-        return this.health;
-    }
+    public int getDefense();
 
-    public int getDefense() {
-        return this.defense;
-    }
+    public boolean isAlive();
 
-    public boolean isAlive(){
-        return this.health > 0;
-    }
+    public void attack(MUDCharacter character);
 
-    // OTHER METHODS WILL INCLUDE:
-    // attack(enemy), defend() 
+    public void defend();
 }
