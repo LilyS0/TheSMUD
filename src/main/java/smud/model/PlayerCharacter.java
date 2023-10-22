@@ -5,7 +5,7 @@ package smud.model;
  * 
  * @author Sydney Wilson
  */
-public class PlayerCharacter extends MUDCharacter {
+public class PlayerCharacter implements MUDCharacter {
 
     @Override
     public String getName() {
@@ -39,6 +39,24 @@ public class PlayerCharacter extends MUDCharacter {
     // public Weapon weapon;
     // public Armor armor;
     // public Inventory inventory;
+
+    @Override
+    public boolean isAlive() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
+    }
+
+    @Override
+    public void attack(MUDCharacter character) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attack'");
+    }
+
+    @Override
+    public void defend() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'defend'");
+    }
     
     // public Weapon getWeapon() {
     //     return this.weapon;

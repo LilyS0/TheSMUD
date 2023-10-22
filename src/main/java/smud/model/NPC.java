@@ -5,7 +5,7 @@ package smud.model;
  * 
  * @author Sydney Wilson
  */
-public class NPC extends MUDCharacter{
+public class NPC implements MUDCharacter{
     public boolean isNocturnal;
 
     public boolean getNocturnal() {
@@ -40,5 +40,23 @@ public class NPC extends MUDCharacter{
     public int getDefense() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getDefense'");
+    }
+
+    @Override
+    public boolean isAlive() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
+    }
+
+    @Override
+    public void attack(MUDCharacter character) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attack'");
+    }
+
+    @Override
+    public void defend() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'defend'");
     }
 }
