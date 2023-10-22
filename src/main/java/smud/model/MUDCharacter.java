@@ -8,17 +8,30 @@ public abstract class MUDCharacter {
     private String name;
     private String description;
     private int health;
+    private Inventory inventory;
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getAttack() {
@@ -29,6 +42,14 @@ public abstract class MUDCharacter {
     public int getDefense() {
         // will call inventory.useDefense(Armor?) to do so
         return 0;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public boolean isAlive() {

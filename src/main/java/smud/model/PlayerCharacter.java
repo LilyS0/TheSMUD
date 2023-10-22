@@ -7,5 +7,11 @@ package smud.model;
  * @author Sydney Wilson
  */
 public class PlayerCharacter extends MUDCharacter {
-    // move() 
+    // INCORPORATE DEFAULT VALUES
+    public PlayerCharacter(String name, String description, int health, Inventory inventory) {
+        this.setName(name);
+        this.setDescription(description);
+        this.setHealth(health);
+        this.setInventory(inventory);
+    }
 }
