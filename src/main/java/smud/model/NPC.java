@@ -5,58 +5,10 @@ package smud.model;
  * 
  * @author Sydney Wilson
  */
-public class NPC implements MUDCharacter{
-    public boolean isNocturnal;
-
+public class NPC extends MUDCharacter{
+    private boolean isNocturnal;
+     
     public boolean getNocturnal() {
         return this.isNocturnal;
-    }
-
-    @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
-    }
-
-    @Override
-    public String getDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDescription'");
-    }
-
-    @Override
-    public int getHealth() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHealth'");
-    }
-
-    @Override
-    public int getAttack() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAttack'");
-    }
-
-    @Override
-    public int getDefense() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDefense'");
-    }
-
-    @Override
-    public boolean isAlive() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isAlive'");
-    }
-
-    @Override
-    public void attack(MUDCharacter character) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'attack'");
-    }
-
-    @Override
-    public void defend() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'defend'");
     }
 }
