@@ -6,11 +6,11 @@ package smud.model;
  */
 // MAKE THIS AN INTEFACE
 public abstract class MUDCharacter {
-    public String name;
-    public String description;
-    public int health;
-    public int attack;
-    public int defense;
+    protected String name;
+    protected String description;
+    protected int health;
+    protected int attack;
+    protected int defense;
 
     public String getName() {
         return this.name;
@@ -25,7 +25,7 @@ public abstract class MUDCharacter {
     }
 
     public int getAttack() {
-        return this.health;
+        return this.attack;
     }
 
     public int getDefense() {
@@ -35,7 +35,16 @@ public abstract class MUDCharacter {
     public boolean isAlive(){
         return this.health > 0;
     }
+    
+    public void takeDamage(int attackValue){
+        int damage = attackValue-this.getDefense();
+        if(damage <= 0){
+            damage = 1;
+        }
+        this.health -= defense;
+    }
 
-    // OTHER METHODS WILL INCLUDE:
-    // attack(enemy), defend() 
+    public void attack(MUDCharacter target){
+        target.takeDamage(this.getAttack());
+    }
 }

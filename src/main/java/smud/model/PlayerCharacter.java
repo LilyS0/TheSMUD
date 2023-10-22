@@ -1,4 +1,8 @@
 package smud.model;
+
+import smud.model.Item.Armor.Armor;
+import smud.model.Item.Weapons.Weapon;
+
 /**
  * PlayerCharacter implements the Character interface, and adds additionaly functionality
  * such as Weapon and Armor associated with character.
@@ -7,51 +11,31 @@ package smud.model;
  */
 public class PlayerCharacter extends MUDCharacter {
 
-    @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
-    }
-
-    @Override
-    public String getDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDescription'");
-    }
-
-    @Override
-    public int getHealth() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHealth'");
-    }
+    private Weapon weapon;
+    private Armor armor;
+    private Inventory inventory;
 
     @Override
     public int getAttack() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAttack'");
+        return this.attack + this.weapon.getStat();
     }
 
     @Override
     public int getDefense() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDefense'");
+        return this.defense + this.armor.getStat();
     }
-    // public Weapon weapon;
-    // public Armor armor;
-    // public Inventory inventory;
-    
-    // public Weapon getWeapon() {
-    //     return this.weapon;
-    // }
 
-    // public Armor getArmor() {
-    //     return this.armor;
-    // }
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
 
-    // public Inventory getInventory() {
-    //     return this.inventory;
-    // }
+    public Armor getArmor() {
+        return this.armor;
+    }
 
-    // eliminate defense?
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
     // move() 
 }
