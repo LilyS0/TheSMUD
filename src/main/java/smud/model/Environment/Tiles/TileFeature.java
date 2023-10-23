@@ -53,6 +53,7 @@ public abstract class TileFeature {
             return new ItemTile(MUDItem.getRandomItems());
         }
         else{
+            //should throw MUD exception instead
             return new EmptyTile();
         }
     }

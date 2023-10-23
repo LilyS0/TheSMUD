@@ -110,6 +110,14 @@ public class SMUDMap {
         return rooms;
     }
 
+    public Room getRoom(int id){
+        return rooms.get(id);
+    }
+
+    public TileFeature getTile(int id, int x, int y){
+        return rooms.get(id).getTile(x, y);
+    }
+
     public static void main(String[] args) {
         
         try {
