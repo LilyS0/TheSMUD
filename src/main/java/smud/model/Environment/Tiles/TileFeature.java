@@ -1,6 +1,7 @@
 package smud.model.Environment.Tiles;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import smud.model.MUDCharacter;
 import smud.model.Item.MUDItem;
@@ -9,6 +10,7 @@ public abstract class TileFeature {
     protected Tile tile;
     protected String description;
     protected char symbol;
+    private static final Random random = new Random();
 
     public boolean occupy(MUDCharacter character){
         return tile.occupy(character);
@@ -37,13 +39,13 @@ public abstract class TileFeature {
             return new CharacterTile(null);
         }
         else if(symbol.equals("T")){
-            return new TrapTile(0);
+            return new TrapTile(random.nextInt(26)+5);
         }
         else if(symbol.startsWith("X")){
             return new ExitTile(null);
         }
         else if(symbol.equals("O")){
-            return new ObstacleTile(null);
+            return ObstacleTile.createRandomObstacleTile();
         }
         else if(symbol.equals("I")){
             return new ItemTile(null);
