@@ -72,15 +72,16 @@ public class NPC extends MUDCharacter{
         int NPCnumber = rand.nextInt(15); //15 total options (located 0-14 in array)
         this.name = randomNPCs[NPCnumber][0];
         this.description = randomNPCs[NPCnumber][1];
+        if (NPCnumber % 2 == 0) { this.setNocturnal(true); }
+        // all this is missing is an inventory, but like obvi i gotta finish coding that first so i shall return to this capiche
     }
 
 //     public static void main(String[] args) {
-// //        Inventory inv = new Inventory();
-// //        NPC alex = new NPC("Alex", "This is NPC Alex", inv, false);
-// //        System.out.println(alex.getName());
-// //        System.out.println(alex.getNocturnal());
-// //        System.out.println(alex.getHealth());
-//         System.out.println(new NPC());
+//         Inventory inv = new Inventory();
+//         NPC alex = new NPC("Alex", "This is NPC Alex", inv, false);
+//         System.out.println(alex.getName());
+//         System.out.println(alex.getNocturnal());
+//         System.out.println(alex.getHealth());
 //     }
     public static void main(String[] args) {
         System.out.println(new NPC());
