@@ -32,11 +32,13 @@ public class Room {
     private Set<Room> exits;
     private String description;
     private String display;
+    private boolean isEndRoom;
 
-    public Room(TileFeature[][] tiles, int id){
+    public Room(TileFeature[][] tiles, int id, boolean isEndRoom){
 
         this.id = id;
         this.tiles = tiles;
+        this.isEndRoom = isEndRoom;
         this.width = tiles[0].length;
         this.height = tiles.length;
         this.exits = new HashSet<>();
@@ -51,6 +53,10 @@ public class Room {
             this.display += "\n";
         }
 
+    }
+
+    public boolean isEndRoom(){
+        return isEndRoom;
     }
 
     public TileFeature getTile(int x, int y){

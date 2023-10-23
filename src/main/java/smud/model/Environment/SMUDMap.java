@@ -79,7 +79,7 @@ public class SMUDMap {
             tiles[i] = row;
         }
 
-        return new Room(tiles, id);
+        return new Room(tiles, id, false);
     }
 
     public void addRoom(Room room, int id){
