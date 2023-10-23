@@ -1,6 +1,5 @@
 package smud.model.Environment.Tiles;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import smud.model.MUDCharacter;
