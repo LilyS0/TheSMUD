@@ -27,7 +27,7 @@ public class PlayerCharacter extends MUDCharacter {
     }
     public static void main(String[] args) {
         Inventory inv = new Inventory();
-        PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex", inv);
+        PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex", inv, null);
         System.out.println(notAlex.getName());
         System.out.println(notAlex.getHealth());
     }
