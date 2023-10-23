@@ -2,8 +2,9 @@ package smud.model;
 
 import java.util.Random;
 
+import smud.model.Environment.Tiles.Tile;
 import smud.model.Item.*;
-import smud.model.Tiles.*;
+
 
 /**
  * NPC implements the Character class and inherits the functionality associated with it, and adds
