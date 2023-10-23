@@ -14,6 +14,14 @@ public class TrapTile extends TileFeature{
         this.armed = true;
     }
     
+    int getAttack(){
+        return this.attack;
+    }
+
+    boolean armed(){
+        return this.armed;
+    }
+
     public boolean disarm(){
         if(armed){
             if(rng.nextInt(2) < 1){
