@@ -1,6 +1,8 @@
 package smud.model;
 
 import smud.model.Environment.Tiles.Tile;
+import smud.model.Item.Armor.Armor;
+import smud.model.Item.Weapons.Weapon;
 /**
  * PlayerCharacter implements the Character interface, and adds additionaly functionality
  * such as Weapon and Armor associated with character.
@@ -8,6 +10,8 @@ import smud.model.Environment.Tiles.Tile;
  * @author Sydney Wilson
  */
 public class PlayerCharacter extends MUDCharacter {
+    private Weapon weapon;
+    private Armor armor;
     // INCORPORATE DEFAULT VALUES
 // A player character (PC) is one that is controlled by a human user.
 // Health: 100
@@ -26,6 +30,17 @@ public class PlayerCharacter extends MUDCharacter {
         this.setInventory(inventory);
 //        this.setLocation(location);
     }
+
+    @Override
+    public int getAttack() {
+        return this.attack + this.weapon.getStat();
+    }
+
+    @Override
+    public int getDefense() {
+        return this.defense + this.armor.getStat();
+    }
+    
     public static void main(String[] args) {
         Inventory inv = new Inventory();
         PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex", inv, null);

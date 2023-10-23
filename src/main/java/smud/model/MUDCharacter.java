@@ -13,6 +13,8 @@ public abstract class MUDCharacter {
     protected int health;
     protected Inventory inventory;
     protected Tile[][] location;
+    protected int attack;
+    protected int defense;
 
     public String getName() {
         return name;
@@ -45,13 +47,11 @@ public abstract class MUDCharacter {
 //    }
 
     public int getAttack() {
-        // will call inventory.useAttack(Weapon?) to do so
-        return 0;
+        return this.attack;
     }
 
     public int getDefense() {
-        // will call inventory.useDefense(Armor?) to do so
-        return 0;
+        return this.defense;
     }
 
     public Inventory getInventory() {
@@ -63,16 +63,19 @@ public abstract class MUDCharacter {
     }
 
     public boolean isAlive() {
-        // if health > 0 && (game is over u die??)
-        return true;
+        return this.health > 0;
     }
 
-    public void attack(MUDCharacter character) {
-        // 1) get attack from inventory 2) subtract from character.health() 3) delete item from this.inventory
+    public void takeDamage(int attackValue){
+        int damage = attackValue-this.getDefense();
+        if(damage <= 0){
+            damage = 1;
+        }
+        this.health -= defense;
     }
 
-    public void defend() {
-        // 1) get defend from inventory 2) this.health REMAINS SAME, & no damage done to other character either 3) delete from this.inventory
+    public void attack(MUDCharacter target){
+        target.takeDamage(this.getAttack());
     }
 
     // will be discussed in 10/23 meting

@@ -50,4 +50,8 @@ public class TrapTile extends TileFeature{
     public int getAttack(){
         return attack;
     }
+
+    boolean armed(){
+        return this.armed;
+    }
 }
