@@ -9,9 +9,14 @@ public abstract class Buff implements Consumable{
 
     protected int buffAmount;
     protected String buffType;
+    private static Buff[] children = {new Regen(),  new Resistance(), new Strength()};
 
     public int getStat(){
         return buffAmount;
+    }
+
+    public static Buff[] getChildren(){
+        return children;
     }
     
 }

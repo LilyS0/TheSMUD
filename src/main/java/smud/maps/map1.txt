@@ -1,0 +1,12 @@
+r1
+O,O,E,X2,O,I
+O,E,T,E,C,O
+O,O,I,C,E,O
+E,C,E,O,O,I
+T,I,E,C,E,E
+I,C,O,E,O,C
+r2
+X1,O,O,O
+E,I,E,O
+T,E,C,O
+O,E,O,O

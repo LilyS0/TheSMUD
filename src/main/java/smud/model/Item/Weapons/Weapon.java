@@ -9,8 +9,13 @@ public abstract class Weapon implements Equipable {
      */
 
     protected int damage;
+    private static Weapon[] children = {new Axe(), new Bow(), new Sword()};
 
     public int getStat(){
         return damage;
+    }
+    
+    public static Weapon[] getChildren(){
+        return children;
     }
 }

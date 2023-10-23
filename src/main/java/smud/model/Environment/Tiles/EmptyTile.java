@@ -1,11 +1,11 @@
-package smud.model.Tiles;
+package smud.model.Environment.Tiles;
 
 import java.util.ArrayList;
 
 import smud.model.MUDCharacter;
 import smud.model.Item.MUDItem;
 
-public class EmptyTile implements Tile{
+public class EmptyTile extends TileFeature implements Tile{
     private boolean canEnter;
     private MUDCharacter occupant;
     private ArrayList<MUDItem> items;
@@ -14,6 +14,8 @@ public class EmptyTile implements Tile{
         this.canEnter = true;
         this.occupant = null;
         this.items = new ArrayList<>();
+        this.symbol = ' ';
+        this.description = "Empty Tile";
     }
 
     @Override

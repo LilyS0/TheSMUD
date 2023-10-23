@@ -1,4 +1,4 @@
-package smud.model.Tiles;
+package smud.model.Environment.Tiles;
 
 import smud.model.MUDCharacter;
 
@@ -7,7 +7,9 @@ public class CharacterTile extends TileFeature{
     
     public CharacterTile(MUDCharacter character){
         this.startingOccupant = character;
-        tile.occupy(character);
+        this.symbol = 'C';
+        this.description = "Character Tile";
+        //tile.occupy(character);
     }
 
     @Override

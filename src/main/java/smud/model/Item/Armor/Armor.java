@@ -9,9 +9,14 @@ public abstract class Armor implements Equipable{
      */
 
     protected int defense;
+    private static Armor[] children = {new ChainMailArmor(), new IronArmor(), new LeatherArmor()};
 
     public int getStat(){
         return defense;
+    }
+
+    public static Armor[] getChildren(){
+        return children;
     }
     
 }
