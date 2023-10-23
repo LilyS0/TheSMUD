@@ -3,6 +3,7 @@ package smud.model;
 import java.util.Random;
 
 import smud.model.Item.*;
+import smud.model.Tiles.*
 
 /**
  * NPC implements the Character class and inherits the functionality associated with it, and adds
@@ -33,13 +34,13 @@ public class NPC extends MUDCharacter{
     {"Count Chocula", "Not to be confused with the Count von Count."},
     {"Justin Case", "Well-known lawyer specializes in defending Goats and Trolls."},
     {"Guy DeFault", "Guy Fieri's half cousin twice removed."},
-    {"Cosmic Menace", ""},
+    {"Cosmic Menace", "The enigmatic extraterrestrial force that looms on the edge of the universe, harboring unknown intentions for all of humanity."},
     {"Alex", "His dad works for Matlab. You've been warned."},
     {"Bobert St. Jaqass", "He looked at me funny, and even though I have no idea why, it offended me anyway."},
     {"Bubert", "When I actually went to class, halfway through I began to hate God for giving me the legs that brought me there."},
     {"Rotisserie St. Jacks", "Enrolling in GCIS-LRATIO has been the biggest mistake of my entire life. I don't even know what a capital letter looks like anymore."},
-    {"Hank Schmogus", ""},
-    {"Paul Creenis", ""}};
+    {"Hank Schmogus", "The eccentric inventor with a penchant for creating quirky contraptions that defy convention"},
+    {"Paul Creenis", "The unassuming librarian who secretly moonlights as a stand-up comedian, spreading laughter one book at a time."}};
     Random rand = new Random();
     public boolean getNocturnal() {
         return this.isNocturnal;
@@ -49,7 +50,9 @@ public class NPC extends MUDCharacter{
         this.isNocturnal = isNocturnal;
     }
 
-    public NPC(String name, String description, Inventory inventory, boolean isNocturnal) {
+    // first off don't jump me for making it public imma change it but also idk if [][] is the best data structure but we can talk ab that in the 10/23 meeting
+    public Tile[][] location;
+    public NPC(String name, String description, Inventory inventory, boolean isNocturnal,Tile[][] location) {
         this.setName(name);
         this.setDescription(description);
         int minHealth = 50;
@@ -57,6 +60,8 @@ public class NPC extends MUDCharacter{
         this.health = rand.nextInt(maxHealth - minHealth + 1) + minHealth;
         this.setNocturnal(isNocturnal);
         this.setInventory(inventory);
+        // to be discussed at 10/23 meeting
+//        this.setLocation(location);
     }
 
     public MUDItem dropItem() {

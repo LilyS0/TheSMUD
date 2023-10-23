@@ -9,6 +9,7 @@ public abstract class MUDCharacter {
     protected String description;
     protected int health;
     protected Inventory inventory;
+    protected Tile[][] location;
 
     public String getName() {
         return name;
@@ -29,6 +30,16 @@ public abstract class MUDCharacter {
     public int getHealth() {
         return health;
     }
+
+    // requires further discussion at 10/23 meeting
+//    public Tile[][] getLocation() {
+//        return this.location;
+//    }
+
+    // requires further discussion at 10/23 meeting
+//    public void setLocation(Tile[][] location) {
+//        this.location = location;
+//    }
 
     public int getAttack() {
         // will call inventory.useAttack(Weapon?) to do so
@@ -60,4 +71,9 @@ public abstract class MUDCharacter {
     public void defend() {
         // 1) get defend from inventory 2) this.health REMAINS SAME, & no damage done to other character either 3) delete from this.inventory
     }
+
+    // will be discussed in 10/23 meting
+//    public void move(Tile[][] location) {
+//
+//    }
 }

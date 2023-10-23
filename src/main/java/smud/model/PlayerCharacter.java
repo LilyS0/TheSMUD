@@ -19,11 +19,12 @@ public class PlayerCharacter extends MUDCharacter {
 
 // method graveyard: setHealth, setAttack/setDefense (KEEP METHOD, delete instances => might need for use in conjunction with )
 // eventually gonna have to part w inventory functions bc the prompt says so
-    public PlayerCharacter(String name, String description, Inventory inventory) {
+    public PlayerCharacter(String name, String description, Inventory inventory, Tile[][] location) {
         this.setName(name);
         this.setDescription(description);
         this.health = 100;
         this.setInventory(inventory);
+//        this.setLocation(location);
     }
     public static void main(String[] args) {
         Inventory inv = new Inventory();
