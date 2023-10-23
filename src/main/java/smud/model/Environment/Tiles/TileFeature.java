@@ -38,7 +38,7 @@ public abstract class TileFeature {
             return new CharacterTile(null);
         }
         else if(symbol.equals("T")){
-            return new TrapTile(random.nextInt(26)+5);
+            return new TrapTile(random.nextInt(21)+5);
         }
         else if(symbol.startsWith("X")){
             return new ExitTile(null);
@@ -47,7 +47,7 @@ public abstract class TileFeature {
             return ObstacleTile.createRandomObstacleTile();
         }
         else if(symbol.equals("I")){
-            return new ItemTile(null);
+            return new ItemTile(MUDItem.getRandomItems());
         }
         else{
             return new EmptyTile();
