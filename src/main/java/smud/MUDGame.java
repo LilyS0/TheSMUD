@@ -1,5 +1,9 @@
 package smud;
 
+import java.util.Scanner;
+
+import smud.model.MUDException;
+
 public class MUDGame {
     /*
      * Main class to run the program. Controls the main gameplay loop.
@@ -8,6 +12,11 @@ public class MUDGame {
      */
 
     public static void main(String[] args) {
+        boolean gameOver = false;
+        Scanner scanner = new Scanner(System.in);
+        int turn = 1;
+        //PlayerCharacter pc
+        
         /*
          * get user input to start a new game/load existing file (file loading subsystem)
          * 
@@ -31,5 +40,56 @@ public class MUDGame {
          *          if player is standing next to an enemy, call enemy's attack method targeting player character
          *      check if player died, if they did game is over
          */
+
+        while(!gameOver){
+            //player's turn
+            while(true){
+                System.out.println("Turn " + turn);
+                System.out.println("Would you like to (M)ove, (A)ttack, (P)ick up items, Access your (I)nventory, (D)isarm a trap, or save and (Q)uit the game?");
+                String response = scanner.nextLine();
+                response = response.toUpperCase();
+                if(response.equals("M")){
+                    // move
+                    // if we just moved next to a trap tile, roll 50% chance that we detect it
+                    break;
+                }else if(response.equals("A")){
+                    // attack
+                    break;
+                }else if(response.equals("P")){
+                    // for each item in character.location.items add to character inventory
+                    break;
+                }else if(response.equals("I")){
+                    // print each item in inventory with an associated number, get a number input and use that item
+                    break;
+                }else if(response.equals("D")){
+                    // try{
+                    //     //character.location.disarm()
+                    // }catch(MUDException e){
+
+                    // }
+                    break;
+                }else if(response.equals("Q")){
+                    // save to a file
+                    gameOver = true;
+                    break;
+                }else{
+                    System.out.println("Unknown command: " + response);
+                }
+            }
+            // for each buff in character.buffs
+            //      if buff type is regen, restore health
+            //      buff.turnsLeft--;
+            // enemy turn
+            // for tile in bordering tiles:
+            //      if occupied by NPC, they attack us
+            
+            /* if(!pc.isAlive()){
+                gameOver = true;
+                break;
+            }
+            */
+            turn++;
+        }
+        scanner.close();
     }
 }

@@ -14,6 +14,7 @@ public class TrapTile extends TileFeature{
         this.armed = true;
     }
     
+    @Override
     public boolean disarm(){
         if(armed){
             if(rng.nextInt(2) < 1){
