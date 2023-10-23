@@ -1,6 +1,5 @@
 package smud.model;
-
-
+import smud.model.Tiles.*;
 /**
  * PlayerCharacter implements the Character interface, and adds additionaly functionality
  * such as Weapon and Armor associated with character.

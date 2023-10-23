@@ -1,4 +1,5 @@
 package smud.model;
+import smud.model.Tiles.*;
 /**
  * Interface that contains information shared by both NPC and PlayerCharacter.
  * 
