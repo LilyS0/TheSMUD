@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import smud.model.Environment.Tiles.TileFeature;
 
@@ -18,14 +18,14 @@ public class SMUDMap {
 
     private Room startRoom;
     private Room endRoom;
-    private Set<Room> rooms;
+    private Map<Integer, Room> rooms;
     private boolean isDay;
     private FileReader fileReader;
     private BufferedReader reader;
 
     public SMUDMap(String filepath) throws IOException{
 
-        this.rooms = new HashSet<>();
+        this.rooms = new HashMap<>();
         this.isDay = true;
         this.fileReader = new FileReader(filepath);
         this.reader = new BufferedReader(fileReader);
@@ -54,7 +54,7 @@ public class SMUDMap {
                 }
 
                 Room room = createRoom(roomList, id);
-                rooms.add(room);
+                rooms.put(id, room);
             }
         }
 
@@ -73,7 +73,7 @@ public class SMUDMap {
         for(int i=0; i<height; i++){
             TileFeature[] row = new TileFeature[width];
             for(int k=0; k<width; k++){
-                row[k] = TileFeature.createTile(roomList.get(i).get(k));
+                row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms);
             }
             tiles[i] = row;
         }
@@ -81,8 +81,8 @@ public class SMUDMap {
         return new Room(tiles, id);
     }
 
-    public void addRoom(Room room){
-        rooms.add(room);
+    public void addRoom(Room room, int id){
+        rooms.put(id, room);
     }
 
     public void connectRooms(Room r1, Room r2){
@@ -106,7 +106,7 @@ public class SMUDMap {
         return isDay;
     }
 
-    public Set<Room> getRooms(){
+    public Map<Integer, Room> getRooms(){
         return rooms;
     }
 
@@ -114,11 +114,11 @@ public class SMUDMap {
         
         try {
             SMUDMap map = new SMUDMap("src/main/java/smud/maps/map1.txt");
-            Set<Room> rooms = map.getRooms();
+            Map<Integer, Room> rooms = map.getRooms();
 
-            for(Room r: rooms){
-                System.out.println("============================================");
-                System.out.println(r);
+            for(int id: rooms.keySet()){
+                System.out.println(rooms.get(id));
+                System.out.println("============================================");   
             }
 
 

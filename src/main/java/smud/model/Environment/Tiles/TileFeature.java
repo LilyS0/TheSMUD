@@ -1,8 +1,10 @@
 package smud.model.Environment.Tiles;
 
+import java.util.Map;
 import java.util.Random;
 
 import smud.model.MUDCharacter;
+import smud.model.Environment.Room;
 import smud.model.Item.MUDItem;
 
 public abstract class TileFeature {
@@ -27,7 +29,7 @@ public abstract class TileFeature {
         return symbol;
     }
 
-    public static TileFeature createTile(String symbol){
+    public static TileFeature createTile(String symbol,  Map<Integer, Room> rooms){
 
         //symbols: E,C,T,X,O,I
 
@@ -41,7 +43,8 @@ public abstract class TileFeature {
             return new TrapTile(random.nextInt(21)+5);
         }
         else if(symbol.startsWith("X")){
-            return new ExitTile(null);
+            int id = Character.getNumericValue(symbol.charAt(1));
+            return new ExitTile(rooms.get(id));
         }
         else if(symbol.equals("O")){
             return ObstacleTile.createRandomObstacleTile();
