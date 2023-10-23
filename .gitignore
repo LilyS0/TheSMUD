@@ -26,3 +26,7 @@ target/**
 
 # Ignore tool files
 .vscode
+
+#.xml files
+compiler.xml
+misc.xml
