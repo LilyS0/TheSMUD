@@ -13,6 +13,7 @@ import smud.model.Environment.Tiles.TileFeature;
  * A Map is made up of 2+ Rooms, which are made of Tiles.
  * 
  * @author Sydney Wilson
+ * @author Lily Susman
  */
 public class SMUDMap {
 

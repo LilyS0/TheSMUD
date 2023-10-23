@@ -3,6 +3,7 @@ package smud.model.Environment;
  * A Map consists of many Rooms, each with varying attributes. A Room is then made of Tiles.
  * 
  * @author Sydney Wilson
+ * @author Lily Susman
  */
 
 import java.util.HashSet;
