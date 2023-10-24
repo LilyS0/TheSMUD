@@ -10,7 +10,6 @@ import java.util.Map;
 import smud.model.MUDException;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
-import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.Tiles.TileFeature;
 
 /**

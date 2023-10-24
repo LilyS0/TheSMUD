@@ -9,8 +9,6 @@ package smud.model.Environment;
 import java.util.HashSet;
 import java.util.Set;
 
-import smud.model.PlayerCharacter;
-import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
