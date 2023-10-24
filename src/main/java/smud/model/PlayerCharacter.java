@@ -63,12 +63,20 @@ public class PlayerCharacter extends MUDCharacter {
 
     @Override
     public int getAttack() {
-        return this.attack + this.weapon.getStat();
+        if(this.weapon != null){
+            return this.attack + this.weapon.getStat();
+        }else{
+            return this.attack;
+        }
     }
 
     @Override
     public int getDefense() {
-        return this.defense + this.armor.getStat();
+        if(this.armor != null){
+            return this.defense + this.armor.getStat();
+        }else{
+            return this.defense;
+        }
     }
 
     public Room getCurrRoom(){

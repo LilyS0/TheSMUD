@@ -76,6 +76,7 @@ public class MUDGame {
                 if(tile instanceof CharacterTile){
                     npcAdjacent = true;
                     CharacterTile npcTile = (CharacterTile)tile;
+                    player.attack(npcTile.getCharacter());
                     npcTile.getCharacter().attack(player);
                 }
             }
@@ -139,6 +140,8 @@ public class MUDGame {
         PlayerCharacter player = game.getPlayer();
         SMUDMap map = game.getMap();
         player.setCurrRoom(map.getRoom(1));
+        player.setXCor(3);
+        player.setYCor(5);
         int turn = 1;
 
         while(player.isAlive()){
