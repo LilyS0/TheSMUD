@@ -33,6 +33,10 @@ public abstract class TileFeature {
         tile.storeItem(item);
     }
 
+    public boolean disarm(MUDCharacter character) throws MUDException{
+        throw new MUDException("Can't disarm. No trap here.");
+    }
+
     public String getDescription(){
         return description;
     }

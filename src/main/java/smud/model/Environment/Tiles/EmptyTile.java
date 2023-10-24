@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import smud.model.MUDCharacter;
 import smud.model.PlayerCharacter;
+import smud.model.MUDException;
 import smud.model.Item.MUDItem;
 
 public class EmptyTile extends TileFeature implements Tile{
@@ -26,11 +27,9 @@ public class EmptyTile extends TileFeature implements Tile{
         if(canEnter && occupant == null){
             occupant = character;
             canEnter = false;
-            //System.out.println("wow");
             if(occupant instanceof PlayerCharacter){
                 this.symbol = 'P';
             }
-            //System.out.println(symbol);
             return true;
         }else{
             return false;
@@ -51,4 +50,5 @@ public class EmptyTile extends TileFeature implements Tile{
     public void storeItem(MUDItem item) {
         this.items.add(item);
     }
+
 }
