@@ -6,6 +6,8 @@ import smud.model.Environment.Room;
 public class ExitTile extends TileFeature{
     private Room target;
     private int targetID;
+    private int targetX;
+    private int targetY;
     
     public ExitTile(int targetID, int x, int y){
         this.xCor = x;
