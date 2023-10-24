@@ -21,7 +21,7 @@ public class EmptyTile extends TileFeature implements Tile{
     @Override
     public boolean occupy(MUDCharacter character) {
         if(canEnter && occupant == null){
-            occupant = character;
+            //occupant = character;
             canEnter = false;
             return true;
         }else{

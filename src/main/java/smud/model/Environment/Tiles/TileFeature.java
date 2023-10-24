@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Random;
 
 import smud.model.MUDCharacter;
+import smud.model.MUDException;
+import smud.model.NPC;
 import smud.model.Environment.Room;
 import smud.model.Item.MUDItem;
 
@@ -29,7 +31,7 @@ public abstract class TileFeature {
         return symbol;
     }
 
-    public static TileFeature createTile(String symbol,  Map<Integer, Room> rooms){
+    public static TileFeature createTile(String symbol,  Map<Integer, Room> rooms) throws MUDException{
 
         //symbols: E,C,T,X,O,I
 
@@ -37,7 +39,7 @@ public abstract class TileFeature {
             return new EmptyTile();
         } 
         else if(symbol.equals("C")){
-            return new CharacterTile(null);
+            return new CharacterTile(new NPC());
         }
         else if(symbol.equals("T")){
             return new TrapTile(random.nextInt(21)+5);
@@ -54,7 +56,7 @@ public abstract class TileFeature {
         }
         else{
             //should throw MUD exception instead
-            return new EmptyTile();
+            throw new MUDException("Invalid Symbol");
         }
     }
 }

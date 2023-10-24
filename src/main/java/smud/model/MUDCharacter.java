@@ -1,7 +1,5 @@
 package smud.model;
 
-import smud.model.Environment.Tiles.Tile;
-
 /**
  * Interface that contains information shared by both NPC and PlayerCharacter.
  * 
@@ -12,7 +10,6 @@ public abstract class MUDCharacter {
     protected String description;
     protected int health;
     protected Inventory inventory;
-    protected Tile[][] location;
     protected int attack;
     protected int defense;
 
@@ -35,16 +32,6 @@ public abstract class MUDCharacter {
     public int getHealth() {
         return health;
     }
-
-    // requires further discussion at 10/23 meeting
-//    public Tile[][] getLocation() {
-//        return this.location;
-//    }
-
-    // requires further discussion at 10/23 meeting
-//    public void setLocation(Tile[][] location) {
-//        this.location = location;
-//    }
 
     public int getAttack() {
         return this.attack;
@@ -78,8 +65,4 @@ public abstract class MUDCharacter {
         target.takeDamage(this.getAttack());
     }
 
-    // will be discussed in 10/23 meting
-//    public void move(Tile[][] location) {
-//
-//    }
 }

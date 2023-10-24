@@ -9,5 +9,6 @@ public class Strength extends Buff{
     public Strength(){
         this.buffAmount = 5;
         this.buffType = "Strenght";
+        this.turns = random.nextInt(5)+1;
     }
 }

@@ -1,8 +1,19 @@
 package smud;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.Set;
 
+import smud.model.MUDCharacter;
 import smud.model.MUDException;
+import smud.model.PlayerCharacter;
+import smud.model.Environment.SMUDMap;
+import smud.model.Environment.Tiles.CharacterTile;
+import smud.model.Environment.Tiles.EmptyTile;
+import smud.model.Environment.Tiles.ExitTile;
+import smud.model.Environment.Tiles.ItemTile;
+import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.Tiles.TrapTile;
 
 public class MUDGame {
     /*
@@ -10,86 +21,128 @@ public class MUDGame {
      * 
      * @author Ty Platow
      */
+    private SMUDMap map;
+    private PlayerCharacter player;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        boolean gameOver = false;
-        Scanner scanner = new Scanner(System.in);
-        int turn = 1;
-        //PlayerCharacter pc
-        
-        /*
-         * get user input to start a new game/load existing file (file loading subsystem)
-         * 
-         * while game is not over:
-         *      on player's turn:
-         *          get user input to make choice between movement, attacking, picking up/use items or disarming traps
-         *              if trying to move:
-         *                  call occupy method on tile they are trying to move to
-         *                      if returns false, let them choose what to do again
-         *                      if the player's new square is next to a trap, roll 50% chance to detect it (this part might wind up somewhere else in the code)
-         *                      if stepped on the exit tile in the last room, game is over
-         *              if item was used:
-         *                  start a turn countdown for the duration of the buff
-         *              if attacking:
-         *                  make sure player is in range (more range for different weapons?)
-         *                  call player character's attack method with target
-         *              if disarming trap:
-         *                  call disarm method on the trapped tile
-         *          once turn is over, increment the turn countdown for active buffs
-         *      after player's turn:
-         *          if player is standing next to an enemy, call enemy's attack method targeting player character
-         *      check if player died, if they did game is over
-         */
 
-        while(!gameOver){
-            //player's turn
-            while(true){
-                System.out.println("Turn " + turn);
-                System.out.println("Would you like to (M)ove, (A)ttack, (P)ick up items, Access your (I)nventory, (D)isarm a trap, or save and (Q)uit the game?");
-                String response = scanner.nextLine();
-                response = response.toUpperCase();
-                if(response.equals("M")){
-                    // move
-                    // if we just moved next to a trap tile, roll 50% chance that we detect it
-                    break;
-                }else if(response.equals("A")){
-                    // attack
-                    break;
-                }else if(response.equals("P")){
-                    // for each item in character.location.items add to character inventory
-                    break;
-                }else if(response.equals("I")){
-                    // print each item in inventory with an associated number, get a number input and use that item
-                    break;
-                }else if(response.equals("D")){
-                    // try{
-                    //     //character.location.disarm()
-                    // }catch(MUDException e){
+    public MUDGame(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
 
-                    // }
-                    break;
-                }else if(response.equals("Q")){
-                    // save to a file
-                    gameOver = true;
-                    break;
-                }else{
-                    System.out.println("Unknown command: " + response);
+        this.map = new SMUDMap(filepath);
+        this.player = new PlayerCharacter(playerName, playerDescription);
+    }
+
+    public void takeTurn() throws MUDException{
+
+        //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
+        System.out.println(map);
+        System.out.println(buildPrompString());
+        String action = scanner.nextLine().toLowerCase();
+        Set<TileFeature> adjacentTiles = player.getAdjacentTiles();
+
+        if(action.equals("x")){
+            System.out.println("Turn ended");
+        } 
+        else if (action.equals("e")){
+            boolean exitAdjacent = false;
+            for(TileFeature tile: adjacentTiles){
+                if(tile instanceof ExitTile){
+                    exitAdjacent = true;
+                    ExitTile exit = (ExitTile)tile;
+                    System.out.println("Moving to room + " + exit.getTarget().getId());
+                    player.setCurrRoom(exit.getTarget());
                 }
             }
-            // for each buff in character.buffs
-            //      if buff type is regen, restore health
-            //      buff.turnsLeft--;
-            // enemy turn
-            // for tile in bordering tiles:
-            //      if occupied by NPC, they attack us
-            
-            /* if(!pc.isAlive()){
-                gameOver = true;
-                break;
+            if(!exitAdjacent){
+                throw new MUDException("No exit there");
             }
-            */
-            turn++;
         }
-        scanner.close();
+        else if(action.equals("t")){
+            boolean trapAdjacent = false;
+            for(TileFeature tile: adjacentTiles){
+                if(tile instanceof TrapTile){
+                    trapAdjacent = true;
+                    TrapTile trap = (TrapTile)tile;
+                    trap.disarm();
+                }
+            }
+            if(!trapAdjacent){
+                throw new MUDException("No trap there");
+            }
+        }
+        else if(action.equals("f")){
+            boolean npcAdjacent = false;
+            for(TileFeature tile: adjacentTiles){
+                if(tile instanceof CharacterTile){
+                    npcAdjacent = true;
+                    CharacterTile npcTile = (CharacterTile)tile;
+                    npcTile.getCharacter().attack(player);
+                }
+            }
+            if(!npcAdjacent){
+                throw new MUDException("No NPC there");
+            }
+        }
+        else{
+            player.makeMove(action);
+        }
+    }
+
+    public String buildPrompString(){
+        Set<TileFeature> adjacentTiles = player.getAdjacentTiles();
+        String promptString = "This turn you can: \n";
+
+        for(TileFeature tile: adjacentTiles){
+        
+            if(tile instanceof TrapTile){
+
+                TrapTile trapTile = (TrapTile)tile;
+                if(trapTile.isDetected()){
+                    promptString += "Disarm a trap (t), ";
+                }
+            }
+            else if(tile instanceof EmptyTile || tile instanceof ItemTile){
+
+                promptString += "Move (w,a,s,d), ";
+            }
+            else if(tile instanceof ExitTile){
+
+                ExitTile exit = (ExitTile)tile;
+                promptString += "Exit to room " + exit.getTarget().getId() + " (e),";
+            }
+            else if(tile instanceof CharacterTile){
+
+                CharacterTile charTile = (CharacterTile)tile;
+                MUDCharacter npc = charTile.getCharacter();
+                promptString += "Attack an enemy with " + npc.getAttack() + " attack " + npc.getDefense() + " defense and" + npc.getHealth() + " health (f), ";
+
+            }
+        }
+
+        promptString += "or you can choose to end your turn (x)";
+
+        return promptString;
+    }
+
+    public SMUDMap getMap(){
+        return map;
+    }
+
+    public PlayerCharacter getPlayer(){
+        return player;
+    }
+
+    public static void main(String[] args) throws IOException, MUDException {
+
+        Scanner scanner = new Scanner(System.in);
+        MUDGame game = new MUDGame("src/main/java/smud/maps/map1.txt", "Player 1", "Just yo average playa");
+        PlayerCharacter player = game.getPlayer();
+        SMUDMap map = game.getMap();
+        int turn = 1;
+
+        while(player.isAlive()){
+            game.takeTurn();
+            turn ++;
+        }
     }
 }

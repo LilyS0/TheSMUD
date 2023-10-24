@@ -42,12 +42,12 @@ public class Room {
         this.width = tiles[0].length;
         this.height = tiles.length;
         this.exits = new HashSet<>();
-        this.description = "A room with: \n";
+        this.description = "a room with: \n";
         this.display = "";
 
         for(TileFeature[] row: tiles){
             for(TileFeature tile: row){
-                //this.description += "  " + tile.getDescription() + "\n";
+                this.description += "  " + tile.getDescription() + "\n";
                 this.display += "[" + tile.getSymbol() + "] ";
             }
             this.display += "\n";
