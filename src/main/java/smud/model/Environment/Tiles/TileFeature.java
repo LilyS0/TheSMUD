@@ -13,10 +13,18 @@ public abstract class TileFeature {
     protected Tile tile;
     protected String description;
     protected char symbol;
+    protected MUDCharacter occupant;
+    protected boolean canEnter;
     private static final Random random = new Random();
 
-    public boolean occupy(MUDCharacter character){
-        return tile.occupy(character);
+    public boolean occupy(MUDCharacter character) {
+        if(canEnter && occupant == null){
+            occupant = character;
+            canEnter = false;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void storeItem(MUDItem item){
@@ -29,6 +37,10 @@ public abstract class TileFeature {
 
     public char getSymbol(){
         return symbol;
+    }
+
+    public MUDCharacter getOccupant(){
+        return occupant;
     }
 
     public static TileFeature createTile(String symbol,  Map<Integer, Room> rooms) throws MUDException{

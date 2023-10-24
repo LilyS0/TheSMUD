@@ -12,7 +12,7 @@ public class EmptyTile extends TileFeature implements Tile{
 
     public EmptyTile(){
         this.canEnter = true;
-        this.occupant = null;
+        // this.occupant = null;
         this.items = new ArrayList<>();
         this.symbol = ' ';
         this.description = "Empty Tile";
@@ -21,7 +21,7 @@ public class EmptyTile extends TileFeature implements Tile{
     @Override
     public boolean occupy(MUDCharacter character) {
         if(canEnter && occupant == null){
-            //occupant = character;
+            occupant = character;
             canEnter = false;
             return true;
         }else{

@@ -6,4 +6,5 @@ import smud.model.Item.MUDItem;
 public interface Tile {
     public boolean occupy(MUDCharacter character);
     public void storeItem(MUDItem item);
+    public MUDCharacter getOccupant();
 }

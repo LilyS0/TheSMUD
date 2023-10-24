@@ -35,7 +35,7 @@ public class MUDGame {
     public void takeTurn() throws MUDException{
 
         //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
-        System.out.println(map);
+        System.out.println(player.getCurrRoom());
         System.out.println(buildPrompString());
         String action = scanner.nextLine().toLowerCase();
         Set<TileFeature> adjacentTiles = player.getAdjacentTiles();
@@ -140,8 +140,9 @@ public class MUDGame {
         PlayerCharacter player = game.getPlayer();
         SMUDMap map = game.getMap();
         player.setCurrRoom(map.getRoom(1));
-        player.setXCor(3);
-        player.setYCor(5);
+        player.setXCor(4);
+        player.setYCor(4);
+        player.occupyLocation();
         int turn = 1;
 
         while(player.isAlive()){

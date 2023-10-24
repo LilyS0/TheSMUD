@@ -119,6 +119,12 @@ public class PlayerCharacter extends MUDCharacter {
         this.yCor = y;
     }
 
+    public void occupyLocation(){
+        System.out.println(currRoom.getTile(xCor, yCor).occupy(this));
+        System.out.println(currRoom.getTile(xCor, yCor).getOccupant());
+        currRoom.getTile(xCor, yCor).occupy(this);
+    }
+
     public ArrayList<Buff> getActiveBuffs(){
         return activeBuffs;
     }
