@@ -95,9 +95,9 @@ public class SMUDMap {
             TileFeature[] row = new TileFeature[width];
             for(int k=0; k<width; k++){
                 try {
-                    row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms);
+                    row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
                 } catch (MUDException e) {
-                    row[k] = new EmptyTile();
+                    row[k] = new EmptyTile(k, i);
                     System.out.println("Unable to create tile at x:" + k + "y:" + i  + ": \n  " + e);
                 }
             }

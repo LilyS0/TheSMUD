@@ -9,7 +9,9 @@ public class ObstacleTile extends TileFeature{
     private static final String[] obsticles = {"Rock", "Plant", "Spike", "Wall", "Pit"};
     private static final Random random = new Random();
     
-    public ObstacleTile(String description){
+    public ObstacleTile(String description, int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.description = description;
         this.symbol = 'O';
     }
@@ -23,7 +25,7 @@ public class ObstacleTile extends TileFeature{
         return description;
     }
 
-    public static ObstacleTile createRandomObstacleTile(){
-        return new ObstacleTile(obsticles[random.nextInt(obsticles.length)]);
+    public static ObstacleTile createRandomObstacleTile(int x, int y){
+        return new ObstacleTile(obsticles[random.nextInt(obsticles.length)], x, y);
     }
 }

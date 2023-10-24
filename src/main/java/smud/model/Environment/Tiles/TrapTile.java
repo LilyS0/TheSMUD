@@ -10,7 +10,9 @@ public class TrapTile extends TileFeature{
     private boolean detected;
     Random rng = new Random();
 
-    public TrapTile(int attack){
+    public TrapTile(int attack, int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.attack = attack;
         this.armed = true;
         this.detected = false;

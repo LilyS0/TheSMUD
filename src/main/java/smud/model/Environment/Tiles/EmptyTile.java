@@ -11,7 +11,9 @@ public class EmptyTile extends TileFeature implements Tile{
     private MUDCharacter occupant;
     private ArrayList<MUDItem> items;
 
-    public EmptyTile(){
+    public EmptyTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.canEnter = true;
         this.occupant = null;
         this.items = new ArrayList<>();

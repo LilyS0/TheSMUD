@@ -7,7 +7,9 @@ public class ExitTile extends TileFeature{
     private Room target;
     private int targetID;
     
-    public ExitTile(int targetID){
+    public ExitTile(int targetID, int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.targetID = targetID;
         this.description = "Exit Tile";
         this.symbol = 'X';
