@@ -9,5 +9,6 @@ public class Resistance extends Buff{
     public Resistance(){
         this.buffAmount = 5;
         this.buffType = "Resistance";
+        this.turns = random.nextInt(5)+1;
     }
 }

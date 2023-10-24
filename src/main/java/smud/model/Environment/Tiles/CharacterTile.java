@@ -5,7 +5,9 @@ import smud.model.MUDCharacter;
 public class CharacterTile extends TileFeature{
     private MUDCharacter startingOccupant;
     
-    public CharacterTile(MUDCharacter character){
+    public CharacterTile(MUDCharacter character, int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.startingOccupant = character;
         this.symbol = 'C';
         this.description = "Character Tile";

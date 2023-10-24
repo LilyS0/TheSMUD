@@ -8,13 +8,17 @@ import smud.model.MUDException;
 public class TrapTile extends TileFeature{
     private int attack;
     private boolean armed;
+    private boolean detected;
     Random rng = new Random();
 
-    public TrapTile(int attack){
+    public TrapTile(int attack, int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.attack = attack;
         this.armed = true;
+        this.detected = false;
         this.description = "Trap Tile";
-        this.symbol = 'T';
+        this.symbol = '_';
     }
     
     @Override
@@ -35,6 +39,20 @@ public class TrapTile extends TileFeature{
             System.out.println("The trap is not active.");
             return true;
         }
+    }
+
+    public void detect(){
+        if(!detected && armed){
+            if(rng.nextInt(2) < 1){
+                System.out.println("Trap detected!");
+                this.symbol = 'T';
+                this.detected = true;
+            }
+        }
+    }
+
+    public boolean isDetected(){
+        return detected;
     }
 
     @Override

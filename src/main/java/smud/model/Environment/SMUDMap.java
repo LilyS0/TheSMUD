@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import smud.model.MUDException;
+import smud.model.Environment.Tiles.EmptyTile;
+import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 
 /**
@@ -24,7 +27,7 @@ public class SMUDMap {
     private FileReader fileReader;
     private BufferedReader reader;
 
-    public SMUDMap(String filepath) throws IOException{
+    public SMUDMap(String filepath) throws IOException, MUDException{
 
         this.rooms = new HashMap<>();
         this.isDay = true;
@@ -61,6 +64,22 @@ public class SMUDMap {
 
         reader.close();
         fileReader.close();
+
+        if(rooms.size() < 2){
+            throw new MUDException("Not enough rooms");
+        }
+
+        for(int id: rooms.keySet()){
+            Room r = rooms.get(id);
+            for(TileFeature[] row: r.getTiles()){
+                for(TileFeature tile: row){
+                    if(tile instanceof ExitTile){
+                        ExitTile exit = (ExitTile)tile;
+                        exit.addTarget(rooms.get(exit.getTargetID()));
+                    }
+                }
+            }
+        }
     }
 
     public Room createRoom(ArrayList<ArrayList<String>> roomList, int id){
@@ -74,7 +93,12 @@ public class SMUDMap {
         for(int i=0; i<height; i++){
             TileFeature[] row = new TileFeature[width];
             for(int k=0; k<width; k++){
-                row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms);
+                try {
+                    row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                } catch (MUDException e) {
+                    row[k] = new EmptyTile(k, i);
+                    System.out.println("Unable to create tile at x:" + k + "y:" + i  + ": \n  " + e);
+                }
             }
             tiles[i] = row;
         }
@@ -132,6 +156,8 @@ public class SMUDMap {
 
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (MUDException e){
             e.printStackTrace();
         }
 

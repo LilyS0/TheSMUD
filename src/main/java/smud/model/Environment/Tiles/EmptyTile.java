@@ -3,6 +3,7 @@ package smud.model.Environment.Tiles;
 import java.util.ArrayList;
 
 import smud.model.MUDCharacter;
+import smud.model.PlayerCharacter;
 import smud.model.MUDException;
 import smud.model.Item.MUDItem;
 
@@ -11,7 +12,9 @@ public class EmptyTile extends TileFeature implements Tile{
     private MUDCharacter occupant;
     private ArrayList<MUDItem> items;
 
-    public EmptyTile(){
+    public EmptyTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
         this.canEnter = true;
         this.occupant = null;
         this.items = new ArrayList<>();
@@ -24,10 +27,23 @@ public class EmptyTile extends TileFeature implements Tile{
         if(canEnter && occupant == null){
             occupant = character;
             canEnter = false;
+            if(occupant instanceof PlayerCharacter){
+                this.symbol = 'P';
+            }
             return true;
         }else{
             return false;
         }
+    }
+
+    public MUDCharacter getOccupant() {
+        return occupant;
+    }
+
+    public void clearOccupant(){
+        occupant = null;
+        symbol = ' ';
+        canEnter = true;
     }
 
     @Override
