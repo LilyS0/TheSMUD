@@ -134,13 +134,15 @@ public class MUDGame {
 
     public static void main(String[] args) throws IOException, MUDException {
 
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         MUDGame game = new MUDGame("src/main/java/smud/maps/map1.txt", "Player 1", "Just yo average playa");
         PlayerCharacter player = game.getPlayer();
         SMUDMap map = game.getMap();
+        player.setCurrRoom(map.getRoom(1));
         int turn = 1;
 
         while(player.isAlive()){
+            System.out.println("Turn " + turn);
             game.takeTurn();
             turn ++;
         }

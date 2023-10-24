@@ -155,10 +155,18 @@ public class PlayerCharacter extends MUDCharacter {
 
         ArrayList<TileFeature> adjacent = new ArrayList<>();
 
-        adjacent.add(currRoom.getTile(xCor + 1, yCor));
-        adjacent.add(currRoom.getTile(xCor - 1, yCor));
-        adjacent.add(currRoom.getTile(xCor, yCor + 1));
-        adjacent.add(currRoom.getTile(xCor, yCor - 1));
+        if(xCor + 1 < currRoom.getWidth()){
+            adjacent.add(currRoom.getTile(xCor + 1, yCor));
+        }
+        if(xCor - 1 >= 0){
+            adjacent.add(currRoom.getTile(xCor - 1, yCor));
+        }
+        if(yCor + 1 < currRoom.getHeight()){
+            adjacent.add(currRoom.getTile(xCor, yCor + 1));
+        }
+        if(yCor - 1 >= 0){
+            adjacent.add(currRoom.getTile(xCor, yCor - 1));
+        }
 
         adjacentTiles.clear();
         adjacentTiles.addAll(adjacent);
