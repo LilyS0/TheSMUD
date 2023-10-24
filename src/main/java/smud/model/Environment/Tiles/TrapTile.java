@@ -3,6 +3,7 @@ package smud.model.Environment.Tiles;
 import java.util.Random;
 
 import smud.model.MUDCharacter;
+import smud.model.MUDException;
 
 public class TrapTile extends TileFeature{
     private int attack;
@@ -16,7 +17,8 @@ public class TrapTile extends TileFeature{
         this.symbol = 'T';
     }
     
-    public boolean disarm(){
+    @Override
+    public boolean disarm(MUDCharacter character) throws MUDException{
         if(armed){
             if(rng.nextInt(2) < 1){
                 System.out.println("You disarmed the trap.");
@@ -25,7 +27,7 @@ public class TrapTile extends TileFeature{
             }else{
                 System.out.println("You failed to disarm the trap!");
                 // cause damage with attack stat then set trap inactive
-                // maybe call a method in the character?
+                character.takeDamage(attack);
                 armed = false;
                 return false;
             }
@@ -40,6 +42,7 @@ public class TrapTile extends TileFeature{
         if(this.armed){
             System.out.println("You triggered a trap!");
             // cause damage
+            character.takeDamage(attack);
             return tile.occupy(character);
         }else{
             // trap inactive, nothing happens

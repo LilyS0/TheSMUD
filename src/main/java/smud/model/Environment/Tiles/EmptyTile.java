@@ -3,6 +3,7 @@ package smud.model.Environment.Tiles;
 import java.util.ArrayList;
 
 import smud.model.MUDCharacter;
+import smud.model.MUDException;
 import smud.model.Item.MUDItem;
 
 public class EmptyTile extends TileFeature implements Tile{
@@ -33,4 +34,5 @@ public class EmptyTile extends TileFeature implements Tile{
     public void storeItem(MUDItem item) {
         this.items.add(item);
     }
+
 }
