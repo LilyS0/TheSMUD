@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import smud.model.PlayerCharacter;
+import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
@@ -49,11 +50,7 @@ public class Room {
         for(TileFeature[] row: tiles){
             for(TileFeature tile: row){
                 this.description += "  " + tile.getDescription() + "\n";
-                if(tile.getOccupant() instanceof PlayerCharacter){
-                    this.display += "[P] ";
-                }else{
-                    this.display += "[" + tile.getSymbol() + "] ";
-                }
+                this.display += "[" + tile.getSymbol() + "] ";
             }
             this.display += "\n";
         }
@@ -98,6 +95,15 @@ public class Room {
 
     @Override
     public String toString(){
+        String display = "";
+
+        for(TileFeature[] row: tiles){
+            for(TileFeature tile: row){
+                this.description += "  " + tile.getDescription() + "\n";
+                display += "[" + tile.getSymbol() + "] ";
+            }
+            display += "\n";
+        }
         return display;
     }
 
@@ -105,5 +111,4 @@ public class Room {
     public int hashCode(){
         return tiles.hashCode() + description.hashCode();
     }
-   
 }

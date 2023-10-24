@@ -120,8 +120,6 @@ public class PlayerCharacter extends MUDCharacter {
     }
 
     public void occupyLocation(){
-        System.out.println(currRoom.getTile(xCor, yCor).occupy(this));
-        System.out.println(currRoom.getTile(xCor, yCor).getOccupant());
         currRoom.getTile(xCor, yCor).occupy(this);
     }
 

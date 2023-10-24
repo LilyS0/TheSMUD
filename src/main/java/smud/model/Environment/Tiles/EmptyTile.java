@@ -3,6 +3,7 @@ package smud.model.Environment.Tiles;
 import java.util.ArrayList;
 
 import smud.model.MUDCharacter;
+import smud.model.PlayerCharacter;
 import smud.model.Item.MUDItem;
 
 public class EmptyTile extends TileFeature implements Tile{
@@ -12,7 +13,7 @@ public class EmptyTile extends TileFeature implements Tile{
 
     public EmptyTile(){
         this.canEnter = true;
-        // this.occupant = null;
+        this.occupant = null;
         this.items = new ArrayList<>();
         this.symbol = ' ';
         this.description = "Empty Tile";
@@ -23,10 +24,19 @@ public class EmptyTile extends TileFeature implements Tile{
         if(canEnter && occupant == null){
             occupant = character;
             canEnter = false;
+            //System.out.println("wow");
+            if(occupant instanceof PlayerCharacter){
+                this.symbol = 'P';
+            }
+            //System.out.println(symbol);
             return true;
         }else{
             return false;
         }
+    }
+
+    public MUDCharacter getOccupant() {
+        return occupant;
     }
 
     @Override
