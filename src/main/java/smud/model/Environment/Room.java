@@ -65,6 +65,10 @@ public class Room {
         return tiles[y][x];
     }
 
+    public TileFeature[][] getTiles(){
+        return tiles;
+    }
+
     public void addExit(Room room){
 
         exits.add(room);

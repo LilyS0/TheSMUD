@@ -23,7 +23,11 @@ public class ExitTile extends TileFeature{
         }
     }
 
-    public void addTarge(Room target){
+    public int getTargetID(){
+        return targetID;
+    }
+
+    public void addTarget(Room target){
         this.target = target;
     }
 

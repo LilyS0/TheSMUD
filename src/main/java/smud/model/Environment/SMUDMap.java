@@ -9,6 +9,8 @@ import java.util.Map;
 
 import smud.model.MUDException;
 import smud.model.Environment.Tiles.EmptyTile;
+import smud.model.Environment.Tiles.ExitTile;
+import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.Tiles.TileFeature;
 
 /**
@@ -66,6 +68,18 @@ public class SMUDMap {
 
         if(rooms.size() < 2){
             throw new MUDException("Not enough rooms");
+        }
+
+        for(int id: rooms.keySet()){
+            Room r = rooms.get(id);
+            for(TileFeature[] row: r.getTiles()){
+                for(TileFeature tile: row){
+                    if(tile instanceof ExitTile){
+                        ExitTile exit = (ExitTile)tile;
+                        exit.addTarget(rooms.get(exit.getTargetID()));
+                    }
+                }
+            }
         }
     }
 
