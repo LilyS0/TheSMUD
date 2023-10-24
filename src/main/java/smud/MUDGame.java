@@ -115,7 +115,7 @@ public class MUDGame {
 
                 CharacterTile charTile = (CharacterTile)tile;
                 MUDCharacter npc = charTile.getCharacter();
-                promptString += "Attack an enemy with " + npc.getAttack() + " attack " + npc.getDefense() + " defense and" + npc.getHealth() + " health (f), ";
+                promptString += "Attack an enemy with " + npc.getAttack() + " attack " + npc.getDefense() + " defense and " + npc.getHealth() + " health (f), ";
 
             }
         }
@@ -136,7 +136,7 @@ public class MUDGame {
     public static void main(String[] args) throws IOException, MUDException {
 
         //Scanner scanner = new Scanner(System.in);
-        MUDGame game = new MUDGame("src/main/java/smud/maps/map1.txt", "Player 1", "Just yo average playa");
+        MUDGame game = new MUDGame("src/main/java/smud/maps/map2.txt", "Player 1", "Just yo average playa");
         PlayerCharacter player = game.getPlayer();
         SMUDMap map = game.getMap();
         player.setCurrRoom(map.getRoom(1));

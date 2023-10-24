@@ -66,6 +66,7 @@ public class Room {
     }
 
     public void addExit(Room room){
+
         exits.add(room);
     }
 

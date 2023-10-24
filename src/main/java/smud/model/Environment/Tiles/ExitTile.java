@@ -5,9 +5,10 @@ import smud.model.Environment.Room;
 
 public class ExitTile extends TileFeature{
     private Room target;
+    private int targetID;
     
-    public ExitTile(Room target){
-        this.target = target;
+    public ExitTile(int targetID){
+        this.targetID = targetID;
         this.description = "Exit Tile";
         this.symbol = 'X';
     }
@@ -20,6 +21,10 @@ public class ExitTile extends TileFeature{
         }else{
             return false;
         }
+    }
+
+    public void addTarge(Room target){
+        this.target = target;
     }
 
     public Room getTarget(){

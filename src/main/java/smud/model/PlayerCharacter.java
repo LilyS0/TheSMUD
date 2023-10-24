@@ -197,7 +197,7 @@ public class PlayerCharacter extends MUDCharacter {
 
     public void moveVert(int dir) throws MUDException{
 
-        if(dir != -1 || dir != 1){
+        if(dir != -1 && dir != 1){
             throw new MUDException("Invalid move amount");
         }
 
@@ -213,7 +213,7 @@ public class PlayerCharacter extends MUDCharacter {
 
     public void moveHoriz(int dir) throws MUDException{
 
-        if(dir != -1 || dir != 1){
+        if(dir != -1 && dir != 1){
             throw new MUDException("Invalid move amount");
         }
 

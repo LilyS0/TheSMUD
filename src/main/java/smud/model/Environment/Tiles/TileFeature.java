@@ -58,7 +58,7 @@ public abstract class TileFeature {
         }
         else if(symbol.startsWith("X")){
             int id = Character.getNumericValue(symbol.charAt(1));
-            return new ExitTile(rooms.get(id));
+            return new ExitTile(id);
         }
         else if(symbol.equals("O")){
             return ObstacleTile.createRandomObstacleTile();
