@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import smud.model.MUDCharacter;
 import smud.model.PlayerCharacter;
-import smud.model.MUDException;
 import smud.model.Item.MUDItem;
 
 public class EmptyTile extends TileFeature implements Tile{

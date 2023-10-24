@@ -63,7 +63,7 @@ public class MUDGame {
                 if(tile instanceof TrapTile){
                     trapAdjacent = true;
                     TrapTile trap = (TrapTile)tile;
-                    trap.disarm();
+                    trap.disarm(player);
                 }
             }
             if(!trapAdjacent){

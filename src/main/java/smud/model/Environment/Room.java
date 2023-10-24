@@ -31,7 +31,6 @@ public class Room {
     private int id;
     private Set<Room> exits;
     private String description;
-    private String display;
     private boolean isEndRoom;
 
     public Room(TileFeature[][] tiles, int id, boolean isEndRoom){
@@ -43,16 +42,6 @@ public class Room {
         this.height = tiles.length;
         this.exits = new HashSet<>();
         this.description = "a room with: \n";
-        this.display = "";
-
-        for(TileFeature[] row: tiles){
-            for(TileFeature tile: row){
-                this.description += "  " + tile.getDescription() + "\n";
-                this.display += "[" + tile.getSymbol() + "] ";
-            }
-            this.display += "\n";
-        }
-
     }
 
     public boolean isEndRoom(){
