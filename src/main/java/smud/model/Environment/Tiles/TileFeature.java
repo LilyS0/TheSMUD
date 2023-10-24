@@ -45,6 +45,12 @@ public abstract class TileFeature {
         return occupant;
     }
 
+    public void clearOccupant(){
+        occupant = null;
+        symbol = ' ';
+        canEnter = true;
+    }
+
     public int getXCor(){
         return xCor;
     }

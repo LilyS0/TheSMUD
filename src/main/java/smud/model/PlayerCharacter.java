@@ -202,6 +202,8 @@ public class PlayerCharacter extends MUDCharacter {
         }
 
         if(currRoom.getTile(xCor, yCor+dir).occupy(this)){
+            currRoom.getTile(xCor, yCor).clearOccupant();
+            System.out.println("Cleared (" + xCor + ", " + yCor + ")");
             yCor += dir;
         } else {
             throw new MUDException("Can't move there!");
@@ -218,6 +220,7 @@ public class PlayerCharacter extends MUDCharacter {
         }
 
         if(currRoom.getTile(xCor + dir, yCor).occupy(this)){
+            currRoom.getTile(xCor, yCor).clearOccupant();
             xCor += dir;
         } else {
             throw new MUDException("Can't move there!");

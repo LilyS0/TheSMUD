@@ -41,6 +41,12 @@ public class EmptyTile extends TileFeature implements Tile{
         return occupant;
     }
 
+    public void clearOccupant(){
+        occupant = null;
+        symbol = ' ';
+        canEnter = true;
+    }
+
     @Override
     public void storeItem(MUDItem item) {
         this.items.add(item);
