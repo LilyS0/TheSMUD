@@ -58,6 +58,9 @@ public class SMUDMap {
                 }
 
                 Room room = createRoom(roomList, id);
+                if(id == 1){
+                    startRoom = room;
+                }
                 rooms.put(id, room);
             }
         }

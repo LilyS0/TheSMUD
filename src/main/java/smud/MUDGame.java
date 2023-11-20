@@ -1,12 +1,13 @@
 package smud;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Set;
-
+import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.MUDException;
 import smud.model.PlayerCharacter;
+import smud.model.Environment.Room;
 import smud.model.Environment.SMUDMap;
 import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.EmptyTile;
@@ -23,6 +24,7 @@ public class MUDGame {
      */
     private SMUDMap map;
     private PlayerCharacter player;
+    private PlayerController playerController;
     private final Scanner scanner = new Scanner(System.in);
 
 
@@ -30,15 +32,17 @@ public class MUDGame {
 
         this.map = new SMUDMap(filepath);
         this.player = new PlayerCharacter(playerName, playerDescription);
+        this.playerController = new PlayerController(player, map);
+        this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(player);
     }
 
     public void takeTurn() throws MUDException{
 
         //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
-        System.out.println(player.getCurrRoom());
+        System.out.println(playerController.getCurrRoom());
         System.out.println(buildPrompString());
         String action = scanner.nextLine().toLowerCase();
-        Set<TileFeature> adjacentTiles = player.getAdjacentTiles();
+        ArrayList<TileFeature> adjacentTiles = playerController.getAdjacentTiles();
 
         if(action.equals("x")){
             System.out.println("Turn ended");
@@ -50,7 +54,7 @@ public class MUDGame {
                     exitAdjacent = true;
                     ExitTile exit = (ExitTile)tile;
                     System.out.println("Moving to room + " + exit.getTarget().getId());
-                    player.setCurrRoom(exit.getTarget());
+                    playerController.setCurrRoom(exit.getTarget());
                 }
             }
             if(!exitAdjacent){
@@ -85,12 +89,13 @@ public class MUDGame {
             }
         }
         else{
-            player.makeMove(action);
+            playerController.makeMove(action);
+            
         }
     }
 
     public String buildPrompString(){
-        Set<TileFeature> adjacentTiles = player.getAdjacentTiles();
+        ArrayList<TileFeature> adjacentTiles = playerController.getAdjacentTiles();
         String promptString = "This turn you can: \n";
 
         for(TileFeature tile: adjacentTiles){
@@ -125,30 +130,23 @@ public class MUDGame {
         return promptString;
     }
 
+    public int getPlayerX(){
+        return playerController.getX();
+    }
+
+    public int getPlayerY(){
+        return playerController.getY();
+    }
+
+    public Room getPlayerRoom(){
+        return playerController.getCurrRoom();
+    }
+
     public SMUDMap getMap(){
         return map;
     }
 
     public PlayerCharacter getPlayer(){
         return player;
-    }
-
-    public static void main(String[] args) throws IOException, MUDException {
-
-        //Scanner scanner = new Scanner(System.in);
-        MUDGame game = new MUDGame("src/main/java/smud/maps/map2.txt", "Player 1", "Just yo average playa");
-        PlayerCharacter player = game.getPlayer();
-        SMUDMap map = game.getMap();
-        player.setCurrRoom(map.getRoom(1));
-        player.setXCor(4);
-        player.setYCor(4);
-        player.occupyLocation();
-        int turn = 1;
-
-        while(player.isAlive()){
-            System.out.println("Turn " + turn);
-            game.takeTurn();
-            turn ++;
-        }
     }
 }

@@ -23,6 +23,7 @@ public abstract class TileFeature {
         if(canEnter && occupant == null){
             occupant = character;
             canEnter = false;
+            symbol = 'P';
             return true;
         }else{
             return false;

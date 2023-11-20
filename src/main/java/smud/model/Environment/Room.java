@@ -49,7 +49,14 @@ public class Room {
     }
 
     public TileFeature getTile(int x, int y){
-        return tiles[y][x];
+        try{
+            return tiles[y][x];
+        }  
+        catch (Exception e) {
+            System.out.println("Can't get tile: " + e);
+            return null;
+        }
+        
     }
 
     public TileFeature[][] getTiles(){

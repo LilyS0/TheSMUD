@@ -19,12 +19,7 @@ public class ExitTile extends TileFeature{
     
     @Override
     public boolean occupy(MUDCharacter character){
-        if(tile.occupy(character)){
-            //set character's location to target room's start location
-            return true;
-        }else{
-            return false;
-        }
+        return false;
     }
 
     public int getTargetID(){
