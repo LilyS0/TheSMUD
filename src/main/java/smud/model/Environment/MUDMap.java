@@ -27,13 +27,11 @@ public class MUDMap {
     private boolean isDay;
     private FileReader fileReader;
     private BufferedReader reader;
-    private ArrayList<Hallway> hallways;
 
     public MUDMap(String filepath) throws IOException, MUDException{
 
         this.rooms = new HashMap<>();
         this.exits = new HashMap<>();
-        this.hallways = new ArrayList<>();
         this.isDay = true;
         this.fileReader = new FileReader(filepath);
         this.reader = new BufferedReader(fileReader);
@@ -106,7 +104,6 @@ public class MUDMap {
                     if(tile instanceof ExitTile){
                         ExitTile exit = (ExitTile)tile;
                         exits.put(exit.getTargetID(), exit);
-                        exit.addTarget(rooms.get(exit.getTargetID()));
                     }
                 } catch (MUDException e) {
                     row[k] = new EmptyTile(k, i);
@@ -154,6 +151,10 @@ public class MUDMap {
 
     public TileFeature getTile(int id, int x, int y){
         return rooms.get(id).getTile(x, y);
+    }
+
+    public Map<Integer, ExitTile> getExits(){
+        return exits;
     }
 
     public static void main(String[] args) {

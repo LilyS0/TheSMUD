@@ -109,9 +109,30 @@ public class PlayerController {
     public int getX(){
         return x;
     }
+
+    public void setX(int newX) throws MUDException{
+        TileFeature target = currRoom.getTile(newX, y);
+        if(target != null && target.occupy(character)){
+            x = newX;
+        }
+        else{
+            throw new MUDException("Can't move there");
+        } 
+    }
     
     public int getY(){
         return y;
+    }
+
+    public void setY(int newY) throws MUDException{
+        TileFeature target = currRoom.getTile(x, newY);
+        if(target != null && target.occupy(character)){
+            y = newY;
+        }
+        else{
+            throw new MUDException("Can't move there");
+        }
+        
     }
 
     public PlayerCharacter getCharacter(){
@@ -122,8 +143,10 @@ public class PlayerController {
         return currRoom;
     }
 
-    public void setCurrRoom(Room room){
+    public void setCurrRoom(Room room, int newX, int newY) throws MUDException{
         this.currRoom = room;
+        setX(newX);
+        setY(newY);
     }
 
     public MUDMap getMap(){

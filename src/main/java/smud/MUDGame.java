@@ -52,9 +52,13 @@ public class MUDGame {
             for(TileFeature tile: adjacentTiles){
                 if(tile instanceof ExitTile){
                     exitAdjacent = true;
+
                     ExitTile exit = (ExitTile)tile;
-                    System.out.println("Moving to room + " + exit.getTarget().getId());
-                    playerController.setCurrRoom(exit.getTarget());
+                    Room target = exit.getTarget();
+                    ExitTile targetExit = map.getExits().get(target.getId());
+
+                    System.out.println("Moving to room " + target.getId());
+                    playerController.setCurrRoom(exit.getTarget(), targetExit.getXCor()+1, targetExit.getYCor());
                 }
             }
             if(!exitAdjacent){
