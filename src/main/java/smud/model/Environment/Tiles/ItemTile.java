@@ -1,5 +1,6 @@
 package smud.model.Environment.Tiles;
 
+import smud.controller.PlayerController;
 import smud.model.Item.MUDItem;
 
 public class ItemTile extends TileFeature implements Tile{
@@ -18,6 +19,13 @@ public class ItemTile extends TileFeature implements Tile{
 
     public MUDItem[] getItems(){
         return items;
+    }
+
+    @Override
+    public void interact(PlayerController player){
+        for(MUDItem item: items){
+            player.getCharacter().getInventory().addItem(item);
+        }
     }
 
 }

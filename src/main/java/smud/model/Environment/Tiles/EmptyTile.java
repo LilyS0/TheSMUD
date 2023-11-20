@@ -2,6 +2,7 @@ package smud.model.Environment.Tiles;
 
 import java.util.ArrayList;
 
+import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.PlayerCharacter;
 import smud.model.Item.MUDItem;
@@ -48,6 +49,11 @@ public class EmptyTile extends TileFeature implements Tile{
     @Override
     public void storeItem(MUDItem item) {
         this.items.add(item);
+    }
+
+    @Override
+    public void interact(PlayerController player){
+        occupy(player.getCharacter());
     }
 
 }

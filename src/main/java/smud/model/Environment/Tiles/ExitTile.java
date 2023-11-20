@@ -1,6 +1,8 @@
 package smud.model.Environment.Tiles;
 
+import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
+import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
 
 public class ExitTile extends TileFeature{
@@ -20,6 +22,11 @@ public class ExitTile extends TileFeature{
     @Override
     public boolean occupy(MUDCharacter character){
         return false;
+    }
+
+    @Override
+    public void interact(PlayerController player){
+        //move player to next room
     }
 
     public int getTargetID(){

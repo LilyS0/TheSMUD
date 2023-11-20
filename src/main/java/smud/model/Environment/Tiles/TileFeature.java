@@ -3,9 +3,11 @@ package smud.model.Environment.Tiles;
 import java.util.Map;
 import java.util.Random;
 
+import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.MUDException;
 import smud.model.NPC;
+import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
 import smud.model.Item.MUDItem;
 
@@ -36,6 +38,10 @@ public abstract class TileFeature {
 
     public boolean disarm(MUDCharacter character) throws MUDException{
         throw new MUDException("Can't disarm. No trap here.");
+    }
+
+    public void interact(PlayerController player) throws MUDException{
+        throw new MUDException("Can't interact with this");
     }
 
     public String getDescription(){

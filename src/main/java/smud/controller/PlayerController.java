@@ -30,6 +30,7 @@ public class PlayerController {
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             y--;
+            target.interact(this);
         }
         else{
             throw new MUDException("Can't move there");
@@ -43,6 +44,7 @@ public class PlayerController {
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             y++;
+            target.interact(this);
         }
         else{
             throw new MUDException("Can't move there");
@@ -56,6 +58,7 @@ public class PlayerController {
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             x++;
+            target.interact(this);
         }
         else{
             throw new MUDException("Can't move there");
@@ -69,6 +72,7 @@ public class PlayerController {
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             x--;
+            target.interact(this);
         }
         else{
             throw new MUDException("Can't move there");

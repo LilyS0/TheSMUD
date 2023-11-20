@@ -87,6 +87,10 @@ public class PlayerCharacter extends MUDCharacter {
         activeBuffs.add(buff);
     }
     
+    public int getHealth(){
+        return health;
+    }
+
     public static void main(String[] args) {
         PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex");
         System.out.println(notAlex.getName());

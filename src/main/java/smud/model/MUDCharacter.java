@@ -58,7 +58,13 @@ public abstract class MUDCharacter {
         if(damage <= 0){
             damage = 1;
         }
-        this.health -= defense;
+        if(damage < health){
+            health -= damage;
+        }
+        else{
+            health = 0;
+        }
+        
     }
 
     public void attack(MUDCharacter target){

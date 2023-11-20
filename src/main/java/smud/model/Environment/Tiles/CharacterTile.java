@@ -1,6 +1,8 @@
 package smud.model.Environment.Tiles;
 
+import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
+import smud.model.PlayerCharacter;
 
 public class CharacterTile extends TileFeature{
     private MUDCharacter startingOccupant;
@@ -23,6 +25,12 @@ public class CharacterTile extends TileFeature{
             // the guy who started here is still alive, can't go there yet
             return false;
         }
+    }
+
+    @Override
+    public void interact(PlayerController player){
+        int damage = player.getCharacter().getAttack();
+        startingOccupant.takeDamage(damage);
     }
     
     public MUDCharacter getCharacter(){

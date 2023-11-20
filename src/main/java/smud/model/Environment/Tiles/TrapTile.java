@@ -2,8 +2,10 @@ package smud.model.Environment.Tiles;
 
 import java.util.Random;
 
+import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.MUDException;
+import smud.model.PlayerCharacter;
 
 public class TrapTile extends TileFeature{
     private int attack;
@@ -75,4 +77,13 @@ public class TrapTile extends TileFeature{
     boolean armed(){
         return this.armed;
     }
+
+    @Override
+    public void interact(PlayerController player) throws MUDException{
+        detect();
+        if(isDetected()){
+            disarm(player.getCharacter());
+        }
+    }
+
 }
