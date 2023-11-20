@@ -8,7 +8,7 @@ import smud.model.MUDCharacter;
 import smud.model.MUDException;
 import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
-import smud.model.Environment.SMUDMap;
+import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
@@ -22,7 +22,7 @@ public class MUDGame {
      * 
      * @author Ty Platow
      */
-    private SMUDMap map;
+    private MUDMap map;
     private PlayerCharacter player;
     private PlayerController playerController;
     private final Scanner scanner = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class MUDGame {
 
     public MUDGame(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
 
-        this.map = new SMUDMap(filepath);
+        this.map = new MUDMap(filepath);
         this.player = new PlayerCharacter(playerName, playerDescription);
         this.playerController = new PlayerController(player, map);
         this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(player);
@@ -142,7 +142,7 @@ public class MUDGame {
         return playerController.getCurrRoom();
     }
 
-    public SMUDMap getMap(){
+    public MUDMap getMap(){
         return map;
     }
 

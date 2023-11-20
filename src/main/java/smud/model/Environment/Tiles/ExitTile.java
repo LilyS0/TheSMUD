@@ -33,4 +33,20 @@ public class ExitTile extends TileFeature{
     public Room getTarget(){
         return target;
     }
+
+    public int getTargetX(){
+        return targetX;
+    }
+
+    public void setTargetX(int x){
+        targetX = x;
+    }
+
+    public int getTargetY(){
+        return targetY;
+    }
+
+    public void setTargetY(int y){
+        targetY = y;
+    }
 }

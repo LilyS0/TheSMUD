@@ -18,18 +18,22 @@ import smud.model.Environment.Tiles.TileFeature;
  * @author Sydney Wilson
  * @author Lily Susman
  */
-public class SMUDMap {
+public class MUDMap {
 
     private Room startRoom;
     private Room endRoom;
     private Map<Integer, Room> rooms;
+    private Map<Integer, ExitTile> exits;
     private boolean isDay;
     private FileReader fileReader;
     private BufferedReader reader;
+    private ArrayList<Hallway> hallways;
 
-    public SMUDMap(String filepath) throws IOException, MUDException{
+    public MUDMap(String filepath) throws IOException, MUDException{
 
         this.rooms = new HashMap<>();
+        this.exits = new HashMap<>();
+        this.hallways = new ArrayList<>();
         this.isDay = true;
         this.fileReader = new FileReader(filepath);
         this.reader = new BufferedReader(fileReader);
@@ -97,7 +101,13 @@ public class SMUDMap {
             TileFeature[] row = new TileFeature[width];
             for(int k=0; k<width; k++){
                 try {
-                    row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                    TileFeature tile = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                    row[k] = tile;
+                    if(tile instanceof ExitTile){
+                        ExitTile exit = (ExitTile)tile;
+                        exits.put(exit.getTargetID(), exit);
+                        exit.addTarget(rooms.get(exit.getTargetID()));
+                    }
                 } catch (MUDException e) {
                     row[k] = new EmptyTile(k, i);
                     System.out.println("Unable to create tile at x:" + k + "y:" + i  + ": \n  " + e);
@@ -149,7 +159,7 @@ public class SMUDMap {
     public static void main(String[] args) {
         
         try {
-            SMUDMap map = new SMUDMap("src/main/java/smud/maps/map1.txt");
+            MUDMap map = new MUDMap("src/main/java/smud/maps/map1.txt");
             Map<Integer, Room> rooms = map.getRooms();
 
             for(int id: rooms.keySet()){

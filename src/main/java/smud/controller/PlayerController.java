@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import smud.model.MUDException;
 import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
-import smud.model.Environment.SMUDMap;
+import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class PlayerController {
 
     private PlayerCharacter character;
-    private SMUDMap map;
+    private MUDMap map;
     private Room currRoom;
     private int x;
     private int y;
 
-    public PlayerController(PlayerCharacter character, SMUDMap map){
+    public PlayerController(PlayerCharacter character, MUDMap map){
         this.character = character;
         this.map = map;
         this.currRoom = map.getStartRoom();
@@ -126,7 +126,7 @@ public class PlayerController {
         this.currRoom = room;
     }
 
-    public SMUDMap getMap(){
+    public MUDMap getMap(){
         return map;
     }
 
