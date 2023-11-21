@@ -14,7 +14,9 @@ public class ItemTile extends TileFeature implements Tile{
         this.tile = new EmptyTile(x,y);
         this.description = "Item Tile";
         this.symbol = 'I';
+        this.canEnter = true;
     }
+    
 
 
     public MUDItem[] getItems(){

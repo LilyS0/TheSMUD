@@ -36,9 +36,10 @@ public class Inventory {
 
     public void addItem(MUDItem item) {
         // if the inventory is not at capacity, add the item
-        if (!checkAtCapacity((Inventory) inventory)) { // there is something funky going on here idk what, will investigate
-            inventory.add(item);
-        }
+        // if (!checkAtCapacity((Inventory) inventory)) { // there is something funky going on here idk what, will investigate
+            
+        // }
+        inventory.add(item);
         // otherwise, don't
     }
 
@@ -52,5 +53,10 @@ public class Inventory {
     public String getRatio() {
         int totalItems = inventory.size();
         return totalItems + " / " + INVENTORY_CAPACITY;
+    }
+
+    @Override
+    public String toString(){
+        return inventory.toString();
     }
 }

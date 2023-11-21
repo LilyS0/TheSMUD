@@ -8,4 +8,9 @@ public class Apple extends Food{
     public Apple(){
         this.health = 1;
     }
+
+    @Override
+    public String toString(){
+        return "Apple";
+    }
 }

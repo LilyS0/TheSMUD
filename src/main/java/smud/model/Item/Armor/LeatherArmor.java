@@ -8,4 +8,9 @@ public class LeatherArmor extends Armor{
     public LeatherArmor(){
         this.defense = 1;
     }
+
+    @Override
+    public String toString(){
+        return "Leather Amror (defense: " + this.defense + ") ";
+    }
 }

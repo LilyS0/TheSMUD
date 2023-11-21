@@ -2,6 +2,7 @@ package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
+import smud.model.MUDException;
 import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
 
@@ -17,16 +18,23 @@ public class ExitTile extends TileFeature{
         this.targetID = targetID;
         this.description = "Exit Tile";
         this.symbol = 'X';
+        this.targetX = 0;
+        this.targetY = 0;
+        this.canEnter = true;
     }
     
     @Override
     public boolean occupy(MUDCharacter character){
-        return false;
+        return true;
     }
 
     @Override
     public void interact(PlayerController player){
-        //move player to next room
+        try {
+            player.setCurrRoom(target, targetX, targetY);
+        } catch (MUDException e) {
+            System.out.println("Can't go there");
+        }
     }
 
     public int getTargetID(){

@@ -8,4 +8,9 @@ public class ChainMailArmor extends Armor{
     public ChainMailArmor(){
         this.defense = 3;
     }
+
+    @Override
+    public String toString(){
+        return "Chain Mail Amror (defense: " + this.defense + ") ";
+    }
 }

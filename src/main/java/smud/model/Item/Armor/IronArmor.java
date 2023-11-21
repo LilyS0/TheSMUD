@@ -9,4 +9,8 @@ public class IronArmor extends Armor{
         this.defense = 5;
     }
     
+    @Override
+    public String toString(){
+        return "Iron Amror (defense: " + this.defense + ") ";
+    }
 }

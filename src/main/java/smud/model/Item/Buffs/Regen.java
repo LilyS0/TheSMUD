@@ -11,5 +11,10 @@ public class Regen extends Buff{
         this.buffType = "Regen";
         this.turns = random.nextInt(5)+1;
     }
+
+    @Override
+    public String toString(){
+        return "Regen Buff";
+    }
     
 }

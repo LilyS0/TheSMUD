@@ -11,4 +11,9 @@ public class Resistance extends Buff{
         this.buffType = "Resistance";
         this.turns = random.nextInt(5)+1;
     }
+
+    @Override
+    public String toString(){
+        return "Resistance Buff";
+    }
 }

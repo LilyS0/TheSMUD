@@ -7,4 +7,9 @@ public class Axe extends Weapon{
     public Axe(){
         this.damage = 7;
     }
+
+    @Override
+    public String toString(){
+        return "Axe (attack: " + this.damage + ") ";
+    }
 }

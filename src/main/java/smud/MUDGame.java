@@ -12,7 +12,6 @@ import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
-import smud.model.Environment.Tiles.ItemTile;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Environment.Tiles.TrapTile;
 
@@ -48,6 +47,9 @@ public class MUDGame {
        
         if(action.equals("x")){
             System.out.println("Turn ended");
+        }
+        else if(action.equals("i")){
+            System.out.println("Inventory: " + playerController.getCharacter().getInventory());
         }
         else{
             playerController.makeMove(action);

@@ -11,4 +11,9 @@ public class Strength extends Buff{
         this.buffType = "Strenght";
         this.turns = random.nextInt(5)+1;
     }
+
+    @Override
+    public String toString(){
+        return "Strength Buff";
+    }
 }

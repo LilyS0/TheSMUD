@@ -8,4 +8,9 @@ public class Bread extends Food{
     public Bread(){
         this.health = 3;
     }
+
+    @Override
+    public String toString(){
+        return "Bread";
+    }
 }
