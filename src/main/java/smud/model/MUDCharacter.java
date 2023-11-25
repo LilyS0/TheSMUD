@@ -34,11 +34,11 @@ public abstract class MUDCharacter {
     }
 
     public int getAttack() {
-        return this.attack;
+        return attack;
     }
 
     public int getDefense() {
-        return this.defense;
+        return defense;
     }
 
     public Inventory getInventory() {

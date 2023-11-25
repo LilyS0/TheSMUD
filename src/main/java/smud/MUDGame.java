@@ -85,7 +85,7 @@ public class MUDGame {
 
                 CharacterTile charTile = (CharacterTile)tile;
                 MUDCharacter npc = charTile.getCharacter();
-                promptString += "Attack an enemy with " + npc.getAttack() + " attack " + npc.getDefense() + " defense and " + npc.getHealth() + ", ";
+                promptString += "Attack an enemy with " + npc.getAttack() + " attack, " + npc.getDefense() + " defense and " + npc.getHealth() + " health, ";
 
             }
         }
