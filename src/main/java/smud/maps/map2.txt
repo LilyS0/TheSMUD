@@ -5,8 +5,8 @@ E,E,C,E,C
 I,E,E,E,E
 E,E,X2,E,E
 r2
-X1,E,E,E,E
 E,E,E,E,E
-E,C,E,T,E
+E,E,E,E,E
+E,C,E,T,X1
 E,E,C,E,E
 E,E,E,E,E
