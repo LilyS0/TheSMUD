@@ -81,6 +81,9 @@ public class MUDMap {
                     if(tile instanceof ExitTile){
                         ExitTile exit = (ExitTile)tile;
                         exit.addTarget(rooms.get(exit.getTargetID()));
+                        ExitTile targetExit = exits.get(id);
+                        exit.setTargetX(targetExit.getXCor());
+                        exit.setTargetY(targetExit.getYCor());
                     }
                 }
             }
