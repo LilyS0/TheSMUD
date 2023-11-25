@@ -13,7 +13,8 @@ public class ObstacleTile extends TileFeature{
         this.xCor = x;
         this.yCor = y;
         this.description = description;
-        this.symbol = 'O';
+        this.defaultSymbol = 'O';
+        this.symbol = defaultSymbol;
     }
 
     @Override

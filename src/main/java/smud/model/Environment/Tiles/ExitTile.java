@@ -3,7 +3,6 @@ package smud.model.Environment.Tiles;
 import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.MUDException;
-import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
 
 public class ExitTile extends TileFeature{
@@ -17,7 +16,8 @@ public class ExitTile extends TileFeature{
         this.yCor = y;
         this.targetID = targetID;
         this.description = "Exit Tile";
-        this.symbol = 'X';
+        this.defaultSymbol = 'X';
+        this.symbol = defaultSymbol;
         this.targetX = 0;
         this.targetY = 0;
         this.canEnter = true;

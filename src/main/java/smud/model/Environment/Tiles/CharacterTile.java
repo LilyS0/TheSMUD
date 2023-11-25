@@ -2,7 +2,6 @@ package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
-import smud.model.PlayerCharacter;
 
 public class CharacterTile extends TileFeature{
     private MUDCharacter startingOccupant;
@@ -11,7 +10,8 @@ public class CharacterTile extends TileFeature{
         this.xCor = x;
         this.yCor = y;
         this.startingOccupant = character;
-        this.symbol = 'C';
+        this.defaultSymbol = 'C';
+        this.symbol = defaultSymbol;
         this.description = "Character Tile";
         //tile.occupy(character);
     }

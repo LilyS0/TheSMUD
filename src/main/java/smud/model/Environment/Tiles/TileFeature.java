@@ -7,7 +7,6 @@ import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.MUDException;
 import smud.model.NPC;
-import smud.model.PlayerCharacter;
 import smud.model.Environment.Room;
 import smud.model.Item.MUDItem;
 
@@ -19,6 +18,7 @@ public abstract class TileFeature {
     protected char symbol;
     protected MUDCharacter occupant;
     protected boolean canEnter;
+    protected char defaultSymbol = ' ';
     private static final Random random = new Random();
 
     public boolean occupy(MUDCharacter character) {
@@ -58,7 +58,7 @@ public abstract class TileFeature {
 
     public void clearOccupant(){
         occupant = null;
-        symbol = ' ';
+        symbol = defaultSymbol;
         canEnter = true;
     }
 

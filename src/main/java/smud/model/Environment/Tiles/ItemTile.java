@@ -13,11 +13,10 @@ public class ItemTile extends TileFeature implements Tile{
         this.items = items;
         this.tile = new EmptyTile(x,y);
         this.description = "Item Tile";
-        this.symbol = 'I';
+        this.defaultSymbol = 'I';
+        this.symbol = defaultSymbol;
         this.canEnter = true;
     }
-    
-
 
     public MUDItem[] getItems(){
         return items;
@@ -27,6 +26,19 @@ public class ItemTile extends TileFeature implements Tile{
     public void interact(PlayerController player){
         for(MUDItem item: items){
             player.getCharacter().getInventory().addItem(item);
+        }
+    }
+
+    @Override
+    public void clearOccupant(){
+        occupant = null;
+        canEnter = true;
+
+        if(items.length == 0){
+            symbol = ' ';
+        }
+        else{
+            symbol = defaultSymbol;
         }
     }
 

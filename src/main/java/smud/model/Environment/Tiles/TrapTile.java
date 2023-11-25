@@ -5,7 +5,6 @@ import java.util.Random;
 import smud.controller.PlayerController;
 import smud.model.MUDCharacter;
 import smud.model.MUDException;
-import smud.model.PlayerCharacter;
 
 public class TrapTile extends TileFeature{
     private int attack;
@@ -20,7 +19,9 @@ public class TrapTile extends TileFeature{
         this.armed = true;
         this.detected = false;
         this.description = "Trap Tile";
-        this.symbol = '_';
+        this.defaultSymbol = '_';
+        this.symbol = defaultSymbol;
+
     }
     
     @Override
