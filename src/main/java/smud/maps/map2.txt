@@ -1,6 +1,6 @@
 r1
 E,E,E,E,E
-E,E,E,O,E
+E,T,E,O,E
 E,E,C,E,C
 I,E,E,E,E
 E,E,X2,E,E

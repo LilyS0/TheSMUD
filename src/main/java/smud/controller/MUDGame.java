@@ -62,6 +62,10 @@ public class MUDGame {
                 MUDCharacter enemy = ct.getCharacter();
                 player.takeDamage(enemy.getAttack());
             }
+            if(tile instanceof TrapTile){
+                TrapTile tt = (TrapTile)tile;
+                tt.detect();
+            }
         }
 
         

@@ -50,23 +50,25 @@ public class TrapTile extends TileFeature{
                 System.out.println("Trap detected!");
                 this.symbol = 'T';
                 this.detected = true;
+                this.armed = false;
             }
         }
-    }
-
-    public boolean isDetected(){
-        return detected;
     }
 
     @Override
     public boolean occupy(MUDCharacter character){
         if(this.armed){
             System.out.println("You triggered a trap!");
-            // cause damage
-            character.takeDamage(attack);
         }
         symbol = 'P';
         return true;
+    }
+
+    @Override
+    public void interact(PlayerController player) throws MUDException{
+        if(isDetected()){
+            disarm(player.getCharacter());
+        }
     }
 
     public int getAttack(){
@@ -77,12 +79,7 @@ public class TrapTile extends TileFeature{
         return this.armed;
     }
 
-    @Override
-    public void interact(PlayerController player) throws MUDException{
-        detect();
-        if(isDetected()){
-            disarm(player.getCharacter());
-        }
+    public boolean isDetected(){
+        return detected;
     }
-
 }
