@@ -27,6 +27,7 @@ public class ItemTile extends TileFeature implements Tile{
         for(MUDItem item: items){
             player.getCharacter().getInventory().addItem(item);
         }
+        items = new MUDItem[0];
     }
 
     @Override

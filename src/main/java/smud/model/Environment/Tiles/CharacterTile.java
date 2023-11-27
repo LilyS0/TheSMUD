@@ -19,8 +19,8 @@ public class CharacterTile extends TileFeature{
     @Override
     public boolean occupy(MUDCharacter character){
         if(!startingOccupant.isAlive()){
-            // he's dead now, should be able to go
-            return occupy(character);
+            symbol = 'P';
+            return true;
         }else{
             // the guy who started here is still alive, can't go there yet
             return false;
@@ -31,6 +31,18 @@ public class CharacterTile extends TileFeature{
     public void interact(PlayerController player){
         int damage = player.getCharacter().getAttack();
         startingOccupant.takeDamage(damage);
+    }
+
+    @Override
+    public void clearOccupant(){
+        occupant = null;
+        canEnter = true;
+        if(!startingOccupant.isAlive()){
+            symbol = ' ';
+        }
+        else{
+            symbol = defaultSymbol;
+        }
     }
     
     public MUDCharacter getCharacter(){

@@ -64,11 +64,9 @@ public class TrapTile extends TileFeature{
             System.out.println("You triggered a trap!");
             // cause damage
             character.takeDamage(attack);
-            return tile.occupy(character);
-        }else{
-            // trap inactive, nothing happens
-            return tile.occupy(character);
         }
+        symbol = 'P';
+        return true;
     }
 
     public int getAttack(){

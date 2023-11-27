@@ -25,6 +25,7 @@ public class ExitTile extends TileFeature{
     
     @Override
     public boolean occupy(MUDCharacter character){
+        symbol = 'P';
         return true;
     }
 
