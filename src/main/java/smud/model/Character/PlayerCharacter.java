@@ -1,6 +1,7 @@
-package smud.model;
+package smud.model.Character;
 
 import java.util.ArrayList;
+
 import smud.model.Environment.Room;
 import smud.model.Item.Armor.Armor;
 import smud.model.Item.Buffs.Buff;

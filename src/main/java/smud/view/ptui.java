@@ -2,9 +2,9 @@ package smud.view;
 
 import java.io.IOException;
 
-import smud.MUDGame;
+import smud.controller.MUDGame;
 import smud.model.MUDException;
-import smud.model.PlayerCharacter;
+import smud.model.Character.PlayerCharacter;
 
 public class ptui {
     

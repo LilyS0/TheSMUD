@@ -3,8 +3,8 @@ package smud.model.Environment.Tiles;
 import java.util.ArrayList;
 
 import smud.controller.PlayerController;
-import smud.model.MUDCharacter;
-import smud.model.PlayerCharacter;
+import smud.model.Character.MUDCharacter;
+import smud.model.Character.PlayerCharacter;
 import smud.model.Item.MUDItem;
 
 public class EmptyTile extends TileFeature implements Tile{

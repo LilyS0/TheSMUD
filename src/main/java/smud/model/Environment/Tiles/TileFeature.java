@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.Random;
 
 import smud.controller.PlayerController;
-import smud.model.MUDCharacter;
 import smud.model.MUDException;
-import smud.model.NPC;
+import smud.model.Character.MUDCharacter;
+import smud.model.Character.NPC;
 import smud.model.Environment.Room;
 import smud.model.Item.MUDItem;
 

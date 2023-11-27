@@ -1,12 +1,12 @@
-package smud;
+package smud.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import smud.controller.PlayerController;
-import smud.model.MUDCharacter;
+
 import smud.model.MUDException;
-import smud.model.PlayerCharacter;
+import smud.model.Character.MUDCharacter;
+import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.Room;
 import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.CharacterTile;

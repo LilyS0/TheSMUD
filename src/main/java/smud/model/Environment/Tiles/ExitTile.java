@@ -1,8 +1,8 @@
 package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
-import smud.model.MUDCharacter;
 import smud.model.MUDException;
+import smud.model.Character.MUDCharacter;
 import smud.model.Environment.Room;
 
 public class ExitTile extends TileFeature{

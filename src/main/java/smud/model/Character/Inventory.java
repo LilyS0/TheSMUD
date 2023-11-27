@@ -1,4 +1,4 @@
-package smud.model;
+package smud.model.Character;
 import java.util.ArrayList;
 import java.util.List;
 

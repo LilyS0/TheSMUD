@@ -1,7 +1,7 @@
 package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
-import smud.model.MUDCharacter;
+import smud.model.Character.MUDCharacter;
 
 public class CharacterTile extends TileFeature{
     private MUDCharacter startingOccupant;

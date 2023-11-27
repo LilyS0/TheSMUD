@@ -3,8 +3,8 @@ package smud.model.Environment.Tiles;
 import java.util.Random;
 
 import smud.controller.PlayerController;
-import smud.model.MUDCharacter;
 import smud.model.MUDException;
+import smud.model.Character.MUDCharacter;
 
 public class TrapTile extends TileFeature{
     private int attack;

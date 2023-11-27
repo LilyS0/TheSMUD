@@ -2,7 +2,7 @@ package smud.model.Environment.Tiles;
 
 import java.util.Random;
 
-import smud.model.MUDCharacter;
+import smud.model.Character.MUDCharacter;
 
 public class ObstacleTile extends TileFeature{
 

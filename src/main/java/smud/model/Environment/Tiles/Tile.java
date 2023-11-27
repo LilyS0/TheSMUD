@@ -1,7 +1,7 @@
 package smud.model.Environment.Tiles;
 
-import smud.model.MUDCharacter;
 import smud.model.MUDException;
+import smud.model.Character.MUDCharacter;
 import smud.model.Item.MUDItem;
 
 public interface Tile {
