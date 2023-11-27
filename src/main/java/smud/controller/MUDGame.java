@@ -40,6 +40,7 @@ public class MUDGame {
         //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
         System.out.println(playerController.getCurrRoom());
         ArrayList<TileFeature> adjacentTiles = playerController.getAdjacentTiles();
+        System.out.println("Health: " + player.getHealth() + ", Attack: " + player.getAttack() + ", Defense: " + player.getDefense() + ", Buffs: " + player.getActiveBuffs() + ", Inventory: " + player.getInventory());
         System.out.println(buildPrompString(adjacentTiles));
         String action = scanner.nextLine().toLowerCase();
 
@@ -53,6 +54,14 @@ public class MUDGame {
         }
         else{
             playerController.makeMove(action);
+        }
+
+        for(TileFeature tile: adjacentTiles){
+            if(tile instanceof CharacterTile){
+                CharacterTile ct = (CharacterTile)tile;
+                MUDCharacter enemy = ct.getCharacter();
+                player.takeDamage(enemy.getAttack());
+            }
         }
 
         
