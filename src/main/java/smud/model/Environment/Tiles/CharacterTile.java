@@ -2,6 +2,7 @@ package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
 import smud.model.Character.MUDCharacter;
+import smud.model.Item.MUDItem;
 
 public class CharacterTile extends TileFeature{
     private MUDCharacter startingOccupant;
@@ -20,6 +21,8 @@ public class CharacterTile extends TileFeature{
     public boolean occupy(MUDCharacter character){
         if(!startingOccupant.isAlive()){
             symbol = 'P';
+            character.addItemsToInv(startingOccupant.getItems());
+            startingOccupant.setItems(new MUDItem[0]);
             return true;
         }else{
             // the guy who started here is still alive, can't go there yet
@@ -31,6 +34,8 @@ public class CharacterTile extends TileFeature{
     public void interact(PlayerController player){
         int damage = player.getCharacter().getAttack();
         startingOccupant.takeDamage(damage);
+
+        System.out.println(startingOccupant.getName() + " has " + startingOccupant.getHealth() + " health");
     }
 
     @Override

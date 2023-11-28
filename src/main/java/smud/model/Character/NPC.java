@@ -62,6 +62,7 @@ public class NPC extends MUDCharacter{
         this.defense = rand.nextInt(MAX_DEFENSE - MIN_DEFENSE + 1) + MIN_DEFENSE;
         this.setNocturnal(isNocturnal);
         this.setInventory(inventory);
+        this.items = MUDItem.getRandomItems();
         // to be discussed at 10/23 meeting
 //        this.setLocation(location);
     }
@@ -74,6 +75,7 @@ public class NPC extends MUDCharacter{
         this.name = randomNPCs[NPCnumber][0];
         this.description = randomNPCs[NPCnumber][1];
         if (NPCnumber % 2 == 0) { this.setNocturnal(true); }
+        this.items = MUDItem.getRandomItems();
         // all this is missing is an inventory, but like obvi i gotta finish coding that first so i shall return to this capiche
     }
 
@@ -85,10 +87,9 @@ public class NPC extends MUDCharacter{
         this.isNocturnal = isNocturnal;
     }
 
-    public MUDItem dropItem() {
-        // enter inventory, pick item, add item to Tile, delete item from NPC inventory
-        // CALLED WHEN NPC IS DEFEATED => ADD TO isAlive():false
-        return null;
+    @Override
+    public MUDItem[] getItems() {
+        return items;
     }
 
     @Override

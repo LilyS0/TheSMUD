@@ -27,13 +27,14 @@ public class PlayerCharacter extends MUDCharacter {
 // eventually gonna have to part w inventory functions bc the prompt says so
     public PlayerCharacter(String name, String description) {
 
-        this.health = 100;
-        this.attack = 10;
+        this.health = 1000;
+        this.attack = 50;
         this.defense = 0;
         this.name = name;
         this.description = description;
         this.inventory = new Inventory();
         this.activeBuffs = new ArrayList<>();
+        this.items = new MUDItem[0];
     }
 
     public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory){
@@ -46,6 +47,7 @@ public class PlayerCharacter extends MUDCharacter {
         this.activeBuffs = activeBuffs;
         this.weapon = weapon;
         this.armor = armor;
+        this.items = new MUDItem[0];
     }
 
     @Override
@@ -64,11 +66,6 @@ public class PlayerCharacter extends MUDCharacter {
         }else{
             return this.defense;
         }
-    }
-
-    public void applyItem(int index){
-        MUDItem item = inventory.getInventory().remove(index-1);
-        item.applyItem(this);
     }
 
     public Weapon getWeapon(){
@@ -93,6 +90,10 @@ public class PlayerCharacter extends MUDCharacter {
 
     public void addBuff(Buff buff){
         activeBuffs.add(buff);
+    }
+
+    public void removeBuff(Buff buff){
+        activeBuffs.remove(buff);
     }
     
     public int getHealth(){

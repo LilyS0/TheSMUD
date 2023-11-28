@@ -22,6 +22,8 @@ public class MUDGame {
     private PlayerCharacter player;
     private PlayerController playerController;
     private final Scanner scanner = new Scanner(System.in);
+    private boolean isDay;
+    private int turns;
 
 
     public MUDGame(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
@@ -30,11 +32,15 @@ public class MUDGame {
         this.player = new PlayerCharacter(playerName, playerDescription);
         this.playerController = new PlayerController(player, map);
         this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(player);
+        this.isDay = true;
+        this.turns = 1;
     }
 
     public void takeTurn() throws MUDException{
 
         //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
+        turns ++;
+        playerController.useBuffs();
         System.out.println(playerController.getCurrRoom());
         TileFeature[] adjacentTiles = playerController.getAdjacentTiles();
         System.out.println("Health: " + player.getHealth() + ", Attack: " + player.getAttack() + ", Defense: " + player.getDefense() + ", Buffs: " + player.getActiveBuffs() + ", Inventory Capacity: " + player.getInventory().getRatio());
@@ -52,7 +58,7 @@ public class MUDGame {
             int location = scanner.nextInt();
 
             if(location > 0){
-                player.applyItem(location);
+                playerController.applyItem(location);
                 System.out.println("Item applied!");
             }
         }
@@ -69,6 +75,16 @@ public class MUDGame {
             if(tile instanceof TrapTile){
                 TrapTile tt = (TrapTile)tile;
                 tt.detect();
+            }
+        }
+
+        if(turns%10 == 0){
+            changeTime();
+            if(isDay){
+                System.out.println("It is now daytime");
+            }
+            else{
+                System.out.println("It is now night time");
             }
         }
     }
@@ -91,5 +107,13 @@ public class MUDGame {
 
     public PlayerCharacter getPlayer(){
         return player;
+    }
+
+    public boolean isDay(){
+        return isDay;
+    }
+
+    private void changeTime(){
+        isDay = !isDay;
     }
 }

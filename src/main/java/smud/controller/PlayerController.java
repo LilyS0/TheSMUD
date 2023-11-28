@@ -5,6 +5,8 @@ import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.Room;
 import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Item.MUDItem;
+import smud.model.Item.Buffs.Buff;
 
 public class PlayerController {
 
@@ -147,6 +149,36 @@ public class PlayerController {
             throw new MUDException("Can't move there");
         }
         
+    }
+
+    public void applyItem(int index){
+
+        MUDItem item;
+
+        try {
+            item = character.getInventory().getInventory().remove(index-1);
+        } catch (Exception e) {
+            System.out.println("Invalid location");
+            item = null;
+        }
+
+        item.applyItem(character);
+    }
+
+    public void useBuffs(){
+
+        Object[] buffs = character.getActiveBuffs().toArray();
+
+        for(Object buff: buffs){
+            Buff b = (Buff)buff;
+
+            if(b.isActive()){
+                b.useBuff(this);
+            }
+            else{
+                character.removeBuff(b);
+            }
+        }
     }
 
     public PlayerCharacter getCharacter(){

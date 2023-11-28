@@ -1,5 +1,7 @@
 package smud.model.Character;
 
+import smud.model.Item.MUDItem;
+
 /**
  * Interface that contains information shared by both NPC and PlayerCharacter.
  * 
@@ -12,6 +14,7 @@ public abstract class MUDCharacter {
     protected Inventory inventory;
     protected int attack;
     protected int defense;
+    protected MUDItem[] items;
 
     public String getName() {
         return name;
@@ -33,12 +36,32 @@ public abstract class MUDCharacter {
         return health;
     }
 
+    public void addHealth(int amount){
+        health += amount;
+    }
+
     public int getAttack() {
         return attack;
     }
 
+    public void addAttack(int amount){
+        attack += amount;
+    }
+
+    public void subtractAttack(int amount){
+        attack -= amount;
+    }
+
     public int getDefense() {
         return defense;
+    }
+
+    public void addDefense(int amount){
+        defense += amount;
+    }
+
+    public void subtractDefense(int amount){
+        defense -= amount;
     }
 
     public Inventory getInventory() {
@@ -47,6 +70,12 @@ public abstract class MUDCharacter {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public void addItemsToInv(MUDItem[] items){
+        for(MUDItem item: items){
+            inventory.addItem(item);
+        }
     }
 
     public boolean isAlive() {
@@ -63,8 +92,24 @@ public abstract class MUDCharacter {
         }
         else{
             health = 0;
+
+            String result = "";
+
+            for(MUDItem item: items){
+                result += item + ", ";
+            }
+            
+            System.out.println(name + " has dropped " + result);
         }
         
+    }
+
+    public MUDItem[] getItems(){
+        return items;
+    }
+
+    public void setItems(MUDItem[] items){
+        this.items = items;
     }
 
     public void attack(MUDCharacter target){

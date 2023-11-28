@@ -21,7 +21,7 @@ public class ptui {
 
     public static void main(String[] args){
 
-        String filepath = "src/main/java/smud/maps/map2.txt";
+        String filepath = "src/main/java/smud/model/Environment/maps/map2.txt";
         String playerName = "Player 1";
         String playerDescription = "A worthy challenger";
         ptui ui;
@@ -45,8 +45,8 @@ public class ptui {
             System.out.println("Turn " + turns);
 
             try {
-                game.takeTurn();
                 turns ++;
+                game.takeTurn(); 
             } catch (MUDException e) {
                 System.out.println("Invalid move");
             }
