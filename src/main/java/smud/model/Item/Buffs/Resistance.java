@@ -1,5 +1,7 @@
 package smud.model.Item.Buffs;
 
+import smud.model.Character.PlayerCharacter;
+
 public class Resistance extends Buff{
     /*
      * Represents a resistance buff
@@ -15,5 +17,10 @@ public class Resistance extends Buff{
     @Override
     public String toString(){
         return "Resistance Buff";
+    }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.addBuff(this);
     }
 }

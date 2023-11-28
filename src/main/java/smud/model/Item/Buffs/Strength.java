@@ -1,5 +1,7 @@
 package smud.model.Item.Buffs;
 
+import smud.model.Character.PlayerCharacter;
+
 public class Strength extends Buff{
     /*
      * Represents a strength buff
@@ -15,5 +17,10 @@ public class Strength extends Buff{
     @Override
     public String toString(){
         return "Strength Buff";
+    }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.addBuff(this);
     }
 }

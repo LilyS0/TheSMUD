@@ -58,6 +58,12 @@ public class Inventory {
 
     @Override
     public String toString(){
-        return "Capacity: " + getRatio() + ", Items: " + inventory.toString();
+        String result = "";
+
+        for(int i=0; i<inventory.size(); i++){
+            result += "[" + (i+1) + "]" + inventory.get(i) + ", ";
+        }
+
+        return result;
     }
 }

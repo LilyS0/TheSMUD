@@ -110,14 +110,14 @@ public class PlayerController {
         }
     }
 
-    public ArrayList<TileFeature> getAdjacentTiles(){
+    public TileFeature[] getAdjacentTiles(){
 
-        ArrayList<TileFeature> tiles = new ArrayList<>();
+        TileFeature[] tiles = new TileFeature[4];
         
-        tiles.add(currRoom.getTile(x+1, y));
-        tiles.add(currRoom.getTile(x-1, y));
-        tiles.add(currRoom.getTile(x, y+1));
-        tiles.add(currRoom.getTile(x, y-1));
+        tiles[0] = currRoom.getTile(x+1, y);
+        tiles[1] = currRoom.getTile(x-1, y);
+        tiles[2] = currRoom.getTile(x, y+1);
+        tiles[3] = currRoom.getTile(x, y-1);
 
         return tiles;
     }

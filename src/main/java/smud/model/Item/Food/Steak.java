@@ -1,5 +1,7 @@
 package smud.model.Item.Food;
 
+import smud.model.Character.PlayerCharacter;
+
 public class Steak extends Food{
     /*
      * Represents a steak Food Item
@@ -13,4 +15,10 @@ public class Steak extends Food{
     public String toString(){
         return "Steak";
     }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.eatFood(this);
+    }
+
 }

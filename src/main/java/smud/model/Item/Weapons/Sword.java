@@ -1,5 +1,7 @@
 package smud.model.Item.Weapons;
 
+import smud.model.Character.PlayerCharacter;
+
 public class Sword extends Weapon{
     /*
      * Represents a sword Weapon
@@ -11,7 +13,12 @@ public class Sword extends Weapon{
 
     @Override
     public String toString(){
-        return "Sword (attack: " + this.damage + ") ";
+        return "Sword (attack: " + this.damage + ")";
+    }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.setWeapon(this);
     }
 }
 

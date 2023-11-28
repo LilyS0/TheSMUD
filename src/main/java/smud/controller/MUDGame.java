@@ -1,7 +1,6 @@
 package smud.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import smud.model.MUDException;
@@ -10,8 +9,6 @@ import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.Room;
 import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.CharacterTile;
-import smud.model.Environment.Tiles.EmptyTile;
-import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Environment.Tiles.TrapTile;
 
@@ -39,9 +36,9 @@ public class MUDGame {
 
         //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
         System.out.println(playerController.getCurrRoom());
-        ArrayList<TileFeature> adjacentTiles = playerController.getAdjacentTiles();
-        System.out.println("Health: " + player.getHealth() + ", Attack: " + player.getAttack() + ", Defense: " + player.getDefense() + ", Buffs: " + player.getActiveBuffs() + ", Inventory: " + player.getInventory());
-        System.out.println(buildPrompString(adjacentTiles));
+        TileFeature[] adjacentTiles = playerController.getAdjacentTiles();
+        System.out.println("Health: " + player.getHealth() + ", Attack: " + player.getAttack() + ", Defense: " + player.getDefense() + ", Buffs: " + player.getActiveBuffs() + ", Inventory Capacity: " + player.getInventory().getRatio());
+        System.out.println("Move[w,a,s,d] Inventory[i]");
         String action = scanner.nextLine().toLowerCase();
 
         
@@ -51,6 +48,13 @@ public class MUDGame {
         }
         else if(action.equals("i")){
             System.out.println("Inventory: " + playerController.getCharacter().getInventory());
+            System.out.println("Enter the location of the item you wish to use or 0 to exit: ");
+            int location = scanner.nextInt();
+
+            if(location > 0){
+                player.applyItem(location);
+                System.out.println("Item applied!");
+            }
         }
         else{
             playerController.makeMove(action);
@@ -67,45 +71,6 @@ public class MUDGame {
                 tt.detect();
             }
         }
-
-        
-        
-    }
-
-    public String buildPrompString(ArrayList<TileFeature> adjacentTiles){
-        String promptString = "This turn you can: \n";
-        boolean move = false;
-
-        for(TileFeature tile: adjacentTiles){
-        
-            if(tile instanceof TrapTile){
-
-                TrapTile trapTile = (TrapTile)tile;
-                if(trapTile.isDetected()){
-                    promptString += "Disarm a trap, ";
-                }
-            }
-            else if(tile instanceof EmptyTile && !move){
-                move = true;
-                promptString += "Move (w,a,s,d), ";
-            }
-            else if(tile instanceof ExitTile){
-
-                ExitTile exit = (ExitTile)tile;
-                promptString += "Exit to room " + exit.getTarget().getId() + ",";
-            }
-            else if(tile instanceof CharacterTile){
-
-                CharacterTile charTile = (CharacterTile)tile;
-                MUDCharacter npc = charTile.getCharacter();
-                promptString += "Attack an enemy with " + npc.getAttack() + " attack, " + npc.getDefense() + " defense and " + npc.getHealth() + " health, ";
-
-            }
-        }
-
-        promptString += "or you can choose to end your turn (x)";
-
-        return promptString;
     }
 
     public int getPlayerX(){

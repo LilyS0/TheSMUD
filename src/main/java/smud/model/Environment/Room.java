@@ -53,7 +53,6 @@ public class Room {
             return tiles[y][x];
         }  
         catch (Exception e) {
-            System.out.println("Can't get tile: " + e);
             return null;
         }
         

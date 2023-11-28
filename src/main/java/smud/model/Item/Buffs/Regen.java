@@ -1,5 +1,7 @@
 package smud.model.Item.Buffs;
 
+import smud.model.Character.PlayerCharacter;
+
 public class Regen extends Buff{
     /*
      * Represents health regen Buff
@@ -16,5 +18,12 @@ public class Regen extends Buff{
     public String toString(){
         return "Regen Buff";
     }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.addBuff(this);
+    }
+
+
     
 }

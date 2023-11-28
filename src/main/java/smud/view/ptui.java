@@ -36,7 +36,7 @@ public class ptui {
         MUDGame game = ui.getGame();
         PlayerCharacter player = game.getPlayer();
 
-        int turns = 0;
+        int turns = 1;
 
         
 

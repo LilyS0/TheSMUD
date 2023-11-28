@@ -3,8 +3,10 @@ package smud.model.Character;
 import java.util.ArrayList;
 
 import smud.model.Environment.Room;
+import smud.model.Item.MUDItem;
 import smud.model.Item.Armor.Armor;
 import smud.model.Item.Buffs.Buff;
+import smud.model.Item.Food.Food;
 import smud.model.Item.Weapons.Weapon;
 
 /**
@@ -64,6 +66,11 @@ public class PlayerCharacter extends MUDCharacter {
         }
     }
 
+    public void applyItem(int index){
+        MUDItem item = inventory.getInventory().remove(index-1);
+        item.applyItem(this);
+    }
+
     public Weapon getWeapon(){
         return weapon;
     }
@@ -90,6 +97,10 @@ public class PlayerCharacter extends MUDCharacter {
     
     public int getHealth(){
         return health;
+    }
+
+    public void eatFood(Food food){
+        health += food.getStat();
     }
 
     public static void main(String[] args) {

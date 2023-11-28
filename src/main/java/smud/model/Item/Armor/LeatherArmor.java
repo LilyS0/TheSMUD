@@ -1,5 +1,7 @@
 package smud.model.Item.Armor;
 
+import smud.model.Character.PlayerCharacter;
+
 public class LeatherArmor extends Armor{
     /*
      * Represents leather Armor 
@@ -11,6 +13,11 @@ public class LeatherArmor extends Armor{
 
     @Override
     public String toString(){
-        return "Leather Amror (defense: " + this.defense + ") ";
+        return "Leather Amror (defense: " + this.defense + ")";
+    }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.setArmor(this);
     }
 }
