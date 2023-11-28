@@ -1,6 +1,5 @@
 package smud.model.Item.Buffs;
 
-import smud.controller.PlayerController;
 import smud.model.Character.PlayerCharacter;
 
 public class Resistance extends Buff{
@@ -28,14 +27,14 @@ public class Resistance extends Buff{
     }
 
     @Override
-    public void useBuff(PlayerController player) {
+    public void useBuff(PlayerCharacter player) {
         if(!activated){    
-            player.getCharacter().addDefense(buffAmount);
+            player.addDefense(buffAmount);
             activated = true;
         }
         useTurn();
         if(turns == 0){
-            player.getCharacter().subtractDefense(buffAmount);
+            player.subtractDefense(buffAmount);
         }
     }
 }

@@ -88,6 +88,21 @@ public class PlayerCharacter extends MUDCharacter {
         return activeBuffs;
     }
 
+    public void useBuffs(){
+        
+        synchronized(activeBuffs){
+            for(Buff buff: activeBuffs){
+
+                if(buff.isActive()){
+                    buff.useBuff(this);
+                }
+                else{
+                    removeBuff(buff);
+                }
+            }
+        }    
+    }
+
     public void addBuff(Buff buff){
         activeBuffs.add(buff);
     }

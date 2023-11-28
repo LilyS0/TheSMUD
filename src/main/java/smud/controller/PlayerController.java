@@ -6,7 +6,6 @@ import smud.model.Environment.Room;
 import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Item.MUDItem;
-import smud.model.Item.Buffs.Buff;
 
 public class PlayerController {
 
@@ -166,19 +165,7 @@ public class PlayerController {
     }
 
     public void useBuffs(){
-
-        Object[] buffs = character.getActiveBuffs().toArray();
-
-        for(Object buff: buffs){
-            Buff b = (Buff)buff;
-
-            if(b.isActive()){
-                b.useBuff(this);
-            }
-            else{
-                character.removeBuff(b);
-            }
-        }
+        character.useBuffs();
     }
 
     public PlayerCharacter getCharacter(){

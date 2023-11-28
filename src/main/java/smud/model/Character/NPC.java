@@ -45,6 +45,7 @@ public class NPC extends MUDCharacter{
 
     private final Random rand = new Random();
     private boolean isNocturnal;
+    private int statBuff;
     private final int MIN_HEALTH = 50;
     private final int MAX_HEALTH = 150;
     private final int MIN_ATTACK = 5;
@@ -55,16 +56,14 @@ public class NPC extends MUDCharacter{
     // first off don't jump me for making it public imma change it but also idk if [][] is the best data structure but we can talk ab that in the 10/23 meeting
     public Tile[][] location;
     public NPC(String name, String description, Inventory inventory, boolean isNocturnal,Tile[][] location) {
-        this.setName(name);
-        this.setDescription(description);
+        this.name = name;
+        this.description = description;
         this.health = rand.nextInt(MAX_HEALTH - MIN_HEALTH + 1) + MIN_HEALTH;
         this.attack = rand.nextInt(MAX_ATTACK - MIN_ATTACK) + 1 + MIN_ATTACK;
         this.defense = rand.nextInt(MAX_DEFENSE - MIN_DEFENSE + 1) + MIN_DEFENSE;
-        this.setNocturnal(isNocturnal);
-        this.setInventory(inventory);
+        this.isNocturnal = isNocturnal;
+        this.inventory = inventory;
         this.items = MUDItem.getRandomItems();
-        // to be discussed at 10/23 meeting
-//        this.setLocation(location);
     }
 
     public NPC() {
@@ -76,7 +75,6 @@ public class NPC extends MUDCharacter{
         this.description = randomNPCs[NPCnumber][1];
         if (NPCnumber % 2 == 0) { this.setNocturnal(true); }
         this.items = MUDItem.getRandomItems();
-        // all this is missing is an inventory, but like obvi i gotta finish coding that first so i shall return to this capiche
     }
 
     public boolean getNocturnal() {
@@ -85,6 +83,10 @@ public class NPC extends MUDCharacter{
 
     public void setNocturnal(boolean isNocturnal) {
         this.isNocturnal = isNocturnal;
+    }
+
+    public int getStatBuff(){
+        return statBuff;
     }
 
     @Override

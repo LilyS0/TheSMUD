@@ -2,7 +2,7 @@ package smud.model.Item.Buffs;
 
 import java.util.Random;
 
-import smud.controller.PlayerController;
+import smud.model.Character.PlayerCharacter;
 import smud.model.Item.Consumable;
 
 public abstract class Buff implements Consumable{
@@ -18,7 +18,7 @@ public abstract class Buff implements Consumable{
     protected static final Random random = new Random();
     private static Buff[] children = {new Regen(),  new Resistance(), new Strength()};
 
-    public abstract void useBuff(PlayerController player);
+    public abstract void useBuff(PlayerCharacter player);
 
     public int getStat(){
         return buffAmount;

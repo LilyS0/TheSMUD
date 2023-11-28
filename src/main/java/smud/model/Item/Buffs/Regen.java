@@ -1,6 +1,5 @@
 package smud.model.Item.Buffs;
 
-import smud.controller.PlayerController;
 import smud.model.Character.PlayerCharacter;
 
 public class Regen extends Buff{
@@ -26,8 +25,8 @@ public class Regen extends Buff{
     }
 
     @Override
-    public void useBuff(PlayerController player){
-        player.getCharacter().addHealth(buffAmount);
+    public void useBuff(PlayerCharacter player){
+        player.addHealth(buffAmount);
         useTurn();
     }
 
