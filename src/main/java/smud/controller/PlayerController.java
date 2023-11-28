@@ -1,7 +1,5 @@
 package smud.controller;
 
-import java.util.ArrayList;
-
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.Room;
