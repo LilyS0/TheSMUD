@@ -119,6 +119,13 @@ public class PlayerCharacter extends MUDCharacter {
         health += food.getStat();
     }
 
+    @Override
+    public String toString(){
+        return "Health: " + health + ", Attack: " + attack + ", Defense" + defense + ", Inventory capacity: " + inventory.getRatio() + 
+        "\nWeapon: " + weapon + ", Armor: " + armor + 
+        "\nBuffs: " + activeBuffs;
+    }
+
     public static void main(String[] args) {
         PlayerCharacter notAlex = new PlayerCharacter("Not Alex", "This is not NPC Alex");
         System.out.println(notAlex.getName());
