@@ -77,6 +77,13 @@ public class Room {
         return enemies;
     } 
 
+    public boolean roomCleared(){
+        if(getEnemies().size() == 0){
+            return true;
+        }
+        return false;
+    }
+
     public TileFeature[][] getTiles(){
         return tiles;
     }

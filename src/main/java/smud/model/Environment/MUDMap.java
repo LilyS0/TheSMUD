@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import smud.controller.PlayerController;
 import smud.model.MUDException;
+import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
@@ -86,6 +88,9 @@ public class MUDMap {
                         exit.setTargetY(targetExit.getYCor());
                     }
                 }
+            }
+            if(id == rooms.size()){
+                endRoom = rooms.get(id);
             }
         }
     }

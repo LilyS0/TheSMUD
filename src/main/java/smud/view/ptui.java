@@ -40,7 +40,7 @@ public class ptui {
 
         
 
-        while(player.isAlive()){
+        while(player.isAlive() && !game.gameOver()){
 
             System.out.println("Turn " + turns);
 

@@ -143,4 +143,11 @@ public class MUDGame implements DayNightSubject{
             obs.updateTime(isDay);
         }
     }
+
+    public boolean gameOver(){
+        if(playerController.getCurrRoom() == map.getEndRoom() && map.getEndRoom().roomCleared()){
+            return true;
+        }
+        return false;
+    }
 }
