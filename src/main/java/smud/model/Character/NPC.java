@@ -130,7 +130,7 @@ public class NPC extends MUDCharacter implements DayNightObserver{
     public void updateTime(boolean isDay) {
         this.isDay = isDay;
 
-        //System.out.println("Before: " + this);
+        //System.out.println("Before: " + this + "Nocturnal: " + isNocturnal);
 
         if(this.isDay){
             if(isNocturnal){
