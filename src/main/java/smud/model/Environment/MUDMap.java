@@ -18,18 +18,20 @@ import smud.model.Environment.Tiles.TileFeature;
  * @author Sydney Wilson
  * @author Lily Susman
  */
-public class SMUDMap {
+public class MUDMap {
 
     private Room startRoom;
     private Room endRoom;
     private Map<Integer, Room> rooms;
+    private Map<Integer, ExitTile> exits;
     private boolean isDay;
     private FileReader fileReader;
     private BufferedReader reader;
 
-    public SMUDMap(String filepath) throws IOException, MUDException{
+    public MUDMap(String filepath) throws IOException, MUDException{
 
         this.rooms = new HashMap<>();
+        this.exits = new HashMap<>();
         this.isDay = true;
         this.fileReader = new FileReader(filepath);
         this.reader = new BufferedReader(fileReader);
@@ -58,6 +60,9 @@ public class SMUDMap {
                 }
 
                 Room room = createRoom(roomList, id);
+                if(id == 1){
+                    startRoom = room;
+                }
                 rooms.put(id, room);
             }
         }
@@ -76,8 +81,14 @@ public class SMUDMap {
                     if(tile instanceof ExitTile){
                         ExitTile exit = (ExitTile)tile;
                         exit.addTarget(rooms.get(exit.getTargetID()));
+                        ExitTile targetExit = exits.get(id);
+                        exit.setTargetX(targetExit.getXCor());
+                        exit.setTargetY(targetExit.getYCor());
                     }
                 }
+            }
+            if(id == rooms.size()){
+                endRoom = rooms.get(id);
             }
         }
     }
@@ -94,7 +105,12 @@ public class SMUDMap {
             TileFeature[] row = new TileFeature[width];
             for(int k=0; k<width; k++){
                 try {
-                    row[k] = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                    TileFeature tile = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                    row[k] = tile;
+                    if(tile instanceof ExitTile){
+                        ExitTile exit = (ExitTile)tile;
+                        exits.put(exit.getTargetID(), exit);
+                    }
                 } catch (MUDException e) {
                     row[k] = new EmptyTile(k, i);
                     System.out.println("Unable to create tile at x:" + k + "y:" + i  + ": \n  " + e);
@@ -143,10 +159,14 @@ public class SMUDMap {
         return rooms.get(id).getTile(x, y);
     }
 
+    public Map<Integer, ExitTile> getExits(){
+        return exits;
+    }
+
     public static void main(String[] args) {
         
         try {
-            SMUDMap map = new SMUDMap("src/main/java/smud/maps/map1.txt");
+            MUDMap map = new MUDMap("src/main/java/smud/maps/map1.txt");
             Map<Integer, Room> rooms = map.getRooms();
 
             for(int id: rooms.keySet()){

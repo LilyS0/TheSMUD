@@ -2,7 +2,7 @@ package smud.model.Item.Buffs;
 
 import java.util.Random;
 
-import smud.model.MUDException;
+import smud.model.Character.PlayerCharacter;
 import smud.model.Item.Consumable;
 
 public abstract class Buff implements Consumable{
@@ -13,8 +13,12 @@ public abstract class Buff implements Consumable{
     protected int buffAmount;
     protected String buffType;
     protected int turns;
+    protected boolean isActive;
+    protected boolean activated;
     protected static final Random random = new Random();
     private static Buff[] children = {new Regen(),  new Resistance(), new Strength()};
+
+    public abstract void useBuff(PlayerCharacter player);
 
     public int getStat(){
         return buffAmount;
@@ -24,11 +28,16 @@ public abstract class Buff implements Consumable{
         return turns;
     }
 
-    public void useTurn() throws MUDException{
+    public boolean isActive(){
+        return isActive;
+    }
+
+    public void useTurn(){
         if(turns > 0){
             turns --;
-        } else {
-            throw new MUDException("Out of turns");
+        } 
+        else{
+            isActive = false;
         }
     }
 

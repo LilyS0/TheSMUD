@@ -1,5 +1,6 @@
 package smud.model.Environment.Tiles;
 
+import smud.controller.PlayerController;
 import smud.model.Item.MUDItem;
 
 public class ItemTile extends TileFeature implements Tile{
@@ -12,12 +13,34 @@ public class ItemTile extends TileFeature implements Tile{
         this.items = items;
         this.tile = new EmptyTile(x,y);
         this.description = "Item Tile";
-        this.symbol = 'I';
+        this.defaultSymbol = 'I';
+        this.symbol = defaultSymbol;
+        this.canEnter = true;
     }
-
 
     public MUDItem[] getItems(){
         return items;
+    }
+
+    @Override
+    public void interact(PlayerController player){
+        for(MUDItem item: items){
+            player.getCharacter().getInventory().addItem(item);
+        }
+        items = new MUDItem[0];
+    }
+
+    @Override
+    public void clearOccupant(){
+        occupant = null;
+        canEnter = true;
+
+        if(items.length == 0){
+            symbol = ' ';
+        }
+        else{
+            symbol = defaultSymbol;
+        }
     }
 
 }

@@ -1,7 +1,8 @@
-package smud.model;
+package smud.model.Character;
 
 import java.util.Random;
 
+import smud.controller.DayNightObserver;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Item.*;
 
@@ -12,7 +13,7 @@ import smud.model.Item.*;
  * 
  * @author Sydney Wilson
  */
-public class NPC extends MUDCharacter{
+public class NPC extends MUDCharacter implements DayNightObserver{
     // INCORPORATE DEFAULT VALUES
 
 // An NPC is one that is controlled by the game. In this version of the game, all NPCs are enemies, but in future versions, some NPCs may not be hostile.
@@ -26,8 +27,8 @@ public class NPC extends MUDCharacter{
 
 // method graveyard: setHealth
 
-    private boolean isNocturnal;
-    private String[][] randomNPCs = {{"The Merchant", "Everyone's favorite street pharmacist."},
+    
+    private final String[][] randomNPCs = {{"The Merchant", "Everyone's favorite street pharmacist."},
     {"Sans", "A metaphysics expert, knowledgeable in the ways of space-time manipulation and the multiverse."},
     {"Tom Nook", "Love him or hate him, either way you probably owe him."},
     {"Navi", "Sometimes the best advice, is no advice."},
@@ -42,7 +43,41 @@ public class NPC extends MUDCharacter{
     {"Rotisserie St. Jacks", "Enrolling in GCIS-LRATIO has been the biggest mistake of my entire life. I don't even know what a capital letter looks like anymore."},
     {"Hank Schmogus", "The eccentric inventor with a penchant for creating quirky contraptions that defy convention"},
     {"Paul Creenis", "The unassuming librarian who secretly moonlights as a stand-up comedian, spreading laughter one book at a time."}};
-    Random rand = new Random();
+
+    private final Random rand = new Random();
+    private boolean isNocturnal;
+    private boolean isDay;
+    private final int MIN_HEALTH = 50;
+    private final int MAX_HEALTH = 150;
+    private final int MIN_ATTACK = 5;
+    private final int MAX_ATTACK = 15;
+    private final int MIN_DEFENSE = 0;
+    private final int MAX_DEFENSE = 10;
+
+    // first off don't jump me for making it public imma change it but also idk if [][] is the best data structure but we can talk ab that in the 10/23 meeting
+    public Tile[][] location;
+    public NPC(String name, String description, Inventory inventory, boolean isNocturnal,Tile[][] location) {
+        this.name = name;
+        this.description = description;
+        this.health = rand.nextInt(MAX_HEALTH - MIN_HEALTH + 1) + MIN_HEALTH;
+        this.attack = rand.nextInt(MAX_ATTACK - MIN_ATTACK) + 1 + MIN_ATTACK;
+        this.defense = rand.nextInt(MAX_DEFENSE - MIN_DEFENSE + 1) + MIN_DEFENSE;
+        this.isNocturnal = isNocturnal;
+        this.inventory = inventory;
+        this.items = MUDItem.getRandomItems();
+    }
+
+    public NPC() {
+        this.health = rand.nextInt(MAX_HEALTH - MIN_HEALTH + 1) + MIN_HEALTH;
+        this.attack = rand.nextInt(MAX_ATTACK - MIN_ATTACK) + 1 + MIN_ATTACK;
+        this.defense = rand.nextInt(MAX_DEFENSE - MIN_DEFENSE + 1) + MIN_DEFENSE;
+        int NPCnumber = rand.nextInt(15); //15 total options (located 0-14 in array)
+        this.name = randomNPCs[NPCnumber][0];
+        this.description = randomNPCs[NPCnumber][1];
+        if (NPCnumber % 2 == 0) { this.setNocturnal(true); }
+        this.items = MUDItem.getRandomItems();
+    }
+
     public boolean getNocturnal() {
         return this.isNocturnal;
     }
@@ -51,45 +86,69 @@ public class NPC extends MUDCharacter{
         this.isNocturnal = isNocturnal;
     }
 
-    // first off don't jump me for making it public imma change it but also idk if [][] is the best data structure but we can talk ab that in the 10/23 meeting
-    public Tile[][] location;
-    public NPC(String name, String description, Inventory inventory, boolean isNocturnal,Tile[][] location) {
-        this.setName(name);
-        this.setDescription(description);
-        int minHealth = 50;
-        int maxHealth = 150;
-        this.health = rand.nextInt(maxHealth - minHealth + 1) + minHealth;
-        this.setNocturnal(isNocturnal);
-        this.setInventory(inventory);
-        // to be discussed at 10/23 meeting
-//        this.setLocation(location);
+    private void increaseStats(){
+        if(isNocturnal){
+            health += health*0.2;
+            attack += attack*0.2;
+            defense += defense*0.2;
+        }
+        else{
+            health += health*0.1;
+            attack += attack*0.1;
+            defense += defense*0.1;
+        }
     }
 
-    public MUDItem dropItem() {
-        // enter inventory, pick item, add item to Tile, delete item from NPC inventory
-        // CALLED WHEN NPC IS DEFEATED => ADD TO isAlive():false
-        return null;
+    private void decreaseStats(){
+        if(isNocturnal){
+            health -= health*0.2;
+            attack -= attack*0.2;
+            defense -= defense*0.2;
+        }
+        else{
+            health -= health*0.1;
+            attack -= attack*0.1;
+            defense -= defense*0.1;
+        }
     }
 
-    public NPC() {
-        int minHealth = 50;
-        int maxHealth = 150;
-        this.health = rand.nextInt(maxHealth - minHealth + 1) + minHealth;
-        int NPCnumber = rand.nextInt(15); //15 total options (located 0-14 in array)
-        this.name = randomNPCs[NPCnumber][0];
-        this.description = randomNPCs[NPCnumber][1];
-        if (NPCnumber % 2 == 0) { this.setNocturnal(true); }
-        // all this is missing is an inventory, but like obvi i gotta finish coding that first so i shall return to this capiche
+    @Override
+    public MUDItem[] getItems() {
+        return items;
     }
 
-//     public static void main(String[] args) {
-//         Inventory inv = new Inventory();
-//         NPC alex = new NPC("Alex", "This is NPC Alex", inv, false);
-//         System.out.println(alex.getName());
-//         System.out.println(alex.getNocturnal());
-//         System.out.println(alex.getHealth());
-//     }
+    @Override
+    public String toString(){
+        return "Attack: " + attack + ", Defense: " + defense + ", Health: " + health;
+    }
+
     public static void main(String[] args) {
         System.out.println(new NPC());
+    }
+
+    @Override
+    public void updateTime(boolean isDay) {
+        this.isDay = isDay;
+
+        //System.out.println("Before: " + this + "Nocturnal: " + isNocturnal);
+
+        if(this.isDay){
+            if(isNocturnal){
+                decreaseStats();
+            }
+            else{
+                increaseStats();
+            }
+        }
+        else{
+            if(isNocturnal){
+                increaseStats();
+            }
+            else{
+                decreaseStats();
+            }
+        }
+
+        //System.out.println("After: " + this);
     }
 }

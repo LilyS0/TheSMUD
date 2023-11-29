@@ -2,32 +2,55 @@ package smud.view;
 
 import java.io.IOException;
 
+import smud.controller.MUDGame;
 import smud.model.MUDException;
-import smud.model.Environment.Room;
-import smud.model.Environment.SMUDMap;
+import smud.model.Character.PlayerCharacter;
 
 public class ptui {
     
-    private SMUDMap map;
+    private MUDGame game;
 
 
-    public ptui() throws IOException, MUDException{
-        this.map = new SMUDMap("src/main/java/smud/maps/map1.txt");
+    public ptui(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
+        this.game = new MUDGame(filepath, playerName, playerDescription);
     }
 
-    public SMUDMap getMap(){
-        return map;
+    public MUDGame getGame(){
+        return game;
     }
 
-    public static void main(String[] args) throws IOException, MUDException {
+    public static void main(String[] args){
+
+        String filepath = "src/main/java/smud/model/Environment/maps/map2.txt";
+        String playerName = "Player 1";
+        String playerDescription = "A worthy challenger";
+        ptui ui;
         
-        ptui ui = new ptui();
-        SMUDMap map = ui.getMap();
-        Room startingRoom = map.getRoom(1);
+        try {
+            ui = new ptui(filepath, playerName, playerDescription);
+        } catch (IOException | MUDException e) {
+            ui = null;
+            e.printStackTrace();
+        }
 
-        System.out.println(startingRoom);
-        System.out.println("You begin your journey");
-        //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
+        MUDGame game = ui.getGame();
+        PlayerCharacter player = game.getPlayer();
 
+        int turns = 1;
+
+        
+
+        while(player.isAlive() && !game.gameOver()){
+
+            System.out.println("Turn " + turns);
+
+            try {
+                turns ++;
+                game.takeTurn(); 
+            } catch (MUDException e) {
+                System.out.println("Invalid move");
+            }
+        }
+        System.out.println("Game Over!");   
     }
 }

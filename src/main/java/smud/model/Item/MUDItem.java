@@ -2,6 +2,7 @@ package smud.model.Item;
 
 import java.util.Random;
 
+import smud.model.Character.PlayerCharacter;
 import smud.model.Item.Armor.Armor;
 import smud.model.Item.Buffs.Buff;
 import smud.model.Item.Food.Food;
@@ -12,6 +13,8 @@ public interface MUDItem {
      * Represents an Item that a player can pick up and use
      */
     public int getStat();
+
+    public void applyItem(PlayerCharacter player);
 
     public static MUDItem getRandomItem(){
 
@@ -33,6 +36,7 @@ public interface MUDItem {
 
         Random random = new Random();
         int itemAmount = random.nextInt(3);
+        itemAmount ++;
         MUDItem[] items = new MUDItem[itemAmount];
 
         for(int i=0; i<itemAmount; i++){

@@ -1,6 +1,8 @@
 package smud.model.Environment.Tiles;
 
-import smud.model.MUDCharacter;
+import smud.controller.PlayerController;
+import smud.model.MUDException;
+import smud.model.Character.MUDCharacter;
 import smud.model.Environment.Room;
 
 public class ExitTile extends TileFeature{
@@ -14,16 +16,25 @@ public class ExitTile extends TileFeature{
         this.yCor = y;
         this.targetID = targetID;
         this.description = "Exit Tile";
-        this.symbol = 'X';
+        this.defaultSymbol = 'X';
+        this.symbol = defaultSymbol;
+        this.targetX = 0;
+        this.targetY = 0;
+        this.canEnter = true;
     }
     
     @Override
     public boolean occupy(MUDCharacter character){
-        if(tile.occupy(character)){
-            //set character's location to target room's start location
-            return true;
-        }else{
-            return false;
+        symbol = 'P';
+        return true;
+    }
+
+    @Override
+    public void interact(PlayerController player){
+        try {
+            player.setCurrRoom(target, targetX, targetY);
+        } catch (MUDException e) {
+            System.out.println("Can't go there");
         }
     }
 
@@ -37,5 +48,21 @@ public class ExitTile extends TileFeature{
 
     public Room getTarget(){
         return target;
+    }
+
+    public int getTargetX(){
+        return targetX;
+    }
+
+    public void setTargetX(int x){
+        targetX = x;
+    }
+
+    public int getTargetY(){
+        return targetY;
+    }
+
+    public void setTargetY(int y){
+        targetY = y;
     }
 }

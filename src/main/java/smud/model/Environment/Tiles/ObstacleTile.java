@@ -2,7 +2,7 @@ package smud.model.Environment.Tiles;
 
 import java.util.Random;
 
-import smud.model.MUDCharacter;
+import smud.model.Character.MUDCharacter;
 
 public class ObstacleTile extends TileFeature{
 
@@ -13,7 +13,8 @@ public class ObstacleTile extends TileFeature{
         this.xCor = x;
         this.yCor = y;
         this.description = description;
-        this.symbol = 'O';
+        this.defaultSymbol = 'O';
+        this.symbol = defaultSymbol;
     }
 
     @Override
