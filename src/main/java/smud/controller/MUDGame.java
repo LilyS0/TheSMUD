@@ -1,10 +1,12 @@
 package smud.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
+import smud.model.Character.NPC;
 import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.Room;
 import smud.model.Environment.MUDMap;
@@ -12,7 +14,7 @@ import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Environment.Tiles.TrapTile;
 
-public class MUDGame {
+public class MUDGame implements DayNightSubject{
     /*
      * Main class to run the program. Controls the main gameplay loop.
      * 
@@ -24,6 +26,7 @@ public class MUDGame {
     private final Scanner scanner = new Scanner(System.in);
     private boolean isDay;
     private int turns;
+    private ArrayList<DayNightObserver> dayNightObservers;
 
 
     public MUDGame(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
@@ -34,6 +37,8 @@ public class MUDGame {
         this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(player);
         this.isDay = true;
         this.turns = 1;
+        this.dayNightObservers = new ArrayList<>();
+        registerAll();
     }
 
     public void takeTurn() throws MUDException{
@@ -79,7 +84,7 @@ public class MUDGame {
         }
 
         if(turns%10 == 0){
-            changeTime();
+            updateTime();
             if(isDay){
                 System.out.println("It is now daytime");
             }
@@ -113,7 +118,29 @@ public class MUDGame {
         return isDay;
     }
 
-    private void changeTime(){
+    private void registerAll(){
+        for(Room room: map.getRooms().values()){
+            for(MUDCharacter chr: room.getEnemies()){
+                register((NPC)chr);
+            }
+        }
+    }
+
+    @Override
+    public void register(DayNightObserver observer) {
+        dayNightObservers.add(observer);
+    }
+
+    @Override
+    public void deregitser(DayNightObserver observer) {
+        dayNightObservers.remove(observer);
+    }
+
+    @Override
+    public void updateTime() {
         isDay = !isDay;
+        for(DayNightObserver obs: dayNightObservers){
+            obs.updateTime(isDay);
+        }
     }
 }

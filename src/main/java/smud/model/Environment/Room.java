@@ -6,9 +6,12 @@ package smud.model.Environment;
  * @author Lily Susman
  */
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import smud.model.Character.MUDCharacter;
+import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
@@ -57,6 +60,22 @@ public class Room {
         }
         
     }
+
+    public ArrayList<MUDCharacter> getEnemies(){
+
+        ArrayList<MUDCharacter> enemies = new ArrayList<>();
+
+        for(TileFeature[] row: tiles){
+            for(TileFeature tile: row){
+                if(tile instanceof CharacterTile){
+                    CharacterTile ct = (CharacterTile)tile;
+                    enemies.add(ct.getCharacter());
+                }
+            }
+        }
+
+        return enemies;
+    } 
 
     public TileFeature[][] getTiles(){
         return tiles;

@@ -2,6 +2,7 @@ package smud.model.Character;
 
 import java.util.Random;
 
+import smud.controller.DayNightObserver;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Item.*;
 
@@ -12,7 +13,7 @@ import smud.model.Item.*;
  * 
  * @author Sydney Wilson
  */
-public class NPC extends MUDCharacter{
+public class NPC extends MUDCharacter implements DayNightObserver{
     // INCORPORATE DEFAULT VALUES
 
 // An NPC is one that is controlled by the game. In this version of the game, all NPCs are enemies, but in future versions, some NPCs may not be hostile.
@@ -45,7 +46,7 @@ public class NPC extends MUDCharacter{
 
     private final Random rand = new Random();
     private boolean isNocturnal;
-    private int statBuff;
+    private boolean isDay;
     private final int MIN_HEALTH = 50;
     private final int MAX_HEALTH = 150;
     private final int MIN_ATTACK = 5;
@@ -85,8 +86,30 @@ public class NPC extends MUDCharacter{
         this.isNocturnal = isNocturnal;
     }
 
-    public int getStatBuff(){
-        return statBuff;
+    private void increaseStats(){
+        if(isNocturnal){
+            health += health*0.2;
+            attack += attack*0.2;
+            defense += defense*0.2;
+        }
+        else{
+            health += health*0.1;
+            attack += attack*0.1;
+            defense += defense*0.1;
+        }
+    }
+
+    private void decreaseStats(){
+        if(isNocturnal){
+            health -= health*0.2;
+            attack -= attack*0.2;
+            defense -= defense*0.2;
+        }
+        else{
+            health -= health*0.1;
+            attack -= attack*0.1;
+            defense -= defense*0.1;
+        }
     }
 
     @Override
@@ -101,5 +124,31 @@ public class NPC extends MUDCharacter{
 
     public static void main(String[] args) {
         System.out.println(new NPC());
+    }
+
+    @Override
+    public void updateTime(boolean isDay) {
+        this.isDay = isDay;
+
+        //System.out.println("Before: " + this);
+
+        if(this.isDay){
+            if(isNocturnal){
+                decreaseStats();
+            }
+            else{
+                increaseStats();
+            }
+        }
+        else{
+            if(isNocturnal){
+                increaseStats();
+            }
+            else{
+                decreaseStats();
+            }
+        }
+
+        //System.out.println("After: " + this);
     }
 }
