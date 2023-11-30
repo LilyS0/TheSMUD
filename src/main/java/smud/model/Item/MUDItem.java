@@ -14,6 +14,8 @@ public interface MUDItem {
      */
     public int getStat();
 
+    public int getValue();
+
     public void applyItem(PlayerCharacter player);
 
     public static MUDItem getRandomItem(){

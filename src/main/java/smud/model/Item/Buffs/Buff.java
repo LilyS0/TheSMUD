@@ -11,6 +11,7 @@ public abstract class Buff implements Consumable{
      */
 
     protected int buffAmount;
+    protected int value;
     protected String buffType;
     protected int turns;
     protected boolean isActive;
@@ -22,6 +23,10 @@ public abstract class Buff implements Consumable{
 
     public int getStat(){
         return buffAmount;
+    }
+
+    public int getValue(){
+        return value;
     }
 
     public int getTurns(){

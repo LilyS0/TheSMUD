@@ -19,6 +19,7 @@ public class PlayerCharacter extends MUDCharacter {
     private Weapon weapon;
     private Armor armor;
     private ArrayList<Buff> activeBuffs;
+    private int gold;
 // The name and description are supplied by the user when the PC is created.
 // A weapon slot into which one weapon can be equipped. If a weapon is already equipped, it is dropped.
 // An armor slot into which one piece of armor can be equipped. If a piece of armor is already equipped, it is dropped.
@@ -35,6 +36,7 @@ public class PlayerCharacter extends MUDCharacter {
         this.inventory = new Inventory();
         this.activeBuffs = new ArrayList<>();
         this.items = new MUDItem[0];
+        this.gold = 0;
     }
 
     public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory){
@@ -117,6 +119,14 @@ public class PlayerCharacter extends MUDCharacter {
 
     public void eatFood(Food food){
         health += food.getStat();
+    }
+
+    public int getGold(){
+        return gold;
+    }
+
+    public void addGold(int amount){
+        gold += amount;
     }
 
     @Override

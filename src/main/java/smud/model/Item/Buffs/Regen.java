@@ -10,6 +10,7 @@ public class Regen extends Buff{
 
     public Regen(){
         this.buffAmount = random.nextInt(3)+1;
+        this.value = buffAmount * 5;
         this.buffType = "Regen";
         this.turns = 10;
     }

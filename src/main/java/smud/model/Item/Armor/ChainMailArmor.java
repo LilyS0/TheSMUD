@@ -9,6 +9,7 @@ public class ChainMailArmor extends Armor{
 
     public ChainMailArmor(){
         this.defense = 3;
+        this.value = 15;
     }
 
     @Override

@@ -10,6 +10,7 @@ public class Strength extends Buff{
 
     public Strength(){
         this.buffAmount = random.nextInt(5)+5;
+        this.value = buffAmount * 5;
         this.buffType = "Strenght";
         this.turns = 10;
         this.activated = false;
