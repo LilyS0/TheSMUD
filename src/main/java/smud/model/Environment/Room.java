@@ -69,7 +69,9 @@ public class Room {
             for(TileFeature tile: row){
                 if(tile instanceof CharacterTile){
                     CharacterTile ct = (CharacterTile)tile;
-                    enemies.add(ct.getCharacter());
+                    if(ct.getCharacter().isAlive()){
+                        enemies.add(ct.getCharacter());
+                    }  
                 }
             }
         }
@@ -78,6 +80,8 @@ public class Room {
     } 
 
     public boolean roomCleared(){
+        System.out.println(getEnemies().size() + " enemies left");
+
         if(getEnemies().size() == 0){
             return true;
         }
