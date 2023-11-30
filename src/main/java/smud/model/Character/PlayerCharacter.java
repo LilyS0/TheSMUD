@@ -115,6 +115,7 @@ public class PlayerCharacter extends MUDCharacter {
 
     public void addBuff(Buff buff){
         activeBuffs.add(buff);
+        System.out.println("Added: " + buff);
     }
 
     public void removeBuff(Buff buff){
