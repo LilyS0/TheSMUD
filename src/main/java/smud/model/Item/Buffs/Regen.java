@@ -20,14 +20,12 @@ public class Regen extends Buff{
     }
 
     @Override
-    public void applyItem(PlayerCharacter player) {
-        player.addBuff(this);
-    }
-
-    @Override
     public void useBuff(PlayerCharacter player){
         player.addHealth(buffAmount);
         useTurn();
+        if(turns == 0){
+            player.removeBuff(this);
+        }
     }
 
 

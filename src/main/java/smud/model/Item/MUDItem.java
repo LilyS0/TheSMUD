@@ -18,12 +18,13 @@ public interface MUDItem {
 
     public static MUDItem getRandomItem(){
 
-        MUDItem[] armor = Armor.getChildren();
-        MUDItem[] weapons = Weapon.getChildren();
+        //MUDItem[] armor = Armor.getChildren();
+        //MUDItem[] weapons = Weapon.getChildren();
         MUDItem[] buffs = Buff.getChildren();
-        MUDItem[] food = Food.getChildren();
+        //MUDItem[] food = Food.getChildren();
 
-        MUDItem[][] items = {armor, weapons, buffs, food};
+        //MUDItem[][] items = {armor, weapons, buffs, food};
+        MUDItem[][] items = {buffs};
         
         Random random = new Random();
         int type = random.nextInt(items.length);
@@ -45,5 +46,8 @@ public interface MUDItem {
 
         return items;
     }
+
+    @Override
+    public String toString();
 
 }

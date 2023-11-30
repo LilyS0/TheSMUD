@@ -22,11 +22,6 @@ public class Resistance extends Buff{
     }
 
     @Override
-    public void applyItem(PlayerCharacter player) {
-        player.addBuff(this);
-    }
-
-    @Override
     public void useBuff(PlayerCharacter player) {
         if(!activated){    
             player.addDefense(buffAmount);
@@ -35,6 +30,7 @@ public class Resistance extends Buff{
         useTurn();
         if(turns == 0){
             player.subtractDefense(buffAmount);
+            player.removeBuff(this);
         }
     }
 }

@@ -8,6 +8,7 @@ public class TrapTile extends TileFeature{
     private int attack;
     private boolean armed;
     private boolean detected;
+    private boolean canDetect;
     Random rng = new Random();
 
     public TrapTile(int attack, int x, int y){
@@ -16,6 +17,7 @@ public class TrapTile extends TileFeature{
         this.attack = attack;
         this.armed = true;
         this.detected = false;
+        this.canDetect = true;
         this.description = "Trap Tile";
         this.defaultSymbol = '_';
         this.symbol = defaultSymbol;
@@ -44,7 +46,7 @@ public class TrapTile extends TileFeature{
     }
 
     public void detect(){
-        if(!detected && armed){
+        if(!detected && armed && canDetect){
             if(rng.nextInt(2) < 1){
                 System.out.println("Trap detected!");
                 symbol = 'T';
@@ -52,6 +54,7 @@ public class TrapTile extends TileFeature{
                 armed = false;
             }
         }
+        canDetect = false;
     }
 
     @Override

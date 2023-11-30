@@ -88,19 +88,29 @@ public class PlayerCharacter extends MUDCharacter {
         return activeBuffs;
     }
 
-    public void useBuffs(){
-        
-        synchronized(activeBuffs){
-            for(Buff buff: activeBuffs){
+    private ArrayList<Buff> copyBuffs(){
+        ArrayList<Buff> copy = new ArrayList<>();
 
-                if(buff.isActive()){
-                    buff.useBuff(this);
-                }
-                else{
-                    removeBuff(buff);
-                }
+        for(Buff buff: activeBuffs){
+            copy.add(buff);
+        }
+
+        return copy;
+    }
+
+    public void useBuffs(){
+
+        ArrayList<Buff> copy = copyBuffs();
+        
+        for(Buff buff: copy){
+
+            if(buff.isActive()){
+                buff.useBuff(this);
             }
-        }    
+            else{
+                removeBuff(buff);
+            }
+        } 
     }
 
     public void addBuff(Buff buff){
@@ -121,9 +131,9 @@ public class PlayerCharacter extends MUDCharacter {
 
     @Override
     public String toString(){
-        return "Health: " + health + ", Attack: " + attack + ", Defense" + defense + ", Inventory capacity: " + inventory.getRatio() + 
+        return "Health: " + health + ", Attack: " + attack + ", Defense: " + defense + ", Inventory capacity: " + inventory.getRatio() + 
         "\nWeapon: " + weapon + ", Armor: " + armor + 
-        "\nBuffs: " + activeBuffs;
+        "\nBuffs: " + activeBuffs.toString();
     }
 
     public static void main(String[] args) {
