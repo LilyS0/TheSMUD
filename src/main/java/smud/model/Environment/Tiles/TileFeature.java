@@ -72,7 +72,7 @@ public abstract class TileFeature {
 
     public static TileFeature createTile(String symbol,  Map<Integer, Room> rooms, int x, int y) throws MUDException{
 
-        //symbols: E,C,T,X,O,I
+        //symbols: E,C,T,X,O,I,M
 
         if(symbol.equals("E")){
             return new EmptyTile(x, y);
@@ -92,6 +92,8 @@ public abstract class TileFeature {
         }
         else if(symbol.equals("I")){
             return new ItemTile(MUDItem.getRandomItems(), x, y);
+        }else if(symbol.equals("M")){
+            return new MerchantTile(x, y);
         }
         else{
             //should throw MUD exception instead
