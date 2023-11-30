@@ -8,10 +8,15 @@ public abstract class Food implements Consumable{
      */
 
     protected int health;
+    protected int value;
     private static Food[] children = {new Apple(), new Bread(), new Steak()};
 
     public int getStat(){
         return health;
+    }
+
+    public int getValue(){
+        return value;
     }
 
     public static Food[] getChildren(){

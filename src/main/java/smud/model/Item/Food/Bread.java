@@ -9,6 +9,7 @@ public class Bread extends Food{
 
     public Bread(){
         this.health = 3;
+        this.value = 15;
     }
 
     @Override

@@ -9,6 +9,7 @@ public class LeatherArmor extends Armor{
     
     public LeatherArmor(){
         this.defense = 1;
+        this.value = 5;
     }
 
     @Override

@@ -9,6 +9,7 @@ public class Sword extends Weapon{
 
     public Sword(){
         this.damage = 5;
+        this.value = 25;
     }
 
     @Override
