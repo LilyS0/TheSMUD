@@ -1,4 +1,4 @@
-package smud.model.Environment;
+package smud.model.Environment.room;
 /**
  * A Map consists of many Rooms, each with varying attributes. A Room is then made of Tiles.
  * 
@@ -8,13 +8,17 @@ package smud.model.Environment;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 import smud.model.Environment.Tiles.CharacterTile;
+import smud.model.Environment.Tiles.EmptyTile;
+import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 
-public class Room {
+public class PremadeRoom implements Room{
     // *structure of this V E R Y subject to change, for now a 2D 
     // array seems like a sort of decent solution similar to how you would create ex. a checkerboard
     // for a game of checkers, but there is probably a much more optimal solution i have forgotten*
@@ -36,7 +40,7 @@ public class Room {
     private String description;
     private boolean isEndRoom;
 
-    public Room(TileFeature[][] tiles, int id, boolean isEndRoom){
+    public PremadeRoom(TileFeature[][] tiles, int id, boolean isEndRoom){
 
         this.id = id;
         this.tiles = tiles;
@@ -51,6 +55,7 @@ public class Room {
         return isEndRoom;
     }
 
+    @Override
     public TileFeature getTile(int x, int y){
         try{
             return tiles[y][x];
@@ -86,6 +91,39 @@ public class Room {
             return true;
         }
         return false;
+    }
+
+    public static Room createRoom(ArrayList<ArrayList<String>> roomList, int id, Map<Integer, ExitTile> exits, Map<Integer, Room> rooms){
+
+        int width = roomList.get(0).size();
+        int height = roomList.size();
+
+        TileFeature[][] tiles = new TileFeature[height][width];
+        
+
+        for(int i=0; i<height; i++){
+            TileFeature[] row = new TileFeature[width];
+            for(int k=0; k<width; k++){
+                try {
+                    TileFeature tile = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                    row[k] = tile;
+                    if(tile instanceof ExitTile){
+                        ExitTile exit = (ExitTile)tile;
+                        exits.put(exit.getTargetID(), exit);
+                    }
+                } catch (MUDException e) {
+                    row[k] = new EmptyTile(k, i);
+                    System.out.println("Unable to create tile at x:" + k + "y:" + i  + ": \n  " + e);
+                }
+            }
+            tiles[i] = row;
+        }
+
+        return new PremadeRoom(tiles, id, false);
+    }
+
+    public static Room generateRoom(){
+        return null;
     }
 
     public TileFeature[][] getTiles(){

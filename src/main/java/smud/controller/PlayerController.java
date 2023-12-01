@@ -2,9 +2,9 @@ package smud.controller;
 
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
-import smud.model.Environment.Room;
-import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.map.MUDMap;
+import smud.model.Environment.room.Room;
 import smud.model.Item.MUDItem;
 
 public class PlayerController {
