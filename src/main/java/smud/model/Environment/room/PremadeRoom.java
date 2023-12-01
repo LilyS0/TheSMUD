@@ -12,13 +12,11 @@ import java.util.Map;
 import java.util.Set;
 
 import smud.model.MUDException;
-import smud.model.Character.MUDCharacter;
-import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 
-public class PremadeRoom implements Room{
+public class PremadeRoom extends Room{
     // *structure of this V E R Y subject to change, for now a 2D 
     // array seems like a sort of decent solution similar to how you would create ex. a checkerboard
     // for a game of checkers, but there is probably a much more optimal solution i have forgotten*
@@ -32,12 +30,7 @@ public class PremadeRoom implements Room{
 
     // definitely use 2D array for Room
 
-    private TileFeature[][] tiles;
-    private int height;
-    private int width;
-    private int id;
     private Set<Room> exits;
-    private String description;
     private boolean isEndRoom;
 
     public PremadeRoom(TileFeature[][] tiles, int id, boolean isEndRoom){
@@ -53,44 +46,6 @@ public class PremadeRoom implements Room{
 
     public boolean isEndRoom(){
         return isEndRoom;
-    }
-
-    @Override
-    public TileFeature getTile(int x, int y){
-        try{
-            return tiles[y][x];
-        }  
-        catch (Exception e) {
-            return null;
-        }
-        
-    }
-
-    public ArrayList<MUDCharacter> getEnemies(){
-
-        ArrayList<MUDCharacter> enemies = new ArrayList<>();
-
-        for(TileFeature[] row: tiles){
-            for(TileFeature tile: row){
-                if(tile instanceof CharacterTile){
-                    CharacterTile ct = (CharacterTile)tile;
-                    if(ct.getCharacter().isAlive()){
-                        enemies.add(ct.getCharacter());
-                    }  
-                }
-            }
-        }
-
-        return enemies;
-    } 
-
-    public boolean roomCleared(){
-        System.out.println(getEnemies().size() + " enemies left");
-
-        if(getEnemies().size() == 0){
-            return true;
-        }
-        return false;
     }
 
     public static Room createRoom(ArrayList<ArrayList<String>> roomList, int id, Map<Integer, ExitTile> exits, Map<Integer, Room> rooms){
@@ -122,14 +77,6 @@ public class PremadeRoom implements Room{
         return new PremadeRoom(tiles, id, false);
     }
 
-    public static Room generateRoom(){
-        return null;
-    }
-
-    public TileFeature[][] getTiles(){
-        return tiles;
-    }
-
     public void addExit(Room room){
 
         exits.add(room);
@@ -141,22 +88,6 @@ public class PremadeRoom implements Room{
 
     public Set<Room> getExits(){
         return exits;
-    }
-
-    public String getDescription(){
-        return description;
-    }
-
-    public int getHeight(){
-        return height;
-    }
-
-    public int getWidth(){
-        return width;
-    }
-
-    public int getId(){
-        return id;
     }
 
     @Override

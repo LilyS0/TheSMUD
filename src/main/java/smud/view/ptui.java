@@ -28,7 +28,7 @@ public class ptui {
         ptui ui;
         
         try {
-            ui = new ptui(filepath, playerName, playerDescription, false);
+            ui = new ptui(filepath, playerName, playerDescription, isInfinite);
         } catch (IOException | MUDException e) {
             ui = null;
             e.printStackTrace();
