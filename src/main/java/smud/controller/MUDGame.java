@@ -49,7 +49,6 @@ public class MUDGame implements DayNightSubject{
         System.out.println(playerController.getCurrRoom());
         TileFeature[] adjacentTiles = playerController.getAdjacentTiles();
         System.out.println(player);
-        System.out.println(player.getActiveBuffs());
         System.out.println("Move[w,a,s,d] Inventory[i]");
         String action = scanner.nextLine().toLowerCase();
 

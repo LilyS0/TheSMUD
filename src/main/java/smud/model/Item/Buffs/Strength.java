@@ -21,15 +21,14 @@ public class Strength extends Buff{
     }
 
     @Override
-    public void useBuff(PlayerCharacter player) {
-        if(!activated){
-            player.addAttack(buffAmount);
-            activated = true;
-        }
+    public void useBuff(PlayerCharacter player){
+        player.addAttackBuff(buffAmount);
         useTurn();
-        if(turns == 0){
-            player.subtractAttack(buffAmount);
-            player.removeBuff(this);
-        }
+    }
+
+    @Override
+    public void removeBuff(PlayerCharacter player) {
+        player.subAttackBuff(buffAmount);
+        player.removeBuff(this);
     }
 }

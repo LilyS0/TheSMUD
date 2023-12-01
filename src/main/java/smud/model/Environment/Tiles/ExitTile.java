@@ -18,8 +18,6 @@ public class ExitTile extends TileFeature{
         this.description = "Exit Tile";
         this.defaultSymbol = 'X';
         this.symbol = defaultSymbol;
-        this.targetX = 0;
-        this.targetY = 0;
         this.canEnter = true;
     }
     

@@ -20,6 +20,8 @@ public abstract class Buff implements Consumable{
 
     public abstract void useBuff(PlayerCharacter player);
 
+    public abstract void removeBuff(PlayerCharacter player);
+
     public int getStat(){
         return buffAmount;
     }

@@ -9,7 +9,7 @@ public class Regen extends Buff{
      */
 
     public Regen(){
-        this.buffAmount = random.nextInt(3)+1;
+        this.buffAmount = random.nextInt(10)+1;
         this.buffType = "Regen";
         this.turns = 10;
     }
@@ -21,13 +21,13 @@ public class Regen extends Buff{
 
     @Override
     public void useBuff(PlayerCharacter player){
-        player.addHealth(buffAmount);
+        player.addHealthBuff(buffAmount);
         useTurn();
-        if(turns == 0){
-            player.removeBuff(this);
-        }
     }
 
-
-    
+    @Override
+    public void removeBuff(PlayerCharacter player) {
+        player.subHealthBuff(buffAmount);
+        player.removeBuff(this);
+    }
 }
