@@ -13,7 +13,6 @@ public class Resistance extends Buff{
         this.buffAmount = random.nextInt(5)+10;
         this.buffType = "Resistance";
         this.turns = 10;
-        this.activated = false;
     }
 
     @Override
@@ -22,19 +21,14 @@ public class Resistance extends Buff{
     }
 
     @Override
-    public void applyItem(PlayerCharacter player) {
-        player.addBuff(this);
+    public void useBuff(PlayerCharacter player) {
+        player.addDefenseBuff(buffAmount);
+        useTurn();
     }
 
     @Override
-    public void useBuff(PlayerCharacter player) {
-        if(!activated){    
-            player.addDefense(buffAmount);
-            activated = true;
-        }
-        useTurn();
-        if(turns == 0){
-            player.subtractDefense(buffAmount);
-        }
+    public void removeBuff(PlayerCharacter player) {
+        player.subDefenseBuff(buffAmount);
+        player.removeBuff(this);
     }
 }

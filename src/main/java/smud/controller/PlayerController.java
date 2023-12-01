@@ -160,6 +160,7 @@ public class PlayerController {
             System.out.println("Invalid location");
             item = null;
         }
+        System.out.println("Item: " + item);
 
         item.applyItem(character);
     }

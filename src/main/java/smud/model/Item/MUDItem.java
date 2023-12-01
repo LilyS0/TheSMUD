@@ -24,6 +24,7 @@ public interface MUDItem {
         MUDItem[] food = Food.getChildren();
 
         MUDItem[][] items = {armor, weapons, buffs, food};
+        //MUDItem[][] items = {buffs};
         
         Random random = new Random();
         int type = random.nextInt(items.length);
@@ -45,5 +46,8 @@ public interface MUDItem {
 
         return items;
     }
+
+    @Override
+    public String toString();
 
 }

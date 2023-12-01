@@ -19,6 +19,9 @@ public class PlayerCharacter extends MUDCharacter {
     private Weapon weapon;
     private Armor armor;
     private ArrayList<Buff> activeBuffs;
+    private int healthBuff;
+    private int attackBuff;
+    private int defenseBuff;
 // The name and description are supplied by the user when the PC is created.
 // A weapon slot into which one weapon can be equipped. If a weapon is already equipped, it is dropped.
 // An armor slot into which one piece of armor can be equipped. If a piece of armor is already equipped, it is dropped.
@@ -35,6 +38,9 @@ public class PlayerCharacter extends MUDCharacter {
         this.inventory = new Inventory();
         this.activeBuffs = new ArrayList<>();
         this.items = new MUDItem[0];
+        this.attackBuff = 0;
+        this.healthBuff = 0;
+        this.defenseBuff = 0;
     }
 
     public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory){
@@ -48,12 +54,15 @@ public class PlayerCharacter extends MUDCharacter {
         this.weapon = weapon;
         this.armor = armor;
         this.items = new MUDItem[0];
+        this.attackBuff = 0;
+        this.healthBuff = 0;
+        this.defenseBuff = 0;
     }
 
     @Override
     public int getAttack() {
         if(this.weapon != null){
-            return this.attack + this.weapon.getStat();
+            return this.attack + this.weapon.getStat() + this.attackBuff;
         }else{
             return this.attack;
         }
@@ -62,10 +71,14 @@ public class PlayerCharacter extends MUDCharacter {
     @Override
     public int getDefense() {
         if(this.armor != null){
-            return this.defense + this.armor.getStat();
+            return this.defense + this.armor.getStat() + this.defenseBuff;
         }else{
-            return this.defense;
+            return this.defense + this.defenseBuff;
         }
+    }
+
+    public int getHealth(){
+        return health + healthBuff;
     }
 
     public Weapon getWeapon(){
@@ -88,31 +101,59 @@ public class PlayerCharacter extends MUDCharacter {
         return activeBuffs;
     }
 
-    public void useBuffs(){
-        
-        synchronized(activeBuffs){
-            for(Buff buff: activeBuffs){
+    private ArrayList<Buff> copyBuffs(){
+        ArrayList<Buff> copy = new ArrayList<>();
 
-                if(buff.isActive()){
-                    buff.useBuff(this);
-                }
-                else{
-                    removeBuff(buff);
-                }
+        for(Buff buff: activeBuffs){
+            copy.add(buff);
+        }
+
+        return copy;
+    }
+
+    public void useBuffs(){
+
+        ArrayList<Buff> copy = copyBuffs();
+        
+        for(Buff buff: copy){
+            if(!buff.isActive()){
+                buff.removeBuff(this);
             }
-        }    
+        } 
     }
 
     public void addBuff(Buff buff){
         activeBuffs.add(buff);
+        buff.useBuff(this);
+        System.out.println("Added: " + buff);
     }
 
     public void removeBuff(Buff buff){
         activeBuffs.remove(buff);
     }
-    
-    public int getHealth(){
-        return health;
+
+    public void addHealthBuff(int amount){
+        healthBuff += amount;
+    }
+
+    public void subHealthBuff(int amount){
+        healthBuff -= amount;
+    }
+
+    public void addAttackBuff(int amount){
+        attackBuff += amount;
+    }
+
+    public void subAttackBuff(int amount){
+        attackBuff -= amount;
+    }
+
+    public void addDefenseBuff(int amount){
+        defenseBuff += amount;
+    }
+
+    public void subDefenseBuff(int amount){
+        defenseBuff -= amount;
     }
 
     public void eatFood(Food food){
@@ -121,9 +162,9 @@ public class PlayerCharacter extends MUDCharacter {
 
     @Override
     public String toString(){
-        return "Health: " + health + ", Attack: " + attack + ", Defense" + defense + ", Inventory capacity: " + inventory.getRatio() + 
+        return "Health: " + health + ", Attack: " + attack + ", Defense: " + defense + ", Inventory capacity: " + inventory.getRatio() + 
         "\nWeapon: " + weapon + ", Armor: " + armor + 
-        "\nBuffs: " + activeBuffs;
+        "\nBuffs: " + activeBuffs.toString();
     }
 
     public static void main(String[] args) {

@@ -93,13 +93,13 @@ public abstract class MUDCharacter {
         else{
             health = 0;
 
-            String result = "";
+            // String result = "";
 
-            for(MUDItem item: items){
-                result += item + ", ";
-            }
+            // for(MUDItem item: items){
+            //     result += item + ", ";
+            // }
             
-            System.out.println(name + " has dropped " + result);
+            System.out.println(name + " has dropped " + items.toString());
         }
         
     }

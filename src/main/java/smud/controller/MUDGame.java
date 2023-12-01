@@ -60,7 +60,14 @@ public class MUDGame implements DayNightSubject{
         else if(action.equals("i")){
             System.out.println("Inventory: " + playerController.getCharacter().getInventory());
             System.out.println("Enter the location of the item you wish to use or 0 to exit: ");
-            int location = scanner.nextInt();
+            int location = 0;
+
+            try{
+                location = scanner.nextInt();
+            }
+            catch(Exception e){
+                
+            }
 
             if(location > 0){
                 playerController.applyItem(location);

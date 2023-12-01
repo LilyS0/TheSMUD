@@ -53,6 +53,8 @@ public class NPC extends MUDCharacter implements DayNightObserver{
     private final int MAX_ATTACK = 15;
     private final int MIN_DEFENSE = 0;
     private final int MAX_DEFENSE = 10;
+    private final double NOCT_BUFF = 1.2;
+    private final double DIN_BUFF = 1.1;
 
     // first off don't jump me for making it public imma change it but also idk if [][] is the best data structure but we can talk ab that in the 10/23 meeting
     public Tile[][] location;
@@ -86,29 +88,36 @@ public class NPC extends MUDCharacter implements DayNightObserver{
         this.isNocturnal = isNocturnal;
     }
 
-    private void increaseStats(){
+    private void increaseNoctStats(){
         if(isNocturnal){
-            health += health*0.2;
-            attack += attack*0.2;
-            defense += defense*0.2;
-        }
-        else{
-            health += health*0.1;
-            attack += attack*0.1;
-            defense += defense*0.1;
+            health *= NOCT_BUFF;
+            attack *= NOCT_BUFF;
+            defense *= NOCT_BUFF;
         }
     }
 
-    private void decreaseStats(){
+    private void decreaseNoctStats(){
         if(isNocturnal){
-            health -= health*0.2;
-            attack -= attack*0.2;
-            defense -= defense*0.2;
+            health /= NOCT_BUFF;
+            attack /= NOCT_BUFF;
+            defense /= NOCT_BUFF;
         }
-        else{
-            health -= health*0.1;
-            attack -= attack*0.1;
-            defense -= defense*0.1;
+        
+    }
+
+    private void increaseDinStats(){
+        if(!isNocturnal){
+            health *= DIN_BUFF;
+            attack *= DIN_BUFF;
+            defense *= DIN_BUFF;
+        }  
+    }
+
+    private void decreaseDinStats(){
+        if(!isNocturnal){
+            health /= DIN_BUFF;
+            attack /= DIN_BUFF;
+            defense /= DIN_BUFF;
         }
     }
 
@@ -130,23 +139,15 @@ public class NPC extends MUDCharacter implements DayNightObserver{
     public void updateTime(boolean isDay) {
         this.isDay = isDay;
 
-        //System.out.println("Before: " + this + "Nocturnal: " + isNocturnal);
+        //System.out.println("Before: " + this + " Nocturnal: " + isNocturnal);
 
         if(this.isDay){
-            if(isNocturnal){
-                decreaseStats();
-            }
-            else{
-                increaseStats();
-            }
+            increaseDinStats();
+            decreaseNoctStats();
         }
         else{
-            if(isNocturnal){
-                increaseStats();
-            }
-            else{
-                decreaseStats();
-            }
+            increaseNoctStats();
+            decreaseDinStats();
         }
 
         //System.out.println("After: " + this);

@@ -51,6 +51,12 @@ public class ptui {
                 System.out.println("Invalid move");
             }
         }
-        System.out.println("Game Over!");   
+        System.out.println("Game Over!");  
+        if(player.isAlive()){
+            System.out.println("You deafeated all the enenies and won!");
+        }
+        else{
+            System.out.println("L + Ratio");
+        }
     }
 }

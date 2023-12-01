@@ -20,6 +20,8 @@ public abstract class Buff implements Consumable{
 
     public abstract void useBuff(PlayerCharacter player);
 
+    public abstract void removeBuff(PlayerCharacter player);
+
     public int getStat(){
         return buffAmount;
     }
@@ -43,6 +45,13 @@ public abstract class Buff implements Consumable{
 
     public static Buff[] getChildren(){
         return children;
+    }
+
+    @Override
+    public void applyItem(PlayerCharacter player) {
+        player.addBuff(this);
+        // System.out.println("Added " + this + " to buffs");
+        // System.out.println(player.getActiveBuffs());
     }
     
 }
