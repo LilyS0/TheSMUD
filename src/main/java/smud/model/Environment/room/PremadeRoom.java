@@ -89,23 +89,4 @@ public class PremadeRoom extends Room{
     public Set<Room> getExits(){
         return exits;
     }
-
-    @Override
-    public String toString(){
-        String display = "";
-
-        for(TileFeature[] row: tiles){
-            for(TileFeature tile: row){
-                this.description += "  " + tile.getDescription() + "\n";
-                display += "[" + tile.getSymbol() + "] ";
-            }
-            display += "\n";
-        }
-        return display;
-    }
-
-    @Override
-    public int hashCode(){
-        return tiles.hashCode() + description.hashCode();
-    }
 }

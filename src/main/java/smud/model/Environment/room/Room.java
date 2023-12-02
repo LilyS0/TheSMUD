@@ -71,5 +71,24 @@ public abstract class Room {
     public String getDescription(){
         return description;
     }
+
+    @Override
+    public String toString(){
+        String display = "";
+
+        for(TileFeature[] row: tiles){
+            for(TileFeature tile: row){
+                this.description += "  " + tile.getDescription() + "\n";
+                display += "[" + tile.getSymbol() + "] ";
+            }
+            display += "\n";
+        }
+        return display;
+    }
+
+    @Override
+    public int hashCode(){
+        return tiles.hashCode() + description.hashCode();
+    }
     
 }

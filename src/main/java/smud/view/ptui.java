@@ -24,7 +24,7 @@ public class ptui {
         String filepath = "src/main/java/smud/model/Environment/map/maps/map2.txt";
         String playerName = "Player 1";
         String playerDescription = "A worthy challenger";
-        boolean isInfinite = false;
+        boolean isInfinite = true;
         ptui ui;
         
         try {

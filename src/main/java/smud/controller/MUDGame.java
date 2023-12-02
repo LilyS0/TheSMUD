@@ -160,8 +160,12 @@ public class MUDGame implements DayNightSubject{
     }
 
     public boolean gameOver(){
-        if(playerController.getCurrRoom() == map.getEndRoom() && map.getEndRoom().roomCleared()){
-            return true;
+        try {
+            if(playerController.getCurrRoom() == map.getEndRoom() && map.getEndRoom().roomCleared()){
+                return true;
+            }
+        }catch (Exception e){
+            
         }
         return false;
     }

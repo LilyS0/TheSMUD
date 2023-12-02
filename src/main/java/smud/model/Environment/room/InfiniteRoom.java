@@ -14,27 +14,33 @@ import smud.model.Item.MUDItem;
 
 public class InfiniteRoom extends Room{
 
-    private Room next;
-    private Room previous;
+    private InfiniteRoom next;
+    private InfiniteRoom previous;
     private final Random RANDOM = new Random();
     private final int MAX_OBSTICLES = 4;
     private final int MAX_TRAPS = 2;
     private final int MAX_ENEMIES = 3;
     private final int MAX_ITEMS = 2;
 
-    public InfiniteRoom(Room previous){
+    public InfiniteRoom(InfiniteRoom previous){
         this.next = null;
         this.previous = previous;
         this.tiles = makeTiles();
-        this.id = previous.getID()+1;
         this.height = tiles.length;
         this.width = tiles[0].length;
+
+        if(this.previous == null){
+            this.id = 1;
+        }
+        else{
+            this.id = previous.getID()+1;
+        }
     }
 
     private TileFeature[][] makeTiles(){
 
-        int width = RANDOM.nextInt(5, 11);
-        int height = RANDOM.nextInt(5, 11);
+        int width = RANDOM.nextInt(4, 7);
+        int height = RANDOM.nextInt(4, 7);
         TileFeature[][] tiles = new TileFeature[height][width];
 
         //Load with all empty tiles
@@ -47,12 +53,22 @@ public class InfiniteRoom extends Room{
 
         //Make exits
 
-        //exit to previous room in the bottom middle
-        TileFeature exitToPrev = new ExitTile(previous.getID(), width/2, height);
-        tiles[height][width/2] = exitToPrev;
+        //exit to previous room in the bottom middle if previous room exists
+        if(previous != null){
+            TileFeature exitToPrev = new ExitTile(getPrevious().getID(), width/2, height-1);
+            tiles[height-1][width/2] = exitToPrev;
+        }
+
         //exit to the next room at the top middle
-        TileFeature exitToNext = new ExitTile(next.getID(), width/2, 0);
+        TileFeature exitToNext;
+        try {
+            exitToNext = new ExitTile(getNext().getID(), width/2, 0);
+        
+        } catch (Exception e) {
+            exitToNext = new ExitTile(0, width/2, 0);
+        }
         tiles[0][width/2] = exitToNext;
+        
 
         //Make obsticles
         int obsticlesNum = RANDOM.nextInt(MAX_OBSTICLES);
@@ -125,9 +141,7 @@ public class InfiniteRoom extends Room{
 
             //place new obsticle tile
             tiles[y][x] = new ItemTile(MUDItem.getRandomItems(), x, y);
-        }
-    
-        
+        }     
         return tiles;
     }
 
@@ -154,11 +168,11 @@ public class InfiniteRoom extends Room{
         return false;
     }
 
-    public Room getNext(){
+    public InfiniteRoom getNext(){
         return next;
     }
 
-    public Room getPrevious(){
+    public InfiniteRoom getPrevious(){
         return previous;
     }
 
