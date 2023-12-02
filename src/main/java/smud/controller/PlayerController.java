@@ -179,8 +179,11 @@ public class PlayerController {
 
     public void setCurrRoom(Room room, int newX, int newY) throws MUDException{
         this.currRoom = room;
-        setX(newX);
-        setY(newY);
+        // setX(newX);
+        // setY(newY);
+        this.x = newX;
+        this.y = newY;
+        System.out.println("Now in room " + this.currRoom.getID());
     }
 
     public MUDMap getMap(){

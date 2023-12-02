@@ -6,6 +6,7 @@ import smud.model.Character.NPC;
 import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
+import smud.model.Environment.Tiles.InfiniteExitTile;
 import smud.model.Environment.Tiles.ItemTile;
 import smud.model.Environment.Tiles.ObstacleTile;
 import smud.model.Environment.Tiles.TileFeature;
@@ -55,20 +56,13 @@ public class InfiniteRoom extends Room{
 
         //exit to previous room in the bottom middle if previous room exists
         if(previous != null){
-            TileFeature exitToPrev = new ExitTile(getPrevious().getID(), width/2, height-1);
+            TileFeature exitToPrev = new InfiniteExitTile(this, previous, width/2, height-1);
             tiles[height-1][width/2] = exitToPrev;
         }
 
         //exit to the next room at the top middle
-        TileFeature exitToNext;
-        try {
-            exitToNext = new ExitTile(getNext().getID(), width/2, 0);
-        
-        } catch (Exception e) {
-            exitToNext = new ExitTile(0, width/2, 0);
-        }
+        TileFeature exitToNext = new InfiniteExitTile(this, next, width/2, 0);
         tiles[0][width/2] = exitToNext;
-        
 
         //Make obsticles
         int obsticlesNum = RANDOM.nextInt(MAX_OBSTICLES);
