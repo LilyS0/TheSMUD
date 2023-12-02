@@ -70,6 +70,10 @@ public abstract class TileFeature {
         return yCor;
     }
 
+    public void setOpen(boolean newOpen){
+        
+    }
+
     public static TileFeature createTile(String symbol,  Map<Integer, Room> rooms, int x, int y) throws MUDException{
 
         //symbols: E,C,T,X,O,I,M

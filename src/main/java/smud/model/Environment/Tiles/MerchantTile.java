@@ -1,5 +1,7 @@
 package smud.model.Environment.Tiles;
 
+import java.util.Scanner;
+
 import smud.controller.PlayerController;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
@@ -49,6 +51,13 @@ public class MerchantTile extends TileFeature{
             }
         }
     }
+
+    public void printItems(){
+        for(int i=0; i<forSale.length; i++){
+                System.out.println(i + ": " + forSale[i] + " - " + forSale[i].getValue() + " gold"); //e.g. 0: Sword - 25 gold
+        }
+        System.out.println("Type a number to buy that item or 'exit' to exit.");
+    }
     
     @Override
     public boolean occupy(MUDCharacter character) {
@@ -59,17 +68,19 @@ public class MerchantTile extends TileFeature{
     public void interact(PlayerController player) throws MUDException {
         if(open){
             System.out.println("You have " + player.getCharacter().getGold() + " gold.");
-            for(int i=0; i<forSale.length; i++){
-                System.out.println(i + ": " + forSale[i] + " - " + forSale[i].getValue() + " gold"); //e.g. 0: Sword - 25 gold
+            printItems();
+            Scanner input = new Scanner(System.in);
+            String answer = input.nextLine();
+            while(!answer.toLowerCase().equals("exit")){
+                try{
+                    buyItem(player, Integer.parseInt(answer));
+                }catch(Exception e){
+                    System.out.println("Invalid input. Type a number to buy that item or 'exit' to exit.");
+                }
+                printItems();
             }
-            /*
-             * read an input
-             * try{
-             *      buyItem(input);
-             * }catch(MUDException e){
-             *      System.out.println("Invalid item. Please enter 0, 1, or 2.");
-             * }
-             */
+            input.close();
+
         }else{
             System.out.println("The merchant is closed.");
         }

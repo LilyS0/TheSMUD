@@ -12,6 +12,7 @@ import java.util.Set;
 
 import smud.model.Character.MUDCharacter;
 import smud.model.Environment.Tiles.CharacterTile;
+import smud.model.Environment.Tiles.MerchantTile;
 import smud.model.Environment.Tiles.TileFeature;
 
 public class Room {
@@ -79,10 +80,27 @@ public class Room {
         return enemies;
     } 
 
+    public ArrayList<Integer[]> getMerchantLocations(){
+        ArrayList<Integer[]> merchantLocations = new ArrayList<>();
+        for(TileFeature[] row: tiles){
+            for(TileFeature tile: row){
+                if(tile instanceof MerchantTile){
+                    Integer[] location = {tile.getXCor(), tile.getYCor()};
+                    merchantLocations.add(location);
+                }
+            }
+        }
+        return merchantLocations;
+    }
+
     public boolean roomCleared(){
         System.out.println(getEnemies().size() + " enemies left");
 
         if(getEnemies().size() == 0){
+            // room clear, open merchants
+            for(Integer[] location: getMerchantLocations()){
+                getTile(location[0], location[1]).setOpen(true);
+            }
             return true;
         }
         return false;
