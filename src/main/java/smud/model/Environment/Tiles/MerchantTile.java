@@ -60,6 +60,7 @@ public class MerchantTile extends TileFeature{
 
     @Override
     public void interact(PlayerController player) throws MUDException {
+        this.open = player.getCurrRoom().roomCleared();
         if(open){
             System.out.println("You have " + player.getCharacter().getGold() + " gold.");
             printItems();

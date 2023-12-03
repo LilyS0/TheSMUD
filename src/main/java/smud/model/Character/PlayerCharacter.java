@@ -19,7 +19,6 @@ public class PlayerCharacter extends MUDCharacter {
     private Weapon weapon;
     private Armor armor;
     private ArrayList<Buff> activeBuffs;
-    private int gold;
     private int healthBuff;
     private int attackBuff;
     private int defenseBuff;
@@ -160,14 +159,6 @@ public class PlayerCharacter extends MUDCharacter {
 
     public void eatFood(Food food){
         health += food.getStat();
-    }
-
-    public int getGold(){
-        return gold;
-    }
-
-    public void addGold(int amount){
-        gold += amount;
     }
 
     @Override

@@ -15,6 +15,7 @@ public abstract class MUDCharacter {
     protected int attack;
     protected int defense;
     protected MUDItem[] items;
+    protected int gold;
 
     public String getName() {
         return name;
@@ -110,6 +111,14 @@ public abstract class MUDCharacter {
 
     public void setItems(MUDItem[] items){
         this.items = items;
+    }
+
+    public int getGold(){
+        return gold;
+    }
+
+    public void addGold(int amount){
+        gold += amount;
     }
 
     public void attack(MUDCharacter target){
