@@ -7,16 +7,10 @@ import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 import smud.model.Item.MUDItem;
 
-/*
- * WHAT WE STILL NEED:
- *  IN OTHER FILES:
- *  WAY TO SET MERCHANT IN A ROOM TO CLOSED WHEN ROOM NOT CLEARED
- *  WAY TO SET MERCHANTS CLOSED WHEN NIGHT TIME
- *  WAY TO SET MERCHANTS OPEN WHEN CLEARED + DAY TIME
- *  IN THIS FILE:
- *  INTERACT METHOD, READING INPUT AND PASS TO BUYITEM
- *      WHILE LOOP, INPUT == exit TO BREAK
- *      ELSE PASS INPUT TO BUYITEM, IF IT THROWS EXCEPTION HANDLE IT
+/**
+ * Class to represent the new R2 Merchant tile. Holds an array of 3 random items to buy.
+ * 
+ * @author Ty Platow
  */
 
 public class MerchantTile extends TileFeature{
