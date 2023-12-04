@@ -3,6 +3,7 @@ package smud.model.Environment.Tiles;
 import java.util.Scanner;
 
 import smud.controller.PlayerController;
+import smud.model.Character.Inventory;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 import smud.model.Item.MUDItem;
@@ -47,11 +48,28 @@ public class MerchantTile extends TileFeature{
         }
     }
 
+    public void sellItems(PlayerController player, Scanner scanner) throws MUDException{
+        Inventory inventory = player.getCharacter().getInventory();
+        System.out.println("Your items:");
+        System.out.println(inventory);
+        System.out.println("Enter the number of the item you would like to sell or 0 to stop selling.");
+        int input = scanner.nextInt();
+        while(input != 0){
+            MUDItem item = inventory.getInventory().get(input-1);
+            inventory.removeItem(item);
+            player.getCharacter().addGold((int)(item.getValue() / 2));
+            System.out.println("Your items:");
+            System.out.println(inventory);
+            System.out.println("Enter the number of the item you would like to sell or 0 to stop selling.");
+            input = scanner.nextInt();
+        }
+    }
+
     public void printItems(){
         for(int i=0; i<forSale.length; i++){
                 System.out.println(i + ": " + forSale[i] + " - " + forSale[i].getValue() + " gold"); //e.g. 0: Sword - 25 gold
         }
-        System.out.println("Type a number to buy that item or 'exit' to exit.");
+        System.out.println("Type a number to buy that item, 'sell' to sell items, or 'exit' to exit.");
     }
     
     @Override
@@ -68,6 +86,9 @@ public class MerchantTile extends TileFeature{
             Scanner input = new Scanner(System.in); // trying to close this fucks up the main method
             String answer = input.nextLine();
             while(!answer.toLowerCase().equals("exit")){
+                if(answer.equals("sell")){
+                    sellItems(player, input);
+                }
                 try{
                     buyItem(player, Integer.parseInt(answer));
                 }catch(Exception e){
