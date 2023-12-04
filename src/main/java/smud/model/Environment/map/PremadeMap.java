@@ -1,4 +1,4 @@
-package smud.model.Environment;
+package smud.model.Environment.map;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,9 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import smud.model.MUDException;
-import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.room.PremadeRoom;
+import smud.model.Environment.room.Room;
 
 /**
  * A Map is made up of 2+ Rooms, which are made of Tiles.
@@ -18,7 +19,7 @@ import smud.model.Environment.Tiles.TileFeature;
  * @author Sydney Wilson
  * @author Lily Susman
  */
-public class MUDMap {
+public class PremadeMap implements MUDMap{
 
     private Room startRoom;
     private Room endRoom;
@@ -28,7 +29,7 @@ public class MUDMap {
     private FileReader fileReader;
     private BufferedReader reader;
 
-    public MUDMap(String filepath) throws IOException, MUDException{
+    public PremadeMap(String filepath) throws IOException, MUDException{
 
         this.rooms = new HashMap<>();
         this.exits = new HashMap<>();
@@ -59,7 +60,7 @@ public class MUDMap {
                     line = reader.readLine();
                 }
 
-                Room room = createRoom(roomList, id);
+                Room room = PremadeRoom.createRoom(roomList, id, exits, rooms);
                 if(id == 1){
                     startRoom = room;
                 }
@@ -91,35 +92,6 @@ public class MUDMap {
                 endRoom = rooms.get(id);
             }
         }
-    }
-
-    public Room createRoom(ArrayList<ArrayList<String>> roomList, int id){
-
-        int width = roomList.get(0).size();
-        int height = roomList.size();
-
-        TileFeature[][] tiles = new TileFeature[height][width];
-        
-
-        for(int i=0; i<height; i++){
-            TileFeature[] row = new TileFeature[width];
-            for(int k=0; k<width; k++){
-                try {
-                    TileFeature tile = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
-                    row[k] = tile;
-                    if(tile instanceof ExitTile){
-                        ExitTile exit = (ExitTile)tile;
-                        exits.put(exit.getTargetID(), exit);
-                    }
-                } catch (MUDException e) {
-                    row[k] = new EmptyTile(k, i);
-                    System.out.println("Unable to create tile at x:" + k + "y:" + i  + ": \n  " + e);
-                }
-            }
-            tiles[i] = row;
-        }
-
-        return new Room(tiles, id, false);
     }
 
     public void addRoom(Room room, int id){
@@ -166,7 +138,7 @@ public class MUDMap {
     public static void main(String[] args) {
         
         try {
-            MUDMap map = new MUDMap("src/main/java/smud/maps/map1.txt");
+            PremadeMap map = new PremadeMap("src/main/java/smud/maps/map1.txt");
             Map<Integer, Room> rooms = map.getRooms();
 
             for(int id: rooms.keySet()){

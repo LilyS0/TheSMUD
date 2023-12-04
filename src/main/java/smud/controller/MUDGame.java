@@ -8,11 +8,13 @@ import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 import smud.model.Character.NPC;
 import smud.model.Character.PlayerCharacter;
-import smud.model.Environment.Room;
-import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Environment.Tiles.TrapTile;
+import smud.model.Environment.map.InfiniteMap;
+import smud.model.Environment.map.MUDMap;
+import smud.model.Environment.map.PremadeMap;
+import smud.model.Environment.room.Room;
 
 public class MUDGame implements DayNightSubject{
     /*
@@ -29,15 +31,21 @@ public class MUDGame implements DayNightSubject{
     private ArrayList<DayNightObserver> dayNightObservers;
 
 
-    public MUDGame(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
+    public MUDGame(String filepath, String playerName, String playerDescription, boolean isInfinite) throws IOException, MUDException{
 
-        this.map = new MUDMap(filepath);
+        if(isInfinite){
+            this.map = new InfiniteMap();
+        }
+        else{
+            this.map = new PremadeMap(filepath);
+        }
         this.player = new PlayerCharacter(playerName, playerDescription);
         this.playerController = new PlayerController(player, map);
         this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(player);
         this.isDay = true;
         this.turns = 1;
         this.dayNightObservers = new ArrayList<>();
+
         registerAll();
     }
 
@@ -152,8 +160,12 @@ public class MUDGame implements DayNightSubject{
     }
 
     public boolean gameOver(){
-        if(playerController.getCurrRoom() == map.getEndRoom() && map.getEndRoom().roomCleared()){
-            return true;
+        try {
+            if(playerController.getCurrRoom() == map.getEndRoom() && map.getEndRoom().roomCleared()){
+                return true;
+            }
+        }catch (Exception e){
+            
         }
         return false;
     }

@@ -2,7 +2,7 @@ package smud.model.Character;
 
 import java.util.ArrayList;
 
-import smud.model.Environment.Room;
+import smud.model.Environment.room.Room;
 import smud.model.Item.MUDItem;
 import smud.model.Item.Armor.Armor;
 import smud.model.Item.Buffs.Buff;
