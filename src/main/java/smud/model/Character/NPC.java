@@ -79,6 +79,7 @@ public class NPC extends MUDCharacter implements DayNightObserver{
         this.description = randomNPCs[NPCnumber][1];
         if (NPCnumber % 2 == 0) { this.setNocturnal(true); }
         this.items = MUDItem.getRandomItems();
+        this.gold = rand.nextInt(10) + 1;
     }
 
     public boolean getNocturnal() {

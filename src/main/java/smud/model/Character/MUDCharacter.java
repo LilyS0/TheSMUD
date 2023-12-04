@@ -101,6 +101,7 @@ public abstract class MUDCharacter {
             // }
             
             System.out.println(name + " has dropped " + items.toString());
+            System.out.println(name + " has dropped " + getGold() + " gold");
         }
         
     }
@@ -118,7 +119,7 @@ public abstract class MUDCharacter {
     }
 
     public void addGold(int amount){
-        gold += amount;
+        this.gold += amount;
     }
 
     public void attack(MUDCharacter target){

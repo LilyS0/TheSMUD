@@ -38,8 +38,9 @@ public class MerchantTile extends TileFeature{
         if(index < 0 || index > 2){
             throw new MUDException("Invalid index provided to merchant buyItem");
         }else{
-            if(player.getCharacter().getGold() > forSale[index].getValue()){
+            if(player.getCharacter().getGold() >= forSale[index].getValue()){
                 player.getCharacter().getInventory().addItem(forSale[index]);
+                player.getCharacter().addGold(forSale[index].getValue() * -1);
             }else{
                 System.out.println("Not enough gold!");
             }
