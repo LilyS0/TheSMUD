@@ -23,7 +23,7 @@ public class MUDGame implements DayNightSubject{
     private MUDMap map;
     private PlayerCharacter player;
     private PlayerController playerController;
-    private final Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
     private boolean isDay;
     private int turns;
     private ArrayList<DayNightObserver> dayNightObservers;
@@ -50,10 +50,16 @@ public class MUDGame implements DayNightSubject{
         TileFeature[] adjacentTiles = playerController.getAdjacentTiles();
         System.out.println(player);
         System.out.println("Move[w,a,s,d] Inventory[i]");
-        String action = scanner.nextLine().toLowerCase();
+        String action;
+        if(scanner.hasNextLine() == false || scanner == null){
+            scanner = new Scanner(System.in);
+            action = scanner.nextLine().toLowerCase();
+        }else{
+            action = scanner.nextLine().toLowerCase();
+        }
+        
 
         
-       
         if(action.equals("x")){
             System.out.println("Turn ended");
         }

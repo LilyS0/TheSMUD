@@ -64,7 +64,7 @@ public class MerchantTile extends TileFeature{
         if(open){
             System.out.println("You have " + player.getCharacter().getGold() + " gold.");
             printItems();
-            Scanner input = new Scanner(System.in);
+            Scanner input = new Scanner(System.in); // trying to close this fucks up the main method
             String answer = input.nextLine();
             while(!answer.toLowerCase().equals("exit")){
                 try{
@@ -72,9 +72,11 @@ public class MerchantTile extends TileFeature{
                 }catch(Exception e){
                     System.out.println("Invalid input. Type a number to buy that item or 'exit' to exit.");
                 }
+                System.out.println("You have " + player.getCharacter().getGold() + " gold.");
                 printItems();
+                answer = input.nextLine();
             }
-            input.close();
+            //input.close();
 
         }else{
             System.out.println("The merchant is closed.");
