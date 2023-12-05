@@ -3,7 +3,6 @@ package smud.view;
 import java.io.IOException;
 
 import smud.controller.MUDGame;
-import smud.controller.PlayerController;
 import smud.model.Account;
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
