@@ -11,8 +11,8 @@ public class ptui {
     private MUDGame game;
 
 
-    public ptui(String filepath, String playerName, String playerDescription) throws IOException, MUDException{
-        this.game = new MUDGame(filepath, playerName, playerDescription);
+    public ptui(String filepath, String playerName, String playerDescription, boolean isInfinite) throws IOException, MUDException{
+        this.game = new MUDGame(filepath, playerName, playerDescription, isInfinite);
     }
 
     public MUDGame getGame(){
@@ -21,13 +21,14 @@ public class ptui {
 
     public static void main(String[] args){
 
-        String filepath = "src/main/java/smud/model/Environment/maps/map2.txt";
+        String filepath = "src/main/java/smud/model/Environment/map/maps/map2.txt";
         String playerName = "Player 1";
         String playerDescription = "A worthy challenger";
+        boolean isInfinite = true;
         ptui ui;
         
         try {
-            ui = new ptui(filepath, playerName, playerDescription);
+            ui = new ptui(filepath, playerName, playerDescription, isInfinite);
         } catch (IOException | MUDException e) {
             ui = null;
             e.printStackTrace();

@@ -7,7 +7,7 @@ import smud.controller.PlayerController;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 import smud.model.Character.NPC;
-import smud.model.Environment.Room;
+import smud.model.Environment.room.Room;
 import smud.model.Item.MUDItem;
 
 public abstract class TileFeature {

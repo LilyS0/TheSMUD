@@ -3,7 +3,7 @@ package smud.model.Environment.Tiles;
 import smud.controller.PlayerController;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
-import smud.model.Environment.Room;
+import smud.model.Environment.room.Room;
 
 public class ExitTile extends TileFeature{
     private Room target;

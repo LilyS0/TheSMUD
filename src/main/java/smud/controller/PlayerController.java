@@ -2,9 +2,9 @@ package smud.controller;
 
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
-import smud.model.Environment.Room;
-import smud.model.Environment.MUDMap;
 import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.map.MUDMap;
+import smud.model.Environment.room.Room;
 import smud.model.Item.MUDItem;
 
 public class PlayerController {
@@ -179,8 +179,11 @@ public class PlayerController {
 
     public void setCurrRoom(Room room, int newX, int newY) throws MUDException{
         this.currRoom = room;
-        setX(newX);
-        setY(newY);
+        // setX(newX);
+        // setY(newY);
+        this.x = newX;
+        this.y = newY;
+        System.out.println("Now in room " + this.currRoom.getID());
     }
 
     public MUDMap getMap(){
