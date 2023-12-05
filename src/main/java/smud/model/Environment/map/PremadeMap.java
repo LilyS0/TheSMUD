@@ -25,7 +25,6 @@ public class PremadeMap implements MUDMap{
     private Room endRoom;
     private Map<Integer, Room> rooms;
     private Map<Integer, ExitTile> exits;
-    private boolean isDay;
     private FileReader fileReader;
     private BufferedReader reader;
 
@@ -33,7 +32,6 @@ public class PremadeMap implements MUDMap{
 
         this.rooms = new HashMap<>();
         this.exits = new HashMap<>();
-        this.isDay = true;
         this.fileReader = new FileReader(filepath);
         this.reader = new BufferedReader(fileReader);
 
@@ -103,20 +101,12 @@ public class PremadeMap implements MUDMap{
         r2.addExit(r1);
     }
 
-    public void changeTime(){
-        isDay = !isDay();
-    }
-
     public Room getStartRoom(){
         return startRoom;
     }
 
     public Room getEndRoom(){
         return endRoom;
-    }
-
-    public boolean isDay(){
-        return isDay;
     }
 
     public Map<Integer, Room> getRooms(){
