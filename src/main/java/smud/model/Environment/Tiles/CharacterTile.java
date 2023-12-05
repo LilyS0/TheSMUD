@@ -22,6 +22,7 @@ public class CharacterTile extends TileFeature{
         if(!startingOccupant.isAlive()){
             symbol = 'P';
             character.addItemsToInv(startingOccupant.getItems());
+            character.addGold(startingOccupant.getGold());
             startingOccupant.setItems(new MUDItem[0]);
             return true;
         }else{

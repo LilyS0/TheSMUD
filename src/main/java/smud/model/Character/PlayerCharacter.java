@@ -38,6 +38,7 @@ public class PlayerCharacter extends MUDCharacter {
         this.inventory = new Inventory();
         this.activeBuffs = new ArrayList<>();
         this.items = new MUDItem[0];
+        this.gold = 0;
         this.attackBuff = 0;
         this.healthBuff = 0;
         this.defenseBuff = 0;
