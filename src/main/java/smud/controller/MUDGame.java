@@ -23,7 +23,7 @@ public class MUDGame implements DayNightSubject{
      * @author Ty Platow
      */
     private MUDMap map;
-    private PlayerCharacter player;
+
     private PlayerController playerController;
     private Scanner scanner = new Scanner(System.in);
     private boolean isDay;
@@ -39,9 +39,8 @@ public class MUDGame implements DayNightSubject{
         else{
             this.map = new PremadeMap(filepath);
         }
-        this.player = new PlayerCharacter(playerName, playerDescription);
-        this.playerController = new PlayerController(player, map);
-        this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(player);
+        this.playerController = new PlayerController(new PlayerCharacter(playerName, playerDescription), map);
+        this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(getPlayer());
         this.isDay = true;
         this.turns = 1;
         this.dayNightObservers = new ArrayList<>();
@@ -56,7 +55,7 @@ public class MUDGame implements DayNightSubject{
         playerController.useBuffs();
         System.out.println(playerController.getCurrRoom());
         TileFeature[] adjacentTiles = playerController.getAdjacentTiles();
-        System.out.println(player);
+        System.out.println(playerController.getCharacter());
         System.out.println("Move[w,a,s,d] Inventory[i]");
         String action;
         if(scanner.hasNextLine() == false || scanner == null){
@@ -96,7 +95,7 @@ public class MUDGame implements DayNightSubject{
             if(tile instanceof CharacterTile){
                 CharacterTile ct = (CharacterTile)tile;
                 MUDCharacter enemy = ct.getCharacter();
-                player.takeDamage(enemy.getAttack());
+                getPlayer().takeDamage(enemy.getAttack());
             }
             if(tile instanceof TrapTile){
                 TrapTile tt = (TrapTile)tile;
@@ -132,7 +131,7 @@ public class MUDGame implements DayNightSubject{
     }
 
     public PlayerCharacter getPlayer(){
-        return player;
+        return playerController.getCharacter();
     }
 
     public boolean isDay(){

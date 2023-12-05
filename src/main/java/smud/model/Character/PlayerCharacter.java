@@ -42,9 +42,10 @@ public class PlayerCharacter extends MUDCharacter {
         this.attackBuff = 0;
         this.healthBuff = 0;
         this.defenseBuff = 0;
+        this.enemiesSlain = 0;
     }
 
-    public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory){
+    public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory, int enemiesSlain){
         this.defense = 0;
         this.attack = 10;
         this.health = health;
@@ -58,6 +59,7 @@ public class PlayerCharacter extends MUDCharacter {
         this.attackBuff = 0;
         this.healthBuff = 0;
         this.defenseBuff = 0;
+        this.enemiesSlain = enemiesSlain;
     }
 
     @Override

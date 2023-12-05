@@ -16,6 +16,15 @@ public abstract class MUDCharacter {
     protected int defense;
     protected MUDItem[] items;
     protected int gold;
+    protected int enemiesSlain;
+
+    public void addEnemiesSlain(){
+        enemiesSlain ++;
+    }
+
+    public int getEnemiesSlain(){
+        return enemiesSlain;
+    }
 
     public String getName() {
         return name;
