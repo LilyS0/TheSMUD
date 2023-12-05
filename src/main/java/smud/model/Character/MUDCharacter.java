@@ -17,6 +17,12 @@ public abstract class MUDCharacter {
     protected MUDItem[] items;
     protected int gold;
     protected int enemiesSlain;
+    protected int itemsFound;
+    protected int livesLost;
+
+    public int getLivesLost(){
+        return livesLost;
+    }
 
     public void addEnemiesSlain(){
         enemiesSlain ++;
@@ -85,11 +91,18 @@ public abstract class MUDCharacter {
     public void addItemsToInv(MUDItem[] items){
         for(MUDItem item: items){
             inventory.addItem(item);
+            itemsFound ++;
         }
     }
 
     public boolean isAlive() {
-        return this.health > 0;
+        if(this.health > 0){
+            return true;
+        }
+        else{
+            livesLost ++;
+            return false;
+        }
     }
 
     public void takeDamage(int attackValue){
@@ -133,6 +146,10 @@ public abstract class MUDCharacter {
 
     public void attack(MUDCharacter target){
         target.takeDamage(this.getAttack());
+    }
+
+    public int getItemsFound(){
+        return itemsFound;
     }
 
 }

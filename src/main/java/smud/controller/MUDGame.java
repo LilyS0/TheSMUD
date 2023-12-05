@@ -23,7 +23,6 @@ public class MUDGame implements DayNightSubject{
      * @author Ty Platow
      */
     private MUDMap map;
-
     private PlayerController playerController;
     private Scanner scanner = new Scanner(System.in);
     private boolean isDay;
@@ -132,6 +131,14 @@ public class MUDGame implements DayNightSubject{
 
     public PlayerCharacter getPlayer(){
         return playerController.getCharacter();
+    }
+
+    public PlayerController getController(){
+        return playerController;
+    }
+
+    public int getTurns(){
+        return turns;
     }
 
     public boolean isDay(){

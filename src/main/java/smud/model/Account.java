@@ -21,10 +21,9 @@ public class Account {
     private MUDGame currentGame;
     private MUDGame infinite;
 
-    public Account(String username, String password, PlayerController player) {
+    public Account(String username, String password) {
         this.username = username;
         this.hashedPassword = hashPassword(password);
-        this.player = player;
     }
 
     public boolean authenticate(String password) {
@@ -71,6 +70,10 @@ public class Account {
         this.currentGame = game;
     }
 
+    public void setPlayer(PlayerController player){
+        this.player = player;
+    }
+
     public PlayerController getPlayer(){
         return this.player;
     }
@@ -110,7 +113,7 @@ public class Account {
     public static void main(String[] args) {
         String username = "sydney";
         String pword = "abcdefg";
-        Account a = new Account(username, pword, null);
+        Account a = new Account(username, pword);
         boolean works = a.authenticate(pword);
         System.out.println(works);
     }

@@ -17,5 +17,5 @@ public interface AccountDAO {
     public int getTotalGold(String username);
     public int getItemsFound(String username);
     public MUDGame getCurrentGame(String username);
-
+    
 }
