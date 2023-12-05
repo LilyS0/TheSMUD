@@ -9,6 +9,7 @@ public class IronArmor extends Armor{
 
     public IronArmor(){
         this.defense = 5;
+        this.value = 25;
     }
     
     @Override
