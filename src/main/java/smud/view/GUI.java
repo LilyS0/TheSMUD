@@ -9,7 +9,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         // PLUGIN HERE
-        Scene scene = new Scene(BrowseInventory.create(), 400, 300);
+        Scene scene = new Scene(Game.create(), 400, 300);
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
         primaryStage.setWidth(bounds.getWidth());
