@@ -28,6 +28,10 @@ public class PlayerCharacter extends MUDCharacter {
 
 // method graveyard: setHealth, setAttack/setDefense (KEEP METHOD, delete instances => might need for use in conjunction with )
 // eventually gonna have to part w inventory functions bc the prompt says so
+    public PlayerCharacter(){
+        
+    }
+
     public PlayerCharacter(String name, String description) {
 
         this.health = 1000;

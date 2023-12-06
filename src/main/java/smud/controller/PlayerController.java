@@ -15,6 +15,10 @@ public class PlayerController {
     private int x;
     private int y;
 
+    public PlayerController(){
+        
+    }
+
     public PlayerController(PlayerCharacter character, MUDMap map){
         this.character = character;
         //this.map = map;

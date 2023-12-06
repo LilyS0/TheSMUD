@@ -16,7 +16,7 @@ public class InfiniteExitTile extends TileFeature{
         this.current = current;
         this.xCor = x;
         this.yCor = y;
-        this.symbol = 'E';
+        this.symbol = 'X';
         setTargetCoords();
     }
 

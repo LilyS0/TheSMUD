@@ -66,14 +66,6 @@ public class ptui {
             ui.newAccount(username, password); 
         }
 
-        // accountDAO.loadData();
-
-        // System.out.println(accountDAO.getAccountMementos());
-
-        //Account user = ui.getUser();
-
-        
-
         try {
             ui.startNewGame(filepath, playerDescription, isInfinite);
         } catch (Exception e) {
@@ -95,64 +87,61 @@ public class ptui {
             }
         }
 
-        // MapMemento memento = game.getMap().createMemento();
-        // mapDAO.addMapMemento(memento);
+        PlayerCharacter player = game.getPlayer();
 
-        // mapDAO.saveData();
+        while(true){
 
-        AccountMemento memento = user.createMemento();
+            while(player.isAlive() && !game.gameOver()){
+                System.out.println("Turn " + game.getTurns());
+                try {
+                    game.takeTurn(); 
+                } catch (MUDException e) {
+                    System.out.println("Invalid move");
+                }
+            }
 
-        //System.out.println(memento.getPlayer());
+            System.out.println("Game Over!");
 
-        accountDAO.addAccountMemento(memento);
+            int lives = 0;
+
+            if(player.isAlive()){
+                System.out.println("You deafeated all the enenies and won!");
+            }
+            else{
+                System.out.println("L + Ratio");
+                lives = 1;
+            }
+
+            user.updateStats(1, lives, player.getEnemiesSlain(), player.getGold(), player.getItemsFound());
+
+            System.out.println("Play again? Y/N");
+
+            //make scanner
+            String playAgain = "n";
+
+            if(playAgain.toLowerCase().equals("y")){
+                try{
+                    ui.startNewGame(filepath, playerDescription, isInfinite);
+                    game = ui.getGame();
+                    user = ui.getUser();
+                } 
+                catch (Exception e){
+                    System.out.println("Couldn't start new game: " + e);
+                }
+            }
+            else{
+                break;
+            }
+
+        }
+
+        AccountMemento accountMemento = user.createMemento();
+        MapMemento mapMemento = ui.getGame().getMap().createMemento();
+
+        accountDAO.addAccountMemento(accountMemento);
+        mapDAO.addMapMemento(mapMemento);
+
         accountDAO.saveData();
-
-        // PlayerCharacter player = game.getPlayer();
-
-        // while(true){
-
-        //     while(player.isAlive() && !game.gameOver()){
-        //         System.out.println("Turn " + game.getTurns());
-        //         try {
-        //             game.takeTurn(); 
-        //         } catch (MUDException e) {
-        //             System.out.println("Invalid move");
-        //         }
-        //     }
-
-        //     System.out.println("Game Over!");
-
-        //     int lives = 0;
-
-        //     if(player.isAlive()){
-        //         System.out.println("You deafeated all the enenies and won!");
-        //     }
-        //     else{
-        //         System.out.println("L + Ratio");
-        //         lives = 1;
-        //     }
-
-        //     user.updateStats(1, lives, player.getEnemiesSlain(), player.getGold(), player.getItemsFound());
-
-        //     System.out.println("Play again? Y/N");
-
-        //     //make scanner
-        //     String playAgain = "n";
-
-        //     if(playAgain.toLowerCase().equals("y")){
-        //         try{
-        //             ui.startNewGame(filepath, playerDescription, isInfinite);
-        //             game = ui.getGame();
-        //             user = ui.getUser();
-        //         } 
-        //         catch (Exception e){
-        //             System.out.println("Couldn't start new game: " + e);
-        //         }
-        //     }
-        //     else{
-        //         break;
-        //     }
-
-        //}
+        accountDAO.loadData();
     }
 }

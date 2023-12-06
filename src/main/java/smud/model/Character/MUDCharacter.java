@@ -1,5 +1,7 @@
 package smud.model.Character;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import smud.model.Item.MUDItem;
 
 /**
@@ -19,6 +21,8 @@ public abstract class MUDCharacter {
     protected int enemiesSlain;
     protected int itemsFound;
     protected int livesLost;
+    @JsonProperty("alive")
+    protected boolean isAlive;
 
     public int getLivesLost(){
         return livesLost;
@@ -97,11 +101,13 @@ public abstract class MUDCharacter {
 
     public boolean isAlive() {
         if(this.health > 0){
-            return true;
+            isAlive = true;
+            return isAlive;
         }
         else{
             livesLost ++;
-            return false;
+            isAlive = false;
+            return isAlive;
         }
     }
 

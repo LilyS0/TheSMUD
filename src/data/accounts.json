@@ -1,0 +1,74 @@
+{
+    "Player 1": {
+        "username": "Player 1",
+        "hashedPassword": "752910ef",
+        "player": {
+            "character": {
+                "name": "Player 1",
+                "description": "Dungeon crawler",
+                "health": 801,
+                "inventory": {
+                    "inventory": [
+                        {
+                            "LeatherArmor": {
+                                "name": "LeatherArmor",
+                                "value": 5,
+                                "stat": 1
+                            }
+                        },
+                        {
+                            "Steak": {
+                                "name": "Steak",
+                                "value": 25,
+                                "stat": 5
+                            }
+                        },
+                        {
+                            "Bread": {
+                                "name": "Bread",
+                                "value": 15,
+                                "stat": 3
+                            }
+                        },
+                        {
+                            "IronArmor": {
+                                "name": "IronArmor",
+                                "value": 25,
+                                "stat": 5
+                            }
+                        },
+                        {
+                            "Regen": {
+                                "name": "Regen",
+                                "value": 20,
+                                "turns": 10,
+                                "active": false,
+                                "stat": 4
+                            }
+                        }
+                    ],
+                    "ratio": "5 / 40",
+                    "inventorySize": 5
+                },
+                "attack": 50,
+                "defense": 0,
+                "items": [],
+                "gold": 3,
+                "enemiesSlain": 1,
+                "itemsFound": 3,
+                "livesLost": 0,
+                "weapon": null,
+                "armor": null,
+                "activeBuffs": [],
+                "alive": true
+            },
+            "x": 1,
+            "y": 3
+        },
+        "gamesPlayed": 1,
+        "livesLost": 0,
+        "monstersSlain": 1,
+        "totalGold": 3,
+        "itemsFound": 3
+    }
+}
