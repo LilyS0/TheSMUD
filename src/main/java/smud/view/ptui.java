@@ -47,7 +47,7 @@ public class ptui {
 
     public static void main(String[] args){
 
-        String username = "login";
+        String username = "Player 1";
         String password = "password123";
         String playerDescription = "Dungeon crawler";
         String filepath = "src/main/java/smud/model/Environment/map/maps/map2.txt";
@@ -62,34 +62,39 @@ public class ptui {
             ui.newAccount(username, password); 
         }
 
+        // accountDAO.loadData();
+
+        // System.out.println(accountDAO.getAccountMementos());
+
+        // Account user = ui.getUser();
+
+        // AccountMemento memento = user.createMemento();
+
+        // //System.out.println(memento.getPlayer());
+
+        // accountDAO.addAccountMemento(memento);
+        // accountDAO.saveData();
+
         try {
             ui.startNewGame(filepath, playerDescription, isInfinite);
         } catch (Exception e) {
             System.out.println("Couldn't start new game: " + e);
         }
 
-        MUDGame game = ui.getGame();
-        Account user = ui.getUser();
+        // MUDGame game = ui.getGame();
+        // Account user = ui.getUser();
 
-        if(game != null){
-            System.out.println("Resume game in progress?");
-            //make scanner
-        }
-        else{
-            try {
-                ui.startNewGame(filepath, playerDescription, isInfinite);
-            } catch (Exception e) {
-                System.out.println("Error making game: " + e);
-            }
-        }
-
-        AccountMemento memento = user.createMemento();
-
-        //System.out.println(memento.getPlayer());
-
-        accountDAO.addAccountMemento(memento);
-        accountDAO.saveData();
-
+        // if(game != null){
+        //     System.out.println("Resume game in progress?");
+        //     //make scanner
+        // }
+        // else{
+        //     try {
+        //         ui.startNewGame(filepath, playerDescription, isInfinite);
+        //     } catch (Exception e) {
+        //         System.out.println("Error making game: " + e);
+        //     }
+        // }
 
         // PlayerCharacter player = game.getPlayer();
 

@@ -15,6 +15,8 @@ public class AccountMemento {
     private MUDGame currentGame;
     private MUDGame infinite;
 
+    public AccountMemento(){}
+
     public AccountMemento(String username, String hashedPassword, PlayerController player, int gamesPlayed, int livesLost, int monstersSlain, int totalGold, int itemsFound, MUDGame currentGame, MUDGame infinite){
         this.username = username;
         this.hashedPassword = hashedPassword;
@@ -88,5 +90,10 @@ public class AccountMemento {
     }
     public void setInfinite(MUDGame infinite) {
         this.infinite = infinite;
+    }
+
+    @Override
+    public String toString(){
+        return username + ":" + hashedPassword;
     }
 }
