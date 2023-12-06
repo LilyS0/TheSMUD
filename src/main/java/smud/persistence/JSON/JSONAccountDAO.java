@@ -1,76 +1,62 @@
 package smud.persistence.JSON;
 
-import smud.controller.MUDGame;
-import smud.controller.PlayerController;
-import smud.model.Account;
 import smud.persistence.AccountDAO;
+import smud.persistence.Mementos.AccountMemento;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JSONAccountDAO implements AccountDAO{
 
-    @Override
-    public Account getAccount(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAccount'");
+    private final ObjectMapper mapper = new ObjectMapper();
+    private final String FILEPATH = "src/data/accounts.json";
+    private Map<String, AccountMemento> accounts;
+
+    public JSONAccountDAO(){
+        this.accounts = new HashMap<>();
     }
 
     @Override
-    public Account createAccount(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createAccount'");
+    public AccountMemento getAccountMemento(String username) {
+        return accounts.get(username);
     }
 
     @Override
-    public Account loginAccount(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loginAccount'");
+    public Map<String, AccountMemento> getAccountMementos() {
+        return accounts;
     }
 
     @Override
-    public boolean logoutAccount(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'logoutAccount'");
+    public void addAccountMemento(AccountMemento memento) {
+        accounts.put(memento.getUsername(), memento);
     }
 
     @Override
-    public PlayerController getPlayer(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPlayer'");
+    public void saveData() {
+        try {
+            mapper.writeValue(new File(FILEPATH), accounts);
+        } catch (JsonProcessingException e) {
+            System.out.println("Couldn't process data: ");
+            e.printStackTrace();
+        } catch (IOException e){
+            System.out.println("File error: ");
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public int getGamesPlayed(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGamesPlayed'");
+    public void loadData() {
+        try {
+            accounts = mapper.readValue(new File(FILEPATH), new TypeReference<Map<String, AccountMemento>>() {});
+        } catch (IOException e) {
+            System.out.println("File error: ");
+            e.printStackTrace();
+        }
     }
-
-    @Override
-    public int getLivesLost(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLivesLost'");
-    }
-
-    @Override
-    public int getMonstersSlain(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMonstersSlain'");
-    }
-
-    @Override
-    public int getTotalGold(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTotalGold'");
-    }
-
-    @Override
-    public int getItemsFound(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getItemsFound'");
-    }
-
-    @Override
-    public MUDGame getCurrentGame(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCurrentGame'");
-    }
-    
 }

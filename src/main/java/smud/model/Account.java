@@ -44,7 +44,7 @@ public class Account {
         }
     }
 
-    private static String hashPassword(String password) {
+    public static String hashPassword(String password) {
         int prime = 7;
         int hash = 0;
 

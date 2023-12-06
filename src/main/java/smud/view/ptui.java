@@ -6,6 +6,8 @@ import smud.controller.MUDGame;
 import smud.model.Account;
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
+import smud.persistence.JSON.JSONAccountDAO;
+import smud.persistence.Mementos.AccountMemento;
 
 public class ptui {
     
@@ -50,6 +52,7 @@ public class ptui {
         String playerDescription = "Dungeon crawler";
         String filepath = "src/main/java/smud/model/Environment/map/maps/map2.txt";
         boolean isInfinite = false;
+        JSONAccountDAO accountDAO = new JSONAccountDAO();
 
         ptui ui = new ptui();
 
@@ -80,52 +83,60 @@ public class ptui {
             }
         }
 
-        PlayerCharacter player = game.getPlayer();
+        AccountMemento memento = user.createMemento();
 
-        while(true){
+        //System.out.println(memento.getPlayer());
 
-            while(player.isAlive() && !game.gameOver()){
-                System.out.println("Turn " + game.getTurns());
-                try {
-                    game.takeTurn(); 
-                } catch (MUDException e) {
-                    System.out.println("Invalid move");
-                }
-            }
+        accountDAO.addAccountMemento(memento);
+        accountDAO.saveData();
 
-            System.out.println("Game Over!");
 
-            int lives = 0;
+        // PlayerCharacter player = game.getPlayer();
 
-            if(player.isAlive()){
-                System.out.println("You deafeated all the enenies and won!");
-            }
-            else{
-                System.out.println("L + Ratio");
-                lives = 1;
-            }
+        // while(true){
 
-            user.updateStats(1, lives, player.getEnemiesSlain(), player.getGold(), player.getItemsFound());
+        //     while(player.isAlive() && !game.gameOver()){
+        //         System.out.println("Turn " + game.getTurns());
+        //         try {
+        //             game.takeTurn(); 
+        //         } catch (MUDException e) {
+        //             System.out.println("Invalid move");
+        //         }
+        //     }
 
-            System.out.println("Play again? Y/N");
+        //     System.out.println("Game Over!");
 
-            //make scanner
-            String playAgain = "n";
+        //     int lives = 0;
 
-            if(playAgain.toLowerCase().equals("y")){
-                try{
-                    ui.startNewGame(filepath, playerDescription, isInfinite);
-                    game = ui.getGame();
-                    user = ui.getUser();
-                } 
-                catch (Exception e){
-                    System.out.println("Couldn't start new game: " + e);
-                }
-            }
-            else{
-                break;
-            }
+        //     if(player.isAlive()){
+        //         System.out.println("You deafeated all the enenies and won!");
+        //     }
+        //     else{
+        //         System.out.println("L + Ratio");
+        //         lives = 1;
+        //     }
 
-        }
+        //     user.updateStats(1, lives, player.getEnemiesSlain(), player.getGold(), player.getItemsFound());
+
+        //     System.out.println("Play again? Y/N");
+
+        //     //make scanner
+        //     String playAgain = "n";
+
+        //     if(playAgain.toLowerCase().equals("y")){
+        //         try{
+        //             ui.startNewGame(filepath, playerDescription, isInfinite);
+        //             game = ui.getGame();
+        //             user = ui.getUser();
+        //         } 
+        //         catch (Exception e){
+        //             System.out.println("Couldn't start new game: " + e);
+        //         }
+        //     }
+        //     else{
+        //         break;
+        //     }
+
+        //}
     }
 }
