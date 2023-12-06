@@ -115,6 +115,7 @@ public class PremadeMap implements MUDMap{
         return rooms;
     }
 
+    @Override
     public Room getRoom(int id){
         return rooms.get(id);
     }

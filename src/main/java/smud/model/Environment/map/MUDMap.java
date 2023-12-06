@@ -8,6 +8,7 @@ import smud.persistence.Mementos.MapMemento;
 public interface MUDMap {
     public Room getStartRoom();
     public Room getEndRoom();
+    public Room getRoom(int id);
     public Map<Integer, Room> getRooms();
     public void setMemento(MapMemento memento);
     public MapMemento createMemento();

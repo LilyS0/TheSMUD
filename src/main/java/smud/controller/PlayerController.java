@@ -124,7 +124,7 @@ public class PlayerController {
     public TileFeature[] getAdjacentTiles(MUDMap map){
 
         TileFeature[] tiles = new TileFeature[4];
-        Room currRoom = map.getRooms().get(currRoomID);
+        Room currRoom = map.getRoom(currRoomID);
         
         tiles[0] = currRoom.getTile(x+1, y);
         tiles[1] = currRoom.getTile(x-1, y);

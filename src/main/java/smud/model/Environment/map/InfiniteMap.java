@@ -19,10 +19,7 @@ public class InfiniteMap implements MUDMap{
         rooms.put(startRoom.getID(), startRoom);
     }
 
-    @Override
-    public Room getStartRoom() {
-        return startRoom;
-    }
+    
 
     @Override
     public Map<Integer, Room> getRooms(){
@@ -35,6 +32,21 @@ public class InfiniteMap implements MUDMap{
         }
 
         return rooms;
+    }
+
+    @Override
+    public Room getRoom(int id){
+        Room room = rooms.get(id);
+        if(room == null){
+            room = new InfiniteRoom(startRoom);
+            rooms.put(id, room);
+        }
+        return room;
+    }
+
+    @Override
+    public Room getStartRoom() {
+        return startRoom;
     }
 
     @Override
