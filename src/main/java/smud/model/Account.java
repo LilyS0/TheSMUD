@@ -2,6 +2,7 @@ package smud.model;
 
 import smud.controller.MUDGame;
 import smud.controller.PlayerController;
+import smud.persistence.Mementos.AccountMemento;
 
 /**
  * An account will track the users progress, as well as hold data necessary for persistence.
@@ -60,6 +61,23 @@ public class Account {
         this.monstersSlain += monsters;
         this.totalGold += gold;
         this.itemsFound += items;
+    }
+
+    public void setMemento(AccountMemento memento){
+        this.username = memento.getUsername();
+        this.hashedPassword = memento.getHashedPassword();
+        this.player = memento.getPlayer();
+        this.gamesPlayed = memento.getGamesPlayed();
+        this.livesLost = memento.getLivesLost();
+        this.monstersSlain = memento.getMonstersSlain();
+        this.totalGold = memento.getTotalGold();
+        this.itemsFound = memento.getItemsFound();
+        this.currentGame = memento.getCurrentGame();
+        this.infinite = memento.getInfinite();
+    }
+
+    public AccountMemento createMemento(){
+        return new AccountMemento(username, hashedPassword, player, gamesPlayed, livesLost, monstersSlain, totalGold, itemsFound, currentGame, infinite);
     }
 
     public void joinInfiniteGame(MUDGame game){
