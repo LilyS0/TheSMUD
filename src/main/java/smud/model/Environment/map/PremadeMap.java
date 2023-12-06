@@ -12,6 +12,8 @@ import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Environment.room.PremadeRoom;
 import smud.model.Environment.room.Room;
+import smud.persistence.Mementos.MapMemento;
+import smud.persistence.Mementos.PremadeMapMemento;
 
 /**
  * A Map is made up of 2+ Rooms, which are made of Tiles.
@@ -25,7 +27,6 @@ public class PremadeMap implements MUDMap{
     private Room endRoom;
     private Map<Integer, Room> rooms;
     private Map<Integer, ExitTile> exits;
-    private boolean isDay;
     private FileReader fileReader;
     private BufferedReader reader;
 
@@ -33,7 +34,6 @@ public class PremadeMap implements MUDMap{
 
         this.rooms = new HashMap<>();
         this.exits = new HashMap<>();
-        this.isDay = true;
         this.fileReader = new FileReader(filepath);
         this.reader = new BufferedReader(fileReader);
 
@@ -103,10 +103,6 @@ public class PremadeMap implements MUDMap{
         r2.addExit(r1);
     }
 
-    public void changeTime(){
-        isDay = !isDay();
-    }
-
     public Room getStartRoom(){
         return startRoom;
     }
@@ -115,14 +111,11 @@ public class PremadeMap implements MUDMap{
         return endRoom;
     }
 
-    public boolean isDay(){
-        return isDay;
-    }
-
     public Map<Integer, Room> getRooms(){
         return rooms;
     }
 
+    @Override
     public Room getRoom(int id){
         return rooms.get(id);
     }
@@ -133,6 +126,22 @@ public class PremadeMap implements MUDMap{
 
     public Map<Integer, ExitTile> getExits(){
         return exits;
+    }
+
+    @Override
+    public void setMemento(MapMemento memento) {
+        if(memento instanceof PremadeMapMemento){
+            PremadeMapMemento m = (PremadeMapMemento)memento;
+            this.startRoom = m.getStartRoom();
+            this.endRoom = m.getEndRoom();
+            this.rooms = m.getRooms();
+            this.exits = m.getExits();
+        }
+    }
+
+    @Override
+    public MapMemento createMemento() {
+        return new PremadeMapMemento(startRoom, endRoom, rooms, exits);
     }
 
     public static void main(String[] args) {

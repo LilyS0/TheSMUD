@@ -2,6 +2,7 @@ package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
 import smud.model.Character.MUDCharacter;
+import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
 public class CharacterTile extends TileFeature{
@@ -23,6 +24,7 @@ public class CharacterTile extends TileFeature{
             symbol = 'P';
             character.addItemsToInv(startingOccupant.getItems());
             character.addGold(startingOccupant.getGold());
+            character.addEnemiesSlain();
             startingOccupant.setItems(new MUDItem[0]);
             return true;
         }else{
@@ -32,7 +34,7 @@ public class CharacterTile extends TileFeature{
     }
 
     @Override
-    public void interact(PlayerController player){
+    public void interact(PlayerController player, MUDMap map){
         int damage = player.getCharacter().getAttack();
         startingOccupant.takeDamage(damage);
 

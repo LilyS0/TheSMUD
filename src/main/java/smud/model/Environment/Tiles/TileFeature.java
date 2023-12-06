@@ -7,6 +7,7 @@ import smud.controller.PlayerController;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 import smud.model.Character.NPC;
+import smud.model.Environment.map.MUDMap;
 import smud.model.Environment.room.Room;
 import smud.model.Item.MUDItem;
 
@@ -40,7 +41,7 @@ public abstract class TileFeature {
         throw new MUDException("Can't disarm. No trap here.");
     }
 
-    public void interact(PlayerController player) throws MUDException{
+    public void interact(PlayerController player, MUDMap map) throws MUDException{
         throw new MUDException("Can't interact with this");
     }
 

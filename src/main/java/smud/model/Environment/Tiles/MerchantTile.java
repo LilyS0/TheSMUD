@@ -6,6 +6,7 @@ import smud.controller.PlayerController;
 import smud.model.Character.Inventory;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
+import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
 /**
@@ -78,8 +79,8 @@ public class MerchantTile extends TileFeature{
     }
 
     @Override
-    public void interact(PlayerController player) throws MUDException {
-        this.open = player.getCurrRoom().roomCleared();
+    public void interact(PlayerController player, MUDMap map) throws MUDException {
+        this.open = player.getCurrRoom(map).roomCleared();
         if(open){
             System.out.println("You have " + player.getCharacter().getGold() + " gold.");
             printItems();

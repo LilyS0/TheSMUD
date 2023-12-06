@@ -1,5 +1,7 @@
 package smud.model.Character;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import smud.model.Item.MUDItem;
 
 /**
@@ -16,6 +18,23 @@ public abstract class MUDCharacter {
     protected int defense;
     protected MUDItem[] items;
     protected int gold;
+    protected int enemiesSlain;
+    protected int itemsFound;
+    protected int livesLost;
+    @JsonProperty("alive")
+    protected boolean isAlive;
+
+    public int getLivesLost(){
+        return livesLost;
+    }
+
+    public void addEnemiesSlain(){
+        enemiesSlain ++;
+    }
+
+    public int getEnemiesSlain(){
+        return enemiesSlain;
+    }
 
     public String getName() {
         return name;
@@ -76,11 +95,20 @@ public abstract class MUDCharacter {
     public void addItemsToInv(MUDItem[] items){
         for(MUDItem item: items){
             inventory.addItem(item);
+            itemsFound ++;
         }
     }
 
     public boolean isAlive() {
-        return this.health > 0;
+        if(this.health > 0){
+            isAlive = true;
+            return isAlive;
+        }
+        else{
+            livesLost ++;
+            isAlive = false;
+            return isAlive;
+        }
     }
 
     public void takeDamage(int attackValue){
@@ -124,6 +152,10 @@ public abstract class MUDCharacter {
 
     public void attack(MUDCharacter target){
         target.takeDamage(this.getAttack());
+    }
+
+    public int getItemsFound(){
+        return itemsFound;
     }
 
 }

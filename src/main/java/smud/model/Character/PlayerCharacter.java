@@ -28,6 +28,10 @@ public class PlayerCharacter extends MUDCharacter {
 
 // method graveyard: setHealth, setAttack/setDefense (KEEP METHOD, delete instances => might need for use in conjunction with )
 // eventually gonna have to part w inventory functions bc the prompt says so
+    public PlayerCharacter(){
+        
+    }
+
     public PlayerCharacter(String name, String description) {
 
         this.health = 1000;
@@ -42,9 +46,11 @@ public class PlayerCharacter extends MUDCharacter {
         this.attackBuff = 0;
         this.healthBuff = 0;
         this.defenseBuff = 0;
+        this.enemiesSlain = 0;
+        this.itemsFound = 0;
     }
 
-    public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory){
+    public PlayerCharacter(String name, String description, int health, Weapon weapon, Armor armor, ArrayList<Buff> activeBuffs, Room currRoom, int xCor, int yCor, Inventory inventory, int enemiesSlain, int itemsFound){
         this.defense = 0;
         this.attack = 10;
         this.health = health;
@@ -58,7 +64,10 @@ public class PlayerCharacter extends MUDCharacter {
         this.attackBuff = 0;
         this.healthBuff = 0;
         this.defenseBuff = 0;
+        this.enemiesSlain = enemiesSlain;
+        this.itemsFound = itemsFound;
     }
+
 
     @Override
     public int getAttack() {

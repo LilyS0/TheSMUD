@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import smud.controller.PlayerController;
 import smud.model.Character.MUDCharacter;
 import smud.model.Character.PlayerCharacter;
+import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
 public class EmptyTile extends TileFeature implements Tile{
@@ -52,7 +53,7 @@ public class EmptyTile extends TileFeature implements Tile{
     }
 
     @Override
-    public void interact(PlayerController player){
+    public void interact(PlayerController player, MUDMap map){
         occupy(player.getCharacter());
     }
 

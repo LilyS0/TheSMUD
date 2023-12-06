@@ -2,16 +2,24 @@ package smud.model.Item;
 
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
 import smud.model.Character.PlayerCharacter;
 import smud.model.Item.Armor.Armor;
 import smud.model.Item.Buffs.Buff;
 import smud.model.Item.Food.Food;
 import smud.model.Item.Weapons.Weapon;
 
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.WRAPPER_OBJECT)
+@JsonSubTypes({@Type(value = Armor.class, name = "Armor"), @Type(value = Buff.class, name = "Buff"), @Type(value = Food.class, name = "Food"), @Type(value = Weapon.class, name = "Weapon")})
+
 public interface MUDItem {
     /* 
      * Represents an Item that a player can pick up and use
      */
+
     public int getStat();
 
     public int getValue();
