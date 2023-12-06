@@ -12,6 +12,8 @@ import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.TileFeature;
 import smud.model.Environment.room.PremadeRoom;
 import smud.model.Environment.room.Room;
+import smud.persistence.Mementos.MapMemento;
+import smud.persistence.Mementos.PremadeMapMemento;
 
 /**
  * A Map is made up of 2+ Rooms, which are made of Tiles.
@@ -123,6 +125,22 @@ public class PremadeMap implements MUDMap{
 
     public Map<Integer, ExitTile> getExits(){
         return exits;
+    }
+
+    @Override
+    public void setMemento(MapMemento memento) {
+        if(memento instanceof PremadeMapMemento){
+            PremadeMapMemento m = (PremadeMapMemento)memento;
+            this.startRoom = m.getStartRoom();
+            this.endRoom = m.getEndRoom();
+            this.rooms = m.getRooms();
+            this.exits = m.getExits();
+        }
+    }
+
+    @Override
+    public MapMemento createMemento() {
+        return new PremadeMapMemento(startRoom, endRoom, rooms, exits);
     }
 
     public static void main(String[] args) {
