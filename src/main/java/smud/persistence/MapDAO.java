@@ -1,11 +1,12 @@
 package smud.persistence;
 
-import java.util.Map;
+import java.util.Set;
 
-import smud.model.Environment.room.Room;
+import smud.persistence.Mementos.MapMemento;
 
 public interface MapDAO {
-    public Room getStartRoom();
-    public Room getEndRoom();
-    public Map<Integer, Room> getRooms();
+    public Set<MapMemento> getMapMementos();
+    public void addMapMemento(MapMemento map);
+    public void saveData();
+    public void loadData();
 }

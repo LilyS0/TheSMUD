@@ -72,12 +72,12 @@ public class Account {
         this.monstersSlain = memento.getMonstersSlain();
         this.totalGold = memento.getTotalGold();
         this.itemsFound = memento.getItemsFound();
-        this.currentGame = memento.getCurrentGame();
-        this.infinite = memento.getInfinite();
+        //this.currentGame = memento.getCurrentGame();
+        //this.infinite = memento.getInfinite();
     }
 
     public AccountMemento createMemento(){
-        return new AccountMemento(username, hashedPassword, player, gamesPlayed, livesLost, monstersSlain, totalGold, itemsFound, currentGame, infinite);
+        return new AccountMemento(username, hashedPassword, player, gamesPlayed, livesLost, monstersSlain, totalGold, itemsFound, null, null);
     }
 
     public void joinInfiniteGame(MUDGame game){

@@ -3,6 +3,7 @@ package smud.model.Environment.Tiles;
 import smud.controller.PlayerController;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
+import smud.model.Environment.map.MUDMap;
 import smud.model.Environment.room.InfiniteRoom;
 
 public class InfiniteExitTile extends TileFeature{
@@ -29,7 +30,7 @@ public class InfiniteExitTile extends TileFeature{
     }
 
     @Override
-    public void interact(PlayerController player){
+    public void interact(PlayerController player, MUDMap map){
 
         if(next == null){
             next = new InfiniteRoom(current);
@@ -37,7 +38,7 @@ public class InfiniteExitTile extends TileFeature{
 
         if(current.roomCleared()){
             try {
-                player.setCurrRoom(next, targetX, targetY);
+                player.setCurrRoom(next, targetX, targetY, map);
                 System.out.println("Now in room " + next.getID());
             } catch (MUDException e) {
                 System.out.println("Can't go there");

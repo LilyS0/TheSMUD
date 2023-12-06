@@ -12,8 +12,8 @@ public class AccountMemento {
     private int monstersSlain;
     private int totalGold;
     private int itemsFound;
-    private MUDGame currentGame;
-    private MUDGame infinite;
+    //private MUDGame currentGame;
+    //private MUDGame infinite;
 
     public AccountMemento(){}
 
@@ -26,8 +26,8 @@ public class AccountMemento {
         this.monstersSlain = monstersSlain;
         this.totalGold = totalGold;
         this.itemsFound = itemsFound;
-        this.currentGame = currentGame;
-        this.infinite = infinite;
+        //this.currentGame = currentGame;
+        //this.infinite = infinite;
     }
 
 
@@ -79,18 +79,18 @@ public class AccountMemento {
     public void setItemsFound(int itemsFound) {
         this.itemsFound = itemsFound;
     }
-    public MUDGame getCurrentGame() {
-        return currentGame;
-    }
-    public void setCurrentGame(MUDGame currentGame) {
-        this.currentGame = currentGame;
-    }
-    public MUDGame getInfinite() {
-        return infinite;
-    }
-    public void setInfinite(MUDGame infinite) {
-        this.infinite = infinite;
-    }
+    // public MUDGame getCurrentGame() {
+    //     return currentGame;
+    // }
+    // public void setCurrentGame(MUDGame currentGame) {
+    //     this.currentGame = currentGame;
+    // }
+    // public MUDGame getInfinite() {
+    //     return infinite;
+    // }
+    // public void setInfinite(MUDGame infinite) {
+    //     this.infinite = infinite;
+    // }
 
     @Override
     public String toString(){

@@ -7,7 +7,9 @@ import smud.model.Account;
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
 import smud.persistence.JSON.JSONAccountDAO;
+import smud.persistence.JSON.JSONMapDAO;
 import smud.persistence.Mementos.AccountMemento;
+import smud.persistence.Mementos.MapMemento;
 
 public class ptui {
     
@@ -53,6 +55,8 @@ public class ptui {
         String filepath = "src/main/java/smud/model/Environment/map/maps/map2.txt";
         boolean isInfinite = false;
         JSONAccountDAO accountDAO = new JSONAccountDAO();
+        JSONMapDAO mapDAO = new JSONMapDAO();
+        
 
         ptui ui = new ptui();
 
@@ -66,14 +70,9 @@ public class ptui {
 
         // System.out.println(accountDAO.getAccountMementos());
 
-        // Account user = ui.getUser();
+        //Account user = ui.getUser();
 
-        // AccountMemento memento = user.createMemento();
-
-        // //System.out.println(memento.getPlayer());
-
-        // accountDAO.addAccountMemento(memento);
-        // accountDAO.saveData();
+        
 
         try {
             ui.startNewGame(filepath, playerDescription, isInfinite);
@@ -81,20 +80,32 @@ public class ptui {
             System.out.println("Couldn't start new game: " + e);
         }
 
-        // MUDGame game = ui.getGame();
-        // Account user = ui.getUser();
+        MUDGame game = ui.getGame();
+        Account user = ui.getUser();
 
-        // if(game != null){
-        //     System.out.println("Resume game in progress?");
-        //     //make scanner
-        // }
-        // else{
-        //     try {
-        //         ui.startNewGame(filepath, playerDescription, isInfinite);
-        //     } catch (Exception e) {
-        //         System.out.println("Error making game: " + e);
-        //     }
-        // }
+        if(game != null){
+            System.out.println("Resume game in progress?");
+            //make scanner
+        }
+        else{
+            try {
+                ui.startNewGame(filepath, playerDescription, isInfinite);
+            } catch (Exception e) {
+                System.out.println("Error making game: " + e);
+            }
+        }
+
+        // MapMemento memento = game.getMap().createMemento();
+        // mapDAO.addMapMemento(memento);
+
+        // mapDAO.saveData();
+
+        AccountMemento memento = user.createMemento();
+
+        //System.out.println(memento.getPlayer());
+
+        accountDAO.addAccountMemento(memento);
+        accountDAO.saveData();
 
         // PlayerCharacter player = game.getPlayer();
 

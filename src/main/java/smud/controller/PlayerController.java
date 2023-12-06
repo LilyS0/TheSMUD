@@ -10,29 +10,31 @@ import smud.model.Item.MUDItem;
 public class PlayerController {
 
     private PlayerCharacter character;
-    private MUDMap map;
-    private Room currRoom;
+    //private MUDMap map;
+    private int currRoomID;
     private int x;
     private int y;
 
     public PlayerController(PlayerCharacter character, MUDMap map){
         this.character = character;
-        this.map = map;
-        this.currRoom = map.getStartRoom();
+        //this.map = map;
+        this.currRoomID = map.getStartRoom().getID();
         this.x = 0;
         this.y = 0;
     }
 
-    public void moveUp() throws MUDException{
+    public void moveUp(MUDMap map) throws MUDException{
+
+        Room currRoom = getCurrRoom(map);
 
         TileFeature target = currRoom.getTile(x, y-1);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             y--;
-            target.interact(this);
+            target.interact(this, map);
         }
         else if(target != null && !target.occupy(character)){
-            target.interact(this);
+            target.interact(this, map);
         }
         else{
             throw new MUDException("Can't move there");
@@ -40,16 +42,18 @@ public class PlayerController {
 
     }
 
-    public void moveDown() throws MUDException{
+    public void moveDown(MUDMap map) throws MUDException{
+
+       Room currRoom = getCurrRoom(map);
 
         TileFeature target = currRoom.getTile(x, y+1);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             y++;
-            target.interact(this);
+            target.interact(this, map);
         }
         else if(target != null && !target.occupy(character)){
-            target.interact(this);
+            target.interact(this, map);
         }
         else{
             throw new MUDException("Can't move there");
@@ -57,16 +61,18 @@ public class PlayerController {
 
     }
 
-    public void moveRight() throws MUDException{
+    public void moveRight(MUDMap map) throws MUDException{
+
+        Room currRoom = getCurrRoom(map);
 
         TileFeature target = currRoom.getTile(x+1, y);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             x++;
-            target.interact(this);
+            target.interact(this, map);
         }
         else if(target != null && !target.occupy(character)){
-            target.interact(this);
+            target.interact(this, map);
         }
         else{
             throw new MUDException("Can't move there");
@@ -74,16 +80,18 @@ public class PlayerController {
 
     }
 
-    public void moveLeft() throws MUDException{
+    public void moveLeft(MUDMap map) throws MUDException{
+
+        Room currRoom = getCurrRoom(map);
 
         TileFeature target = currRoom.getTile(x-1, y);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             x--;
-            target.interact(this);
+            target.interact(this, map);
         }
         else if(target != null && !target.occupy(character)){
-            target.interact(this);
+            target.interact(this, map);
         }
         else{
             throw new MUDException("Can't move there");
@@ -91,27 +99,28 @@ public class PlayerController {
 
     }
 
-    public void makeMove(String dir) throws MUDException{
+    public void makeMove(String dir, MUDMap map) throws MUDException{
         if(dir.equals("w")){
-            moveUp();
+            moveUp(map);
         }
         else if(dir.equals("s")){
-            moveDown();
+            moveDown(map);
         }
         else if(dir.equals("a")){
-            moveLeft();
+            moveLeft(map);
         }
         else if(dir.equals("d")){
-            moveRight();
+            moveRight(map);
         }
         else{
             throw new MUDException("Invalid move direction");
         }
     }
 
-    public TileFeature[] getAdjacentTiles(){
+    public TileFeature[] getAdjacentTiles(MUDMap map){
 
         TileFeature[] tiles = new TileFeature[4];
+        Room currRoom = map.getRooms().get(currRoomID);
         
         tiles[0] = currRoom.getTile(x+1, y);
         tiles[1] = currRoom.getTile(x-1, y);
@@ -125,8 +134,11 @@ public class PlayerController {
         return x;
     }
 
-    public void setX(int newX) throws MUDException{
+    public void setX(int newX, MUDMap map) throws MUDException{
+
+        Room currRoom = getCurrRoom(map);
         TileFeature target = currRoom.getTile(newX, y);
+
         if(target != null && target.occupy(character)){
             x = newX;
         }
@@ -139,8 +151,11 @@ public class PlayerController {
         return y;
     }
 
-    public void setY(int newY) throws MUDException{
+    public void setY(int newY, MUDMap map) throws MUDException{
+
+        Room currRoom = getCurrRoom(map);
         TileFeature target = currRoom.getTile(x, newY);
+
         if(target != null && target.occupy(character)){
             y = newY;
         }
@@ -173,21 +188,16 @@ public class PlayerController {
         return character;
     }
 
-    public Room getCurrRoom(){
-        return currRoom;
+    public Room getCurrRoom(MUDMap map){
+        return map.getRooms().get(currRoomID);
     }
 
-    public void setCurrRoom(Room room, int newX, int newY) throws MUDException{
-        this.currRoom = room;
+    public void setCurrRoom(Room room, int newX, int newY, MUDMap map) throws MUDException{
+        this.currRoomID = room.getID();
         // setX(newX);
         // setY(newY);
         this.x = newX;
         this.y = newY;
-        System.out.println("Now in room " + this.currRoom.getID());
+        System.out.println("Now in room " + currRoomID);
     }
-
-    public MUDMap getMap(){
-        return map;
-    }
-
 }

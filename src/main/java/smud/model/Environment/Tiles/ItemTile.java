@@ -1,6 +1,7 @@
 package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
+import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
 public class ItemTile extends TileFeature implements Tile{
@@ -23,7 +24,7 @@ public class ItemTile extends TileFeature implements Tile{
     }
 
     @Override
-    public void interact(PlayerController player){
+    public void interact(PlayerController player, MUDMap map){
         for(MUDItem item: items){
             player.getCharacter().getInventory().addItem(item);
         }

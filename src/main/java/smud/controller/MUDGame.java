@@ -39,7 +39,7 @@ public class MUDGame implements DayNightSubject{
             this.map = new PremadeMap(filepath);
         }
         this.playerController = new PlayerController(new PlayerCharacter(playerName, playerDescription), map);
-        this.playerController.getCurrRoom().getTile(getPlayerX(), getPlayerX()).occupy(getPlayer());
+        this.playerController.getCurrRoom(map).getTile(getPlayerX(), getPlayerX()).occupy(getPlayer());
         this.isDay = true;
         this.turns = 1;
         this.dayNightObservers = new ArrayList<>();
@@ -52,8 +52,8 @@ public class MUDGame implements DayNightSubject{
         //options during turn: move to adjacent tile if its not blocked, attack one adjacent creature, move through an exit, examine/interact with item(s) on their tile, disarm adjacent traps, at end of turn player is attacked by adjacent creatures.
         turns ++;
         playerController.useBuffs();
-        System.out.println(playerController.getCurrRoom());
-        TileFeature[] adjacentTiles = playerController.getAdjacentTiles();
+        System.out.println(playerController.getCurrRoom(map));
+        TileFeature[] adjacentTiles = playerController.getAdjacentTiles(map);
         System.out.println(playerController.getCharacter());
         System.out.println("Move[w,a,s,d] Inventory[i]");
         String action;
@@ -87,7 +87,7 @@ public class MUDGame implements DayNightSubject{
             }
         }
         else{
-            playerController.makeMove(action);
+            playerController.makeMove(action, map);
         }
 
         for(TileFeature tile: adjacentTiles){
@@ -122,7 +122,7 @@ public class MUDGame implements DayNightSubject{
     }
 
     public Room getPlayerRoom(){
-        return playerController.getCurrRoom();
+        return playerController.getCurrRoom(map);
     }
 
     public MUDMap getMap(){
@@ -173,7 +173,7 @@ public class MUDGame implements DayNightSubject{
 
     public boolean gameOver(){
         try {
-            if(playerController.getCurrRoom() == map.getEndRoom() && map.getEndRoom().roomCleared()){
+            if(playerController.getCurrRoom(map) == map.getEndRoom() && map.getEndRoom().roomCleared()){
                 return true;
             }
         }catch (Exception e){
