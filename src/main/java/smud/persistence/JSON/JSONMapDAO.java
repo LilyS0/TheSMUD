@@ -45,8 +45,8 @@ public class JSONMapDAO implements MapDAO{
         try {
             maps = mapper.readValue(new File(FILEPATH), new TypeReference<Set<MapMemento>>() {});
         } catch (Exception e) {
-            System.out.println("Couldn't load data: ");
-            e.printStackTrace();
+            // System.out.println("Couldn't load data: ");
+            // e.printStackTrace();
         } 
     }
 }

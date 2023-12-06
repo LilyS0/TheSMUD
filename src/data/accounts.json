@@ -5,55 +5,43 @@
         "player": {
             "character": {
                 "name": "Player 1",
-                "description": "Dungeon crawler",
-                "health": 801,
+                "description": "a player",
+                "health": 842,
                 "inventory": {
                     "inventory": [
                         {
-                            "LeatherArmor": {
-                                "name": "LeatherArmor",
-                                "value": 5,
-                                "stat": 1
-                            }
-                        },
-                        {
-                            "Steak": {
-                                "name": "Steak",
-                                "value": 25,
-                                "stat": 5
-                            }
-                        },
-                        {
-                            "Bread": {
-                                "name": "Bread",
-                                "value": 15,
-                                "stat": 3
-                            }
-                        },
-                        {
-                            "IronArmor": {
-                                "name": "IronArmor",
-                                "value": 25,
-                                "stat": 5
-                            }
-                        },
-                        {
-                            "Regen": {
-                                "name": "Regen",
-                                "value": 20,
+                            "Strength": {
+                                "name": "Strength",
+                                "value": 35,
                                 "turns": 10,
                                 "active": false,
-                                "stat": 4
+                                "stat": 7
+                            }
+                        },
+                        {
+                            "Strength": {
+                                "name": "Strength",
+                                "value": 35,
+                                "turns": 10,
+                                "active": false,
+                                "stat": 7
+                            }
+                        },
+                        {
+                            "Axe": {
+                                "name": "Axe",
+                                "value": 35,
+                                "stat": 7
                             }
                         }
                     ],
-                    "ratio": "5 / 40",
-                    "inventorySize": 5
+                    "ratio": "3 / 40",
+                    "inventorySize": 3
                 },
                 "attack": 50,
                 "defense": 0,
                 "items": [],
-                "gold": 3,
+                "gold": 4,
                 "enemiesSlain": 1,
                 "itemsFound": 3,
                 "livesLost": 0,
@@ -65,10 +53,80 @@
             "x": 1,
             "y": 3
         },
+        "gamesPlayed": 4,
+        "livesLost": 0,
+        "monstersSlain": 4,
+        "totalGold": 28,
+        "itemsFound": 12
+    },
+    "user": {
+        "username": "user",
+        "hashedPassword": "ac39",
+        "player": {
+            "character": {
+                "name": "user",
+                "description": "a player",
+                "health": 831,
+                "inventory": {
+                    "inventory": [
+                        {
+                            "Bread": {
+                                "name": "Bread",
+                                "value": 15,
+                                "stat": 3
+                            }
+                        },
+                        {
+                            "Steak": {
+                                "name": "Steak",
+                                "value": 25,
+                                "stat": 5
+                            }
+                        },
+                        {
+                            "Steak": {
+                                "name": "Steak",
+                                "value": 25,
+                                "stat": 5
+                            }
+                        },
+                        {
+                            "Sword": {
+                                "name": "Sword",
+                                "value": 25,
+                                "stat": 5
+                            }
+                        },
+                        {
+                            "Sword": {
+                                "name": "Sword",
+                                "value": 25,
+                                "stat": 5
+                            }
+                        }
+                    ],
+                    "ratio": "5 / 40",
+                    "inventorySize": 5
+                },
+                "attack": 50,
+                "defense": 0,
+                "items": [],
+                "gold": 10,
+                "enemiesSlain": 2,
+                "itemsFound": 2,
+                "livesLost": 0,
+                "weapon": null,
+                "armor": null,
+                "activeBuffs": [],
+                "alive": true
+            },
+            "x": 2,
+            "y": 2
+        },
         "gamesPlayed": 1,
         "livesLost": 0,
-        "monstersSlain": 1,
-        "totalGold": 3,
-        "itemsFound": 3
+        "monstersSlain": 2,
+        "totalGold": 10,
+        "itemsFound": 2
     }
 }

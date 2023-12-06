@@ -55,8 +55,8 @@ public class JSONAccountDAO implements AccountDAO{
         try {
             accounts = mapper.readValue(new File(FILEPATH), new TypeReference<Map<String, AccountMemento>>() {});
         } catch (IOException e) {
-            System.out.println("File error: ");
-            e.printStackTrace();
+            // System.out.println("File error: ");
+            // e.printStackTrace();
         }
     }
 }
