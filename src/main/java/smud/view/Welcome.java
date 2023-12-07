@@ -1,6 +1,9 @@
 package smud.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -8,9 +11,23 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
+/**
+ * This class creates the Welcome screen, which is the first thing the user sees when they launch the game.
+ * The user has the option to sign in and play a game, or if they do not want to sign in they can still view the maps.
+ *
+ * @author Sydney Wilson
+ */
 public class Welcome {
-    public static BorderPane create() {
+    private Stage stage;
+    public PostLogin postLogin;
+    public Welcome(Stage primary) {
+        this.stage = primary;
+        create(stage);
+    }
+
+    public static BorderPane create(Stage primary) {
         // center borderpane
         // game title
         Label title = new Label("SMUD craft");
@@ -31,6 +48,9 @@ public class Welcome {
         TextField pwInput = new TextField("PASSWORD");
         // will be tied to authenticate/login functions
         Button enterCredentials = new Button("Login");
+        enterCredentials.setOnAction(e -> {
+            primary.setScene(new Scene(PostLogin.create(), 400, 300));
+        });
         // all are placed in vbox => places in left div of borderpane
         VBox leftBox = new VBox();
         leftBox.getChildren().addAll(loginTitle, usernameInput, pwInput, enterCredentials);
@@ -64,7 +84,7 @@ public class Welcome {
         asciiRender.setTextFill(Color.CORNFLOWERBLUE);
         general.setCenter(asciiRender);
         BorderPane.setAlignment(asciiRender, Pos.CENTER);
-
         return general;
     }
+
 }

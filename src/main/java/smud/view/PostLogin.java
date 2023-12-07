@@ -5,8 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class PostLogin {
+    public PostLogin(Stage primary) {
+        // primary is used to make buttons change and all that
+    }
+
     public static VBox create() {
         // vbox 1: resume game button, new game button
         // vbox 2: browse maps button, browse inventory button
@@ -48,7 +53,6 @@ public class PostLogin {
         total.getChildren().addAll(upper, lower, statsBox);
         total.setStyle("-fx-background-color: black;");
         total.setSpacing(75);
-
         return total;
     }
 }
