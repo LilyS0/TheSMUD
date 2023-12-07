@@ -13,12 +13,6 @@ import javafx.geometry.Rectangle2D;
  * @author Sydney Wilson
  */
 public class GUI extends Application {
-    BrowseInventory browseInv = null;
-    BrowseMaps browseMaps = null;
-    Game game = null;
-    PostLogin postLogin = null;
-    Welcome w = null;
-
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(Welcome.create(primaryStage), 400, 300);
@@ -29,8 +23,6 @@ public class GUI extends Application {
         primaryStage.setTitle("SMUDcraft");
         primaryStage.setScene(scene);
         primaryStage.show();
-         w = new Welcome(primaryStage);
-
     }
 
     public static void main(String[] args) {

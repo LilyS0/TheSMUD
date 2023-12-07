@@ -60,6 +60,9 @@ public class Welcome {
         //right borderpane
         // view maps if not logged in button
         Button viewMaps = new Button("View Maps");
+        viewMaps.setOnAction(e -> {
+            primary.setScene(new Scene(BrowseMaps.create(primary), 400, 300));
+        });
         general.setRight(viewMaps);
         BorderPane.setAlignment(viewMaps, Pos.CENTER_RIGHT);
 
