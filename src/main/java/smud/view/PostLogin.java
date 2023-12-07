@@ -35,6 +35,9 @@ public class PostLogin {
             primary.setScene(new Scene(BrowseMaps.create(primary)));
         });
         Button browseInventory = new Button("Browse Inventory");
+        browseInventory.setOnAction(e -> {
+            primary.setScene(new Scene(BrowseInventory.create(primary)));
+        });
         vb2.getChildren().addAll(browseMaps, browseInventory);
         vb2.setAlignment(Pos.CENTER);
         vb2.setSpacing(75);
