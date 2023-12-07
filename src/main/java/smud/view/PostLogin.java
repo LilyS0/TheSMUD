@@ -1,6 +1,7 @@
 package smud.view;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -8,11 +9,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PostLogin {
+    private Stage stage;
     public PostLogin(Stage primary) {
+        this.stage = primary;
+        create(stage);
         // primary is used to make buttons change and all that
     }
 
-    public static VBox create() {
+    public static VBox create(Stage primary) {
         // vbox 1: resume game button, new game button
         // vbox 2: browse maps button, browse inventory button
         // hbox 1 = vbox1 + vbox 2
@@ -27,6 +31,9 @@ public class PostLogin {
 
         VBox vb2 = new VBox();
         Button browseMaps = new Button("Browse Maps");
+        browseMaps.setOnAction(e -> {
+            primary.setScene(new Scene(BrowseMaps.create(primary)));
+        });
         Button browseInventory = new Button("Browse Inventory");
         vb2.getChildren().addAll(browseMaps, browseInventory);
         vb2.setAlignment(Pos.CENTER);

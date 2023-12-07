@@ -43,6 +43,10 @@ public class BrowseMaps {
         Label map = new Label();
         String mapContent = readContentFromFile(filePath);
         map.setText(mapContent);
+        map.setAlignment(Pos.CENTER);
+        map.setStyle("-fx-background-color: black;");
+        map.setTextFill(Color.CHARTREUSE);
+        map.setFont(new Font(30));
         return map;
     }
 

@@ -49,7 +49,7 @@ public class Welcome {
         // will be tied to authenticate/login functions
         Button enterCredentials = new Button("Login");
         enterCredentials.setOnAction(e -> {
-            primary.setScene(new Scene(PostLogin.create(), 400, 300));
+            primary.setScene(new Scene(PostLogin.create(primary), 400, 300));
         });
         // all are placed in vbox => places in left div of borderpane
         VBox leftBox = new VBox();
