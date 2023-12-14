@@ -1,8 +1,11 @@
 package smud.model.Environment.map;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import smud.model.Environment.MapComponent;
 import smud.model.Environment.room.InfiniteRoom;
 import smud.model.Environment.room.Room;
 import smud.persistence.Mementos.InfiniteMapMemento;
@@ -66,5 +69,25 @@ public class InfiniteMap implements MUDMap{
     @Override
     public MapMemento createMemento() {
         return new InfiniteMapMemento(startRoom, rooms);
+    }
+
+
+
+    @Override
+    public Collection<MapComponent> getChildren() {
+        ArrayList<MapComponent> children = new ArrayList<>();
+        for(int id: rooms.keySet()){
+            children.add(rooms.get(id));
+        }
+        return children;
+    }
+
+
+
+    @Override
+    public void updateTime(boolean isDay) {
+        for(int id: rooms.keySet()){
+            rooms.get(id).updateTime(isDay);
+        }
     }
 }

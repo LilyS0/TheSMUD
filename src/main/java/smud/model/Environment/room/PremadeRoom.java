@@ -14,7 +14,7 @@ import java.util.Set;
 import smud.model.MUDException;
 import smud.model.Environment.Tiles.EmptyTile;
 import smud.model.Environment.Tiles.ExitTile;
-import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.Tiles.Tile;
 
 public class PremadeRoom extends Room{
     // *structure of this V E R Y subject to change, for now a 2D 
@@ -33,7 +33,7 @@ public class PremadeRoom extends Room{
     private Set<Room> exits;
     private boolean isEndRoom;
 
-    public PremadeRoom(TileFeature[][] tiles, int id, boolean isEndRoom){
+    public PremadeRoom(Tile[][] tiles, int id, boolean isEndRoom){
 
         this.id = id;
         this.tiles = tiles;
@@ -53,14 +53,14 @@ public class PremadeRoom extends Room{
         int width = roomList.get(0).size();
         int height = roomList.size();
 
-        TileFeature[][] tiles = new TileFeature[height][width];
+        Tile[][] tiles = new Tile[height][width];
         
 
         for(int i=0; i<height; i++){
-            TileFeature[] row = new TileFeature[width];
+            Tile[] row = new Tile[width];
             for(int k=0; k<width; k++){
                 try {
-                    TileFeature tile = TileFeature.createTile(roomList.get(i).get(k), rooms, k, i);
+                    Tile tile = Tile.createTile(roomList.get(i).get(k), rooms, k, i);
                     row[k] = tile;
                     if(tile instanceof ExitTile){
                         ExitTile exit = (ExitTile)tile;

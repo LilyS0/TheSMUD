@@ -2,7 +2,7 @@ package smud.controller;
 
 import smud.model.MUDException;
 import smud.model.Character.PlayerCharacter;
-import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Environment.room.Room;
 import smud.model.Item.MUDItem;
@@ -31,7 +31,7 @@ public class PlayerController {
 
         Room currRoom = getCurrRoom(map);
 
-        TileFeature target = currRoom.getTile(x, y-1);
+        Tile target = currRoom.getTile(x, y-1);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             y--;
@@ -50,7 +50,7 @@ public class PlayerController {
 
        Room currRoom = getCurrRoom(map);
 
-        TileFeature target = currRoom.getTile(x, y+1);
+        Tile target = currRoom.getTile(x, y+1);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             y++;
@@ -69,7 +69,7 @@ public class PlayerController {
 
         Room currRoom = getCurrRoom(map);
 
-        TileFeature target = currRoom.getTile(x+1, y);
+        Tile target = currRoom.getTile(x+1, y);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             x++;
@@ -88,7 +88,7 @@ public class PlayerController {
 
         Room currRoom = getCurrRoom(map);
 
-        TileFeature target = currRoom.getTile(x-1, y);
+        Tile target = currRoom.getTile(x-1, y);
         if(target != null && target.occupy(character)){
             currRoom.getTile(x, y).clearOccupant();
             x--;
@@ -121,9 +121,9 @@ public class PlayerController {
         }
     }
 
-    public TileFeature[] getAdjacentTiles(MUDMap map){
+    public Tile[] getAdjacentTiles(MUDMap map){
 
-        TileFeature[] tiles = new TileFeature[4];
+        Tile[] tiles = new Tile[4];
         Room currRoom = map.getRoom(currRoomID);
         
         tiles[0] = currRoom.getTile(x+1, y);
@@ -141,7 +141,7 @@ public class PlayerController {
     public void setX(int newX, MUDMap map) throws MUDException{
 
         Room currRoom = getCurrRoom(map);
-        TileFeature target = currRoom.getTile(newX, y);
+        Tile target = currRoom.getTile(newX, y);
 
         if(target != null && target.occupy(character)){
             x = newX;
@@ -158,7 +158,7 @@ public class PlayerController {
     public void setY(int newY, MUDMap map) throws MUDException{
 
         Room currRoom = getCurrRoom(map);
-        TileFeature target = currRoom.getTile(x, newY);
+        Tile target = currRoom.getTile(x, newY);
 
         if(target != null && target.occupy(character)){
             y = newY;

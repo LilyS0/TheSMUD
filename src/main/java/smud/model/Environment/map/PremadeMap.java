@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import smud.model.MUDException;
+import smud.model.Environment.MapComponent;
 import smud.model.Environment.Tiles.ExitTile;
-import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.room.PremadeRoom;
 import smud.model.Environment.room.Room;
 import smud.persistence.Mementos.MapMemento;
@@ -77,8 +79,8 @@ public class PremadeMap implements MUDMap{
 
         for(int id: rooms.keySet()){
             Room r = rooms.get(id);
-            for(TileFeature[] row: r.getTiles()){
-                for(TileFeature tile: row){
+            for(Tile[] row: r.getTiles()){
+                for(Tile tile: row){
                     if(tile instanceof ExitTile){
                         ExitTile exit = (ExitTile)tile;
                         exit.addTarget(rooms.get(exit.getTargetID()));
@@ -120,7 +122,7 @@ public class PremadeMap implements MUDMap{
         return rooms.get(id);
     }
 
-    public TileFeature getTile(int id, int x, int y){
+    public Tile getTile(int id, int x, int y){
         return rooms.get(id).getTile(x, y);
     }
 
@@ -163,5 +165,17 @@ public class PremadeMap implements MUDMap{
         }
 
 
+    }
+
+    @Override
+    public Collection<MapComponent> getChildren() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getChildren'");
+    }
+
+    @Override
+    public void updateTime(boolean isDay) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateTime'");
     }
 }

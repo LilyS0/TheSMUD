@@ -2,7 +2,6 @@ package smud.model.Character;
 
 import java.util.Random;
 
-import smud.controller.DayNightObserver;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Item.*;
 
@@ -13,7 +12,7 @@ import smud.model.Item.*;
  * 
  * @author Sydney Wilson
  */
-public class NPC extends MUDCharacter implements DayNightObserver{
+public class NPC extends MUDCharacter{
     // INCORPORATE DEFAULT VALUES
 
 // An NPC is one that is controlled by the game. In this version of the game, all NPCs are enemies, but in future versions, some NPCs may not be hostile.

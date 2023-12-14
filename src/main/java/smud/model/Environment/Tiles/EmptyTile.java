@@ -8,7 +8,7 @@ import smud.model.Character.PlayerCharacter;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
-public class EmptyTile extends TileFeature implements Tile{
+public class EmptyTile extends Tile{
     private boolean canEnter;
     private MUDCharacter occupant;
     private ArrayList<MUDItem> items;

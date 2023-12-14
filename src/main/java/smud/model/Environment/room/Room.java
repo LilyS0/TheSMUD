@@ -1,14 +1,16 @@
 package smud.model.Environment.room;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import smud.model.Character.MUDCharacter;
+import smud.model.Environment.MapComponent;
 import smud.model.Environment.Tiles.CharacterTile;
-import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.Tiles.Tile;
 
-public abstract class Room {
+public abstract class Room implements MapComponent{
 
-    protected TileFeature[][] tiles;
+    protected Tile[][] tiles;
     protected int height;
     protected int width;
     protected int id;
@@ -29,8 +31,8 @@ public abstract class Room {
     public ArrayList<MUDCharacter> getEnemies(){
         ArrayList<MUDCharacter> enemies = new ArrayList<>();
 
-        for(TileFeature[] row: tiles){
-            for(TileFeature tile: row){
+        for(Tile[] row: tiles){
+            for(Tile tile: row){
                 if(tile instanceof CharacterTile){
                     CharacterTile ct = (CharacterTile)tile;
                     if(ct.getCharacter().isAlive()){
@@ -43,7 +45,27 @@ public abstract class Room {
         return enemies;
     }
 
-    public TileFeature getTile(int x, int y){
+    @Override
+    public Collection<MapComponent> getChildren() {
+        ArrayList<MapComponent> children = new ArrayList<>();
+        for(Tile[] row: tiles){
+            for(Tile tile: row){
+                children.add(tile);
+            }
+        }
+        return children;
+    }
+
+    @Override
+    public void updateTime(boolean isDay) {
+        for(Tile[] row: tiles){
+            for(Tile tile: row){
+                tile.updateTime(isDay);
+            }
+        }
+    }
+
+    public Tile getTile(int x, int y){
         try{
             return tiles[y][x];
         }  
@@ -52,7 +74,7 @@ public abstract class Room {
         }
     }
 
-    public TileFeature[][] getTiles(){
+    public Tile[][] getTiles(){
         return tiles;
     }
 
@@ -76,8 +98,8 @@ public abstract class Room {
     public String toString(){
         String display = "";
 
-        for(TileFeature[] row: tiles){
-            for(TileFeature tile: row){
+        for(Tile[] row: tiles){
+            for(Tile tile: row){
                 this.description += "  " + tile.getDescription() + "\n";
                 display += "[" + tile.getSymbol() + "] ";
             }
