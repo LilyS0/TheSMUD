@@ -1,5 +1,6 @@
 package smud.model.Environment.map;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,15 +75,19 @@ public class InfiniteMap implements MUDMap{
 
     @Override
     public Collection<MapComponent> getChildren() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getChildren'");
+        ArrayList<MapComponent> children = new ArrayList<>();
+        for(int id: rooms.keySet()){
+            children.add(rooms.get(id));
+        }
+        return children;
     }
 
 
 
     @Override
     public void updateTime(boolean isDay) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTime'");
+        for(int id: rooms.keySet()){
+            rooms.get(id).updateTime(isDay);
+        }
     }
 }

@@ -49,14 +49,12 @@ public abstract class Tile implements MapComponent{
 
     @Override
     public Collection<MapComponent> getChildren() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getChildren'");
     }
 
     @Override
     public void updateTime(boolean isDay) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTime'");
+        occupant.updateTime(isDay);
     }
 
     public String getDescription(){

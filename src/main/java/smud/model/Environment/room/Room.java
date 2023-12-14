@@ -47,14 +47,22 @@ public abstract class Room implements MapComponent{
 
     @Override
     public Collection<MapComponent> getChildren() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getChildren'");
+        ArrayList<MapComponent> children = new ArrayList<>();
+        for(Tile[] row: tiles){
+            for(Tile tile: row){
+                children.add(tile);
+            }
+        }
+        return children;
     }
 
     @Override
     public void updateTime(boolean isDay) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateTime'");
+        for(Tile[] row: tiles){
+            for(Tile tile: row){
+                tile.updateTime(isDay);
+            }
+        }
     }
 
     public Tile getTile(int x, int y){
