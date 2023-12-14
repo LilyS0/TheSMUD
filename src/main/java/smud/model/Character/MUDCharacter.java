@@ -158,4 +158,8 @@ public abstract class MUDCharacter {
         return itemsFound;
     }
 
+    public void updateTime(boolean isDay){
+        throw new UnsupportedOperationException("Unimplemented method 'updateTime'");
+    }
+
 }

@@ -6,7 +6,7 @@ import smud.model.Character.MUDCharacter;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Environment.room.InfiniteRoom;
 
-public class InfiniteExitTile extends TileFeature{
+public class InfiniteExitTile extends Tile{
     private InfiniteRoom current;
     private InfiniteRoom next;
     private int targetX;

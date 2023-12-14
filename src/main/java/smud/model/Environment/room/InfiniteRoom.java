@@ -9,7 +9,7 @@ import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.InfiniteExitTile;
 import smud.model.Environment.Tiles.ItemTile;
 import smud.model.Environment.Tiles.ObstacleTile;
-import smud.model.Environment.Tiles.TileFeature;
+import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.Tiles.TrapTile;
 import smud.model.Item.MUDItem;
 
@@ -38,11 +38,11 @@ public class InfiniteRoom extends Room{
         }
     }
 
-    private TileFeature[][] makeTiles(){
+    private Tile[][] makeTiles(){
 
         int width = RANDOM.nextInt(4, 7);
         int height = RANDOM.nextInt(4, 7);
-        TileFeature[][] tiles = new TileFeature[height][width];
+        Tile[][] tiles = new Tile[height][width];
 
         //Load with all empty tiles
 
@@ -56,12 +56,12 @@ public class InfiniteRoom extends Room{
 
         //exit to previous room in the bottom middle if previous room exists
         if(previous != null){
-            TileFeature exitToPrev = new InfiniteExitTile(this, previous, width/2, height-1);
+            Tile exitToPrev = new InfiniteExitTile(this, previous, width/2, height-1);
             tiles[height-1][width/2] = exitToPrev;
         }
 
         //exit to the next room at the top middle
-        TileFeature exitToNext = new InfiniteExitTile(this, next, width/2, 0);
+        Tile exitToNext = new InfiniteExitTile(this, next, width/2, 0);
         tiles[0][width/2] = exitToNext;
 
         //Make obsticles
@@ -141,19 +141,19 @@ public class InfiniteRoom extends Room{
 
     public boolean exitAdjacent(int x, int y){
 
-        TileFeature[] adjacent = new TileFeature[4];
+        Tile[] adjacent = new Tile[4];
 
-        TileFeature up = getTile(x, y-1);
-        TileFeature down = getTile(x, y+1);
-        TileFeature left = getTile(x-1, y);
-        TileFeature right = getTile(x+1, y);
+        Tile up = getTile(x, y-1);
+        Tile down = getTile(x, y+1);
+        Tile left = getTile(x-1, y);
+        Tile right = getTile(x+1, y);
         
         adjacent[0] = up;
         adjacent[1] = down;
         adjacent[2] = left;
         adjacent[3] = right;
 
-        for(TileFeature tile: adjacent){
+        for(Tile tile: adjacent){
             if(tile instanceof ExitTile){
                 return true;
             }
@@ -174,5 +174,4 @@ public class InfiniteRoom extends Room{
     public void addExit(Room room) {
         throw new UnsupportedOperationException("Can't do that here");
     }
-    
 }

@@ -15,7 +15,7 @@ import smud.model.Item.MUDItem;
  * @author Ty Platow
  */
 
-public class MerchantTile extends TileFeature{
+public class MerchantTile extends Tile{
     private MUDItem[] forSale;
     private boolean open;
     

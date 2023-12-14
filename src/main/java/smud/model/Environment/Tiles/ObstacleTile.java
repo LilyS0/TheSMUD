@@ -4,7 +4,7 @@ import java.util.Random;
 
 import smud.model.Character.MUDCharacter;
 
-public class ObstacleTile extends TileFeature{
+public class ObstacleTile extends Tile{
 
     private static final String[] obsticles = {"Rock", "Plant", "Spike", "Wall", "Pit"};
     private static final Random random = new Random();

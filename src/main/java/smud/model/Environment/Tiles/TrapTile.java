@@ -4,7 +4,7 @@ import java.util.Random;
 import smud.model.MUDException;
 import smud.model.Character.MUDCharacter;
 
-public class TrapTile extends TileFeature{
+public class TrapTile extends Tile{
     private int attack;
     private boolean armed;
     private boolean detected;

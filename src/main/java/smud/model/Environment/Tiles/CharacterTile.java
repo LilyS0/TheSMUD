@@ -5,7 +5,7 @@ import smud.model.Character.MUDCharacter;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
-public class CharacterTile extends TileFeature{
+public class CharacterTile extends Tile{
     private MUDCharacter startingOccupant;
     
     public CharacterTile(MUDCharacter character, int x, int y){

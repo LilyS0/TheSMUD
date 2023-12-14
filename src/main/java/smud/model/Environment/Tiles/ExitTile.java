@@ -6,7 +6,7 @@ import smud.model.Character.MUDCharacter;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Environment.room.Room;
 
-public class ExitTile extends TileFeature{
+public class ExitTile extends Tile{
     private Room target;
     private int targetID;
     private int targetX;

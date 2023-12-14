@@ -4,7 +4,7 @@ import smud.controller.PlayerController;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
-public class ItemTile extends TileFeature implements Tile{
+public class ItemTile extends Tile{
 
     private MUDItem[] items;
 
