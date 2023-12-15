@@ -1,5 +1,6 @@
 package smud.model.ComponentBuilder;
 
+import smud.model.ComponentBuilder.TileCreators.TileCreator;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment2.MUDMap2;
 import smud.model.Environment2.Room2;

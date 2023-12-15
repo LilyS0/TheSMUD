@@ -1,4 +1,4 @@
-package smud.model.ComponentBuilder;
+package smud.model.ComponentBuilder.TileCreators;
 
 import smud.model.Environment.Tiles.Tile;
 

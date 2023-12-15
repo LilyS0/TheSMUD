@@ -8,8 +8,6 @@ public class Room2 implements MapComponent{
     private Tile[][] tiles;
     private int id;
 
-    public Room2(){}
-
     public Tile getTile(int x, int y){
         return tiles[y][x];
     }
