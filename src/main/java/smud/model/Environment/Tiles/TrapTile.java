@@ -23,6 +23,18 @@ public class TrapTile extends Tile{
         this.symbol = defaultSymbol;
 
     }
+
+    public TrapTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
+        this.attack = rng.nextInt(21)+5;
+        this.armed = true;
+        this.detected = false;
+        this.canDetect = true;
+        this.description = "Trap Tile";
+        this.defaultSymbol = '_';
+        this.symbol = defaultSymbol;
+    }
     
     @Override
     public boolean disarm(MUDCharacter character) throws MUDException{

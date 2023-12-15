@@ -19,6 +19,17 @@ public class ItemTile extends Tile{
         this.canEnter = true;
     }
 
+    public ItemTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
+        this.items = MUDItem.getRandomItems();
+        this.tile = new EmptyTile(x,y);
+        this.description = "Item Tile";
+        this.defaultSymbol = 'I';
+        this.symbol = defaultSymbol;
+        this.canEnter = true;
+    }
+
     public MUDItem[] getItems(){
         return items;
     }

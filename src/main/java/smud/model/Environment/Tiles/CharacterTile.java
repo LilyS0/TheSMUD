@@ -2,6 +2,7 @@ package smud.model.Environment.Tiles;
 
 import smud.controller.PlayerController;
 import smud.model.Character.MUDCharacter;
+import smud.model.Character.NPC;
 import smud.model.Environment.map.MUDMap;
 import smud.model.Item.MUDItem;
 
@@ -16,6 +17,15 @@ public class CharacterTile extends Tile{
         this.symbol = defaultSymbol;
         this.description = "Character Tile";
         //tile.occupy(character);
+    }
+
+    public CharacterTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
+        this.startingOccupant = new NPC();
+        this.defaultSymbol = 'C';
+        this.symbol = defaultSymbol;
+        this.description = "Character Tile";
     }
 
     @Override

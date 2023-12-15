@@ -17,6 +17,14 @@ public class ObstacleTile extends Tile{
         this.symbol = defaultSymbol;
     }
 
+    public ObstacleTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
+        this.description = obsticles[random.nextInt(obsticles.length)];
+        this.defaultSymbol = 'O';
+        this.symbol = defaultSymbol;
+    }
+
     @Override
     public boolean occupy(MUDCharacter character){
         return false;

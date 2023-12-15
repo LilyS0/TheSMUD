@@ -21,6 +21,16 @@ public class ExitTile extends Tile{
         this.symbol = defaultSymbol;
         this.canEnter = true;
     }
+
+    public ExitTile(int x, int y){
+        this.xCor = x;
+        this.yCor = y;
+        this.targetID = 0;
+        this.description = "Exit Tile";
+        this.defaultSymbol = 'X';
+        this.symbol = defaultSymbol;
+        this.canEnter = true;
+    }
     
     @Override
     public boolean occupy(MUDCharacter character){
