@@ -1,5 +1,6 @@
 package smud.model.ComponentBuilder;
 
+import smud.model.ComponentBuilder.RoomCreators.RoomCreator;
 import smud.model.ComponentBuilder.TileCreators.TileCreator;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment2.MUDMap2;
@@ -8,14 +9,14 @@ import smud.model.Environment2.Room2;
 public class Builder implements ComponentBuilder{
 
     TileCreator tileCreator;
-
-
-    public Builder(){
-
-    }
+    RoomCreator roomCreator;
 
     public void setTileCreator(TileCreator creator){
         this.tileCreator = creator;
+    }
+
+    public void setRoomCreator(RoomCreator creator){
+        this.roomCreator = creator;
     }
 
     @Override
@@ -25,9 +26,8 @@ public class Builder implements ComponentBuilder{
     }
 
     @Override
-    public Room2 createRoom() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createRoom'");
+    public Room2 createRoom(int id) {
+        return roomCreator.createRoom(id);
     }
 
     @Override

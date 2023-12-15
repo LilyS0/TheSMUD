@@ -1,45 +1,26 @@
-package smud.model.Environment.room;
+package smud.model.ComponentBuilder.RoomCreators;
 
 import java.util.Random;
 
 import smud.model.Character.NPC;
 import smud.model.Environment.Tiles.CharacterTile;
 import smud.model.Environment.Tiles.EmptyTile;
-import smud.model.Environment.Tiles.ExitTile;
-import smud.model.Environment.Tiles.InfiniteExitTile;
 import smud.model.Environment.Tiles.ItemTile;
 import smud.model.Environment.Tiles.ObstacleTile;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.Tiles.TrapTile;
+import smud.model.Environment2.Room2;
 import smud.model.Item.MUDItem;
 
-public class InfiniteRoom extends Room{
+public class GeneratedRoomCreator implements RoomCreator{
 
-    private InfiniteRoom next;
-    private InfiniteRoom previous;
     private final Random RANDOM = new Random();
     private final int MAX_OBSTICLES = 4;
     private final int MAX_TRAPS = 2;
     private final int MAX_ENEMIES = 3;
     private final int MAX_ITEMS = 2;
 
-    public InfiniteRoom(InfiniteRoom previous){
-        this.next = null;
-        this.previous = previous;
-        this.tiles = makeTiles();
-        this.height = tiles.length;
-        this.width = tiles[0].length;
-
-        if(this.previous == null){
-            this.id = 1;
-        }
-        else{
-            this.id = previous.getID()+1;
-        }
-    }
-
-    private Tile[][] makeTiles(){
-
+    private Tile[][] createTiles(){
         int width = RANDOM.nextInt(4, 7);
         int height = RANDOM.nextInt(4, 7);
         Tile[][] tiles = new Tile[height][width];
@@ -52,19 +33,6 @@ public class InfiniteRoom extends Room{
             }
         }
 
-        //Make exits
-
-        //exit to previous room in the bottom middle if previous room exists
-        if(previous != null){
-            Tile exitToPrev = new InfiniteExitTile(this, previous, width/2, height-1);
-            tiles[height-1][width/2] = exitToPrev;
-        }
-
-        //exit to the next room at the top middle
-        Tile exitToNext = new InfiniteExitTile(this, next, width/2, 0);
-        tiles[0][width/2] = exitToNext;
-
-        //Make obsticles
         int obsticlesNum = RANDOM.nextInt(MAX_OBSTICLES);
         for(int i=0; i<obsticlesNum; i++){
 
@@ -73,7 +41,7 @@ public class InfiniteRoom extends Room{
             int y = RANDOM.nextInt(height);
 
             //find a new location if that one is taken or adjacent to exit
-            while(!(tiles[y][x] instanceof EmptyTile) || exitAdjacent(x, y)){
+            while(!(tiles[y][x] instanceof EmptyTile)){
                 x = RANDOM.nextInt(width);
                 y = RANDOM.nextInt(height);
             }
@@ -91,7 +59,7 @@ public class InfiniteRoom extends Room{
             int y = RANDOM.nextInt(height);
 
             //find a new location if that one is taken or adjacent to exit
-            while(!(tiles[y][x] instanceof EmptyTile) || exitAdjacent(x, y)){
+            while(!(tiles[y][x] instanceof EmptyTile)){
                 x = RANDOM.nextInt(width);
                 y = RANDOM.nextInt(height);
             }
@@ -109,7 +77,7 @@ public class InfiniteRoom extends Room{
             int y = RANDOM.nextInt(height);
 
             //find a new location if that one is taken or adjacent to exit
-            while(!(tiles[y][x] instanceof EmptyTile) || exitAdjacent(x, y)){
+            while(!(tiles[y][x] instanceof EmptyTile)){
                 x = RANDOM.nextInt(width);
                 y = RANDOM.nextInt(height);
             }
@@ -128,7 +96,7 @@ public class InfiniteRoom extends Room{
             int y = RANDOM.nextInt(height);
 
             //find a new location if that one is taken or adjacent to exit
-            while(!(tiles[y][x] instanceof EmptyTile) || exitAdjacent(x, y)){
+            while(!(tiles[y][x] instanceof EmptyTile)){
                 x = RANDOM.nextInt(width);
                 y = RANDOM.nextInt(height);
             }
@@ -136,42 +104,16 @@ public class InfiniteRoom extends Room{
             //place new obsticle tile
             tiles[y][x] = new ItemTile(MUDItem.getRandomItems(), x, y);
         }     
+
         return tiles;
     }
 
-    public boolean exitAdjacent(int x, int y){
-
-        Tile[] adjacent = new Tile[4];
-
-        Tile up = getTile(x, y-1);
-        Tile down = getTile(x, y+1);
-        Tile left = getTile(x-1, y);
-        Tile right = getTile(x+1, y);
-        
-        adjacent[0] = up;
-        adjacent[1] = down;
-        adjacent[2] = left;
-        adjacent[3] = right;
-
-        for(Tile tile: adjacent){
-            if(tile instanceof ExitTile){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public InfiniteRoom getNext(){
-        return next;
-    }
-
-    public InfiniteRoom getPrevious(){
-        return previous;
-    }
-
     @Override
-    public void addExit(Room room) {
-        throw new UnsupportedOperationException("Can't do that here");
+    public Room2 createRoom(int id) {
+        Room2 room = new Room2();
+        room.setId(id);
+        room.setTiles(createTiles());
+        return room;
     }
+    
 }
