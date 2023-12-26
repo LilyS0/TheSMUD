@@ -33,6 +33,11 @@ public abstract class NPC implements Card{
         this.isDay = isDay;
     }
 
+    @Override
+    public NPC getMonster(){
+        return this;
+    }
+
     //getters
 
     public boolean isAlive() {

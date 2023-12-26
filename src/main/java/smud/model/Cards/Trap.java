@@ -10,6 +10,11 @@ public abstract class Trap implements Card{
     private int health;
 
     @Override
+    public NPC getMonster(){
+        throw new UnsupportedOperationException("No monster here");
+    }
+
+    @Override
     public void updateTime(boolean isDay){
         throw new UnsupportedOperationException("Can't update time on a trap");
     }

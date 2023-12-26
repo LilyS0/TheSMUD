@@ -14,6 +14,11 @@ public abstract class Obsticle implements Card{
         throw new UnsupportedOperationException("Can't update time on an obsticle");
     }
 
+    @Override
+    public NPC getMonster(){
+        throw new UnsupportedOperationException("No monster here");
+    }
+
     public int getHealth() {
         return health;
     }

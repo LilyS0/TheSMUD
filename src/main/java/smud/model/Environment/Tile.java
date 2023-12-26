@@ -6,6 +6,10 @@ import smud.model.SMUDCharacter;
 import smud.model.Cards.Card;
 import smud.model.Cards.NPC;
 
+/*
+ * <<leaf>> in composite pattern for environment subsystem
+ */
+
 public class Tile implements DungeonElement{
 
     private Card card;
@@ -13,6 +17,11 @@ public class Tile implements DungeonElement{
 
     public Tile(){
         this.card = null;
+        this.character = null;
+    }
+
+    public Tile(Card card){
+        this.card = card;
         this.character = null;
     }
 
@@ -24,6 +33,15 @@ public class Tile implements DungeonElement{
         }
         else if(card == null && character == null){
             this.character = character;
+        }
+        else{
+            //throw smud exception
+        }
+    }
+
+    public void placeCard(Card card){
+        if(this.card == null && this.character == null){
+            this.card = card;
         }
         else{
             //throw smud exception
@@ -59,6 +77,10 @@ public class Tile implements DungeonElement{
     }
 
     //getters
+
+    public NPC getMonster(){
+        return card.getMonster();
+    }
 
     public Card getCard() {
         return card;
