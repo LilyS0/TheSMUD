@@ -1,12 +1,11 @@
 package smud.model.Environment;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
 
 public class Room extends Area{
 
-    private Set<Room> neighbors;
+    private ArrayList<Room> neighbors;
 
     public Room(){
 
@@ -15,7 +14,7 @@ public class Room extends Area{
         int height = random.nextInt(8, 13);
 
         this.tiles = new Tile[height][width];
-        this.neighbors = new HashSet<>();
+        this.neighbors = new ArrayList<>();
     } 
 
     public void addNeighbor(Room neighbor){
@@ -25,7 +24,7 @@ public class Room extends Area{
 
     // getters
 
-    public Set<Room> getNeighbors() {
+    public ArrayList<Room> getNeighbors() {
         return neighbors;
     }
     
