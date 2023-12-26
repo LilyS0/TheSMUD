@@ -3,6 +3,11 @@ package smud.model.Environment;
 import smud.model.SMUDCharacter;
 import smud.model.Cards.Card;
 
+/*
+ * <<composite>> of tiles in composite pattern for environment subsystem
+ * a board that players play against each other on in online PvP
+ */
+
 public class Board extends Area{
 
     private SMUDCharacter player1;

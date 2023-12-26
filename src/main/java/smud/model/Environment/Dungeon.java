@@ -6,6 +6,11 @@ import java.util.Map;
 
 import smud.model.Cards.NPC;
 
+/*
+ * <<composite>> of rooms in composite pattern for environment subsystem
+ * an infinitately generated dungeon that a player can explore to collect loot
+ */
+
 public class Dungeon implements DungeonElement{
 
     public Map<Room, ArrayList<Room>> rooms;

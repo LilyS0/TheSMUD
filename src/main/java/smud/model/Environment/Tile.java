@@ -8,6 +8,7 @@ import smud.model.Cards.NPC;
 
 /*
  * <<leaf>> in composite pattern for environment subsystem
+ * represents one tile of a board or room that can hold a character or a card
  */
 
 public class Tile implements DungeonElement{

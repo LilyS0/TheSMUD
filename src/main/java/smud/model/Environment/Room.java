@@ -3,6 +3,11 @@ package smud.model.Environment;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+ * <<composite>> of tiles in composite pattern for environment subsystem
+ * represents a room in the infinite dungeon
+ */
+
 public class Room extends Area{
 
     private ArrayList<Room> neighbors;

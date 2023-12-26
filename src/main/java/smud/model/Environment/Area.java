@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import smud.model.Cards.NPC;
 
+/*
+ * <<composite>> of tiles in composite pattern for environment subsystem
+ * represents a composite of tiles that one or more players and cards can exist in
+ */
+
 public abstract class Area implements DungeonElement{
     
     protected Tile[][] tiles;
