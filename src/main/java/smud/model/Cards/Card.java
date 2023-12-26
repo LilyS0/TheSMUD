@@ -6,5 +6,6 @@ package smud.model.Cards;
  */
 
 public interface Card {
-    
+    public void updateTime(boolean isDay);
+    public boolean canOccupy();
 }

@@ -17,6 +17,7 @@ public abstract class NPC implements Card{
     private Armor armor;
     private Weapon weapon;
     private Item[] items;
+    private boolean isDay;
 
     public void takeDamage(int damage){
         if(isAlive() && health - damage > 0){
@@ -27,10 +28,19 @@ public abstract class NPC implements Card{
         }
     }
 
+    @Override
+    public void updateTime(boolean isDay){
+        this.isDay = isDay;
+    }
+
     //getters
 
     public boolean isAlive() {
         return health > 0;
+    }
+
+    public boolean isDay() {
+        return isDay;
     }
 
     public Armor getArmor() {
