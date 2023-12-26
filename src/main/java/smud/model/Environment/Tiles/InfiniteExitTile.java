@@ -20,7 +20,6 @@ public class InfiniteExitTile extends Tile{
         setTargetCoords();
     }
 
-
     @Override
     public boolean occupy(MUDCharacter character){
         if(current.roomCleared()){

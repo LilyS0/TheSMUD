@@ -4,12 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import smud.model.MUDException;
-import smud.model.Environment.MapComponent;
 import smud.model.Environment.Tiles.ExitTile;
 import smud.model.Environment.Tiles.Tile;
 import smud.model.Environment.room.PremadeRoom;
@@ -165,12 +163,6 @@ public class PremadeMap implements MUDMap{
         }
 
 
-    }
-
-    @Override
-    public Collection<MapComponent> getChildren() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getChildren'");
     }
 
     @Override

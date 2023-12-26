@@ -1,7 +1,6 @@
 package smud.model.Environment.room;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import smud.model.Character.MUDCharacter;
 import smud.model.Environment.MapComponent;
@@ -43,17 +42,6 @@ public abstract class Room implements MapComponent{
         }
 
         return enemies;
-    }
-
-    @Override
-    public Collection<MapComponent> getChildren() {
-        ArrayList<MapComponent> children = new ArrayList<>();
-        for(Tile[] row: tiles){
-            for(Tile tile: row){
-                children.add(tile);
-            }
-        }
-        return children;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package smud.model.Environment.Tiles;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
 
@@ -48,13 +47,10 @@ public abstract class Tile implements MapComponent{
     }
 
     @Override
-    public Collection<MapComponent> getChildren() {
-        throw new UnsupportedOperationException("Unimplemented method 'getChildren'");
-    }
-
-    @Override
-    public void updateTime(boolean isDay) {
-        occupant.updateTime(isDay);
+    public void updateTime(boolean isDay){
+        if(occupant != null){
+            occupant.updateTime(isDay);
+        }   
     }
 
     public String getDescription(){
