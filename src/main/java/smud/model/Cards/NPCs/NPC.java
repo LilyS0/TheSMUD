@@ -1,5 +1,6 @@
-package smud.model.Cards;
+package smud.model.Cards.NPCs;
 
+import smud.model.Cards.Card;
 import smud.model.Items.Armor;
 import smud.model.Items.Item;
 import smud.model.Items.Weapon;

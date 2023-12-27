@@ -1,4 +1,7 @@
-package smud.model.Cards;
+package smud.model.Cards.Obsticles;
+
+import smud.model.Cards.Card;
+import smud.model.Cards.NPCs.NPC;
 
 /*
  * <<concrete state>> in state pattern for card subsytem

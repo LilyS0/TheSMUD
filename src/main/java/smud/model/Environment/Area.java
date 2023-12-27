@@ -2,7 +2,7 @@ package smud.model.Environment;
 
 import java.util.ArrayList;
 
-import smud.model.Cards.NPC;
+import smud.model.Cards.NPCs.NPC;
 
 /*
  * <<composite>> of tiles in composite pattern for environment subsystem

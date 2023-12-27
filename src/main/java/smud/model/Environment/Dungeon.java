@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import smud.model.Cards.NPC;
+import smud.model.Cards.NPCs.NPC;
 
 /*
  * <<composite>> of rooms in composite pattern for environment subsystem

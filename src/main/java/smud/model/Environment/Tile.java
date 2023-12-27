@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import smud.model.SMUDCharacter;
 import smud.model.Cards.Card;
-import smud.model.Cards.NPC;
+import smud.model.Cards.NPCs.NPC;
 
 /*
  * <<leaf>> in composite pattern for environment subsystem
