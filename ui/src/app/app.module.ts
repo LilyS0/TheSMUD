@@ -11,6 +11,11 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { MessagesComponent } from './messages/messages.component';
+import { HomescreenComponent } from './homescreen/homescreen.component';
+import { PlayChoiceComponent } from './play-choice/play-choice.component';
+import { DungeonComponent } from './dungeon/dungeon.component';
+import { ArenaComponent } from './arena/arena.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   imports: [
@@ -25,7 +30,12 @@ import { MessagesComponent } from './messages/messages.component';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    HomescreenComponent,
+    PlayChoiceComponent,
+    DungeonComponent,
+    ArenaComponent,
+    BackButtonComponent
   ],
   bootstrap: [ AppComponent ]
 })
