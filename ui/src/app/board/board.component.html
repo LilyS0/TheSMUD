@@ -1,0 +1,9 @@
+<div class="board">
+    <table>
+        <tr *ngFor="let row of tiles">
+            <td *ngFor="let tile of row">
+                <app-tile [tile]="tile"></app-tile>
+            </td>
+        </tr>
+    </table>
+</div>

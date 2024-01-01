@@ -16,6 +16,8 @@ import { PlayChoiceComponent } from './play-choice/play-choice.component';
 import { DungeonComponent } from './dungeon/dungeon.component';
 import { ArenaComponent } from './arena/arena.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { TileComponent } from './tile/tile.component';
+import { BoardComponent } from './board/board.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { BackButtonComponent } from './back-button/back-button.component';
     PlayChoiceComponent,
     DungeonComponent,
     ArenaComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    TileComponent,
+    BoardComponent
   ],
   bootstrap: [ AppComponent ]
 })

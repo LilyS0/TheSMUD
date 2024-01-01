@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { tile } from '../tile';
+import { TILES } from '../mock-tiles';
 
 @Component({
   selector: 'app-arena',
@@ -6,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./arena.component.css']
 })
 export class ArenaComponent {
-
 }
