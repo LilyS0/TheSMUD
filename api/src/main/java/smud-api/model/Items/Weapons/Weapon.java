@@ -1,4 +1,4 @@
-package smud.model.Items;
+package smud.model.Items.Weapons;
 
 /*
  * <<concrete state>> in state pattern for item subsystem

@@ -1,4 +1,4 @@
-package smud.model.Items;
+package smud.model.Items.Food;
 
 /*
  * <<concrete state>> in state pattern for item subsystem

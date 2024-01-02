@@ -7,11 +7,11 @@
 		<version>2.5.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.heroes.api</groupId>
-	<artifactId>heroes-api</artifactId>
+	<groupId>smud-api</groupId>
+	<artifactId>smud-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>heroes-api</name>
-	<description>API for Tour of Heroes</description>
+	<name>smud-api</name>
+	<description>API TheSMUD</description>
 	<properties>
 		<java.version>11</java.version>
 		<jacoco.version>0.8.7</jacoco.version>
@@ -32,6 +32,11 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>smud-api</directory>
+			</resource>
+      	</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -74,7 +79,7 @@
 					  </execution>
 				</executions>
 				<configuration>
-					<mainClass>com.heroes.api.heroesapi.HeroesApiApplication</mainClass>
+					<mainClass>smud-api.controller.GameController</mainClass>
 					<arguments></arguments>
 				</configuration>
 			</plugin>

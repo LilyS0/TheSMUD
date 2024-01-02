@@ -1,4 +1,4 @@
-package smud.model.Items;
+package smud.model.Items.Armor;
 
 /*
  * <<concrete state>> in state pattern for item subsystem
@@ -6,8 +6,8 @@ package smud.model.Items;
  */
 
 public abstract class Armor implements Item{
-    private int defense;
-    private String name;
+    protected int defense;
+    protected String name;
 
     public String getName() {
         return name;
