@@ -7,11 +7,11 @@
 		<version>2.5.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>smud-api</groupId>
+	<groupId>com.smud.api</groupId>
 	<artifactId>smud-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>smud-api</name>
-	<description>API TheSMUD</description>
+	<description>API for TheSMUD</description>
 	<properties>
 		<java.version>11</java.version>
 		<jacoco.version>0.8.7</jacoco.version>
@@ -32,11 +32,6 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>smud-api</directory>
-			</resource>
-      	</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -79,7 +74,7 @@
 					  </execution>
 				</executions>
 				<configuration>
-					<mainClass>smud-api.controller.GameController</mainClass>
+					<mainClass>com.smud.api.smudapi.SMUDApiApplication</mainClass>
 					<arguments></arguments>
 				</configuration>
 			</plugin>
