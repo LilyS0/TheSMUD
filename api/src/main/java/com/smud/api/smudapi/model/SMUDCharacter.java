@@ -2,9 +2,9 @@ package com.smud.api.smudapi.model;
 
 import com.smud.api.smudapi.model.Backpacks.Backpack;
 import com.smud.api.smudapi.model.Backpacks.SmallBackpack;
-import com.smud.api.smudapi.model.Items.Armor.Armor;
-import com.smud.api.smudapi.model.Items.Tools.Tool;
-import com.smud.api.smudapi.model.Items.Weapons.Weapon;
+import com.smud.api.smudapi.model.Items.Armor;
+import com.smud.api.smudapi.model.Items.Tool;
+import com.smud.api.smudapi.model.Items.Weapon;
 
 /*
  * <<context>> in state pattern for item subsystem
@@ -44,6 +44,10 @@ public class SMUDCharacter {
 
     public boolean isAlive(){
         return health > 0;
+    }
+
+    public void addHealth(int amount){
+        this.health += amount;
     }
 
     //setters

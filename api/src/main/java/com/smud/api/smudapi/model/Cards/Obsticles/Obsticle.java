@@ -9,8 +9,14 @@ import com.smud.api.smudapi.model.Cards.NPCs.NPC;
  */
 
 public abstract class Obsticle implements Card{
-    private String name;
-    private int health;
+
+    protected String name;
+    protected int health;
+
+    @Override
+    public boolean canOccupy(){
+        return false;
+    }
 
     @Override
     public void updateTime(boolean isDay){

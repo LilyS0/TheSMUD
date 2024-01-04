@@ -9,8 +9,8 @@ import com.smud.api.smudapi.model.Cards.NPCs.NPC;
  */
 
 public abstract class Trap implements Card{
-    private String name;
-    private int health;
+    protected String name;
+    protected int health;
 
     @Override
     public NPC getMonster(){

@@ -1,7 +1,6 @@
 package com.smud.api.smudapi.model;
 
 import java.util.ArrayList;
-
 import com.smud.api.smudapi.model.Cards.Card;
 
 
